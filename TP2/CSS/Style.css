@@ -3,13 +3,21 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #282831;
+}
+main {
+    flex: 1; /* Hace que el contenido ocupe todo el espacio disponible */
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    height: 100vh; /* Establece una altura fija al 100% de la altura de la ventana */
 }
 
 
 /* Estilos para la navbar */
-
 .navbar {
     position: fixed;
+    height: 7vh;
     top: 0;
     left: 0;
     right: 0;
@@ -23,12 +31,22 @@ body {
     z-index: 2; /* Asegura que el navbar esté por encima del sidebar */
 }
 
+.contenido{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding-left: 30vh;
+    padding-top: 25vh;
+}
+
 .sidebar {
     position: fixed;
     top: 60px; /* Ajusta esto según el alto del navbar */
     left: 0;
     bottom: 0;
-    width: 200px;
+    width: 25vh;
     background: #1C1C29;
     padding: 20px;
     box-shadow: 4px 0px 7px 0px rgba(0, 0, 0, 0.25);
@@ -108,7 +126,7 @@ body {
 .botonBuscar .texto{
     color: white; 
     font-size: 16px; 
-    font-family: Merriweather Sans; 
+    font-family: 'Merriweather Sans', sans-serif; 
     font-weight: 400; 
     letter-spacing: 2.48px; 
     word-wrap: break-word
@@ -195,9 +213,43 @@ body {
     max-height: 100%;
 }
 
-/* .sidebar{
-    width: 20vw; 
-    height: 100vh; 
-    background: #1C1C29;
-    overflow-y: auto;
-} */
+/* CARROUSEL */
+.carousel-container {
+    display: flex;
+    overflow: visible;
+}
+
+.carousel-item {
+    display: flex;
+    height: 50vh;
+    width: 50vw;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 100%), linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%); 
+    box-shadow: 0px 0px 61px -8px rgba(169, 133, 218, 0.80); 
+    border-radius: 5px; 
+    overflow: hidden; 
+    margin-right: 10px;
+    margin-left: 10px;
+    flex-direction: column; 
+    justify-content: flex-end; 
+    align-items: flex-start; 
+    display: inline-flex
+}
+
+.carousel-item .carousel-content {
+    width: 50%;  
+    color: white; 
+    font-size: 32px; 
+    font-family: 'Merriweather Sans', sans-serif; 
+    font-weight: 400; 
+    word-wrap: break-word;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+
+.price {
+    color: #5EECBC;
+    font-size: 20px;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+}
