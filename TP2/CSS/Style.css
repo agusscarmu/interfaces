@@ -5,14 +5,10 @@ body {
     padding: 0;
     background-color: #282831;
 }
-main {
-    flex: 1; /* Hace que el contenido ocupe todo el espacio disponible */
-    display: flex;
-    justify-content: center; /* Centra el contenido horizontalmente */
-    align-items: center; /* Centra el contenido verticalmente */
-    height: 100vh; /* Establece una altura fija al 100% de la altura de la ventana */
-}
 
+main{
+    overflow:visible;
+}
 
 /* Estilos para la navbar */
 .navbar {
@@ -35,10 +31,13 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    padding-left: 25vh;
     height: 100%;
-    padding-left: 30vh;
     padding-top: 25vh;
+    overflow-y: visible;
+    overflow-x: hidden;
+    margin-left: auto;
+    margin-right: 1;
 }
 
 .sidebar {
@@ -214,25 +213,26 @@ main {
 }
 
 /* CARROUSEL */
+
 .carousel-container {
     display: flex;
-    overflow: visible;
+    align-items: center;
 }
 
 .carousel-item {
+
     display: flex;
     height: 50vh;
     width: 50vw;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 100%), linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%); 
     box-shadow: 0px 0px 61px -8px rgba(169, 133, 218, 0.80); 
     border-radius: 5px; 
-    overflow: hidden; 
     margin-right: 10px;
     margin-left: 10px;
     flex-direction: column; 
     justify-content: flex-end; 
     align-items: flex-start; 
-    display: inline-flex
+
 }
 
 .carousel-item .carousel-content {
