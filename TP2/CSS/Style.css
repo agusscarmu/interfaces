@@ -1,6 +1,10 @@
+:root{
+    --fuente-principal: 'Franklin Gothic Medium';
+    --price-color:  #35ab62;
+}
 /* Estilos generales */
 body {
-    font-family: Arial, sans-serif;
+    font-family: var(--fuente-principal);
     margin: 0;
     padding: 0;
     background-color: #282831;
@@ -57,35 +61,66 @@ main {
 }
 .sidebar h3{
     color: #A985DA;
-    font-size: 20px;
-    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 23px;
+    font-family: var(--fuente-principal);
     font-weight: 400;
     word-wrap: break-word
 }
 
 .sidebar ul{
     list-style: none;
+    margin-top: 30px;
     padding: 0;
 }
+.sidebar li{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #A985DA;
+    font-family: var(--fuente-principal);
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+    filter: brightness(1.0);
+    transition: filter 0.3s ease;
+}
+.sidebar li:hover{
+    filter: brightness(1.5);
+    cursor: pointer;
+}
 .sidebar img{
-    width: 50%;
-    height: 50%;
+    width: 20%;
+    height: 20%;
+    margin-right: 13px;
 }
 
 
 .navbar-left{
     display: flex;
-
     padding: 0px 5px 2px 0px;
     align-items: center;
     flex-shrink: 0;
+    filter: brightness(1.0);
+    transition: filter 0.3s ease;
+}
+.navbar-left:hover{
+    filter: brightness(1.5);
+    cursor: pointer;
 }
 /* Estilos para la parte izquierda de la navbar (logo) */
 .navbar-left img {
+    margin: 0px 5px 0px 5px;
     width: 62px;
     height: 71px;
     flex-shrink: 0;
+    transition: width 0.3s ease, height 0.3s ease, margin 0.3s ease; /* Agregar transiciones para width y height */
 }
+.navbar-left img:hover {
+    width: 67px; /* Nuevo ancho cuando se coloca el mouse encima */
+    height: 76px; /* Nuevo alto cuando se coloca el mouse encima */
+    margin: 0px 2.5px 0px 2.5px;
+  }
 
 .navbar-left h1{
     color: #A985DA;
@@ -119,13 +154,14 @@ main {
 
 .navbar-center .botonBuscar:hover {
     background: #331D70; /* Cambia el color de fondo al hacer hover */
+    cursor: pointer;
 }
 
 
 .botonBuscar .texto{
     color: white; 
     font-size: 16px; 
-    font-family: 'Merriweather Sans', sans-serif; 
+    font-family: var(--fuente-principal);
     font-weight: 400; 
     letter-spacing: 2.48px; 
     word-wrap: break-word
@@ -178,6 +214,7 @@ main {
 /* Estilo para el botón al hacer hover */
 .search-input button:hover {
     background-color: #555;
+    cursor: pointer;
 }
 
 .navbar-right{
@@ -198,6 +235,12 @@ main {
     background: linear-gradient(0deg, #6644A6 0%, #6644A6 100%); border-radius: 35px;
     margin-right: 10%;
     padding-right: 2%;
+}
+.navbar-right .carrito:hover{
+    cursor: pointer;
+}
+.navbar-right .usuario:hover{
+    cursor: pointer;
 }
 
 .navbar-right .carrito img{
@@ -241,14 +284,15 @@ main {
     transition: box-shadow 0.3s ease; /* Agrega una transición para suavizar el cambio */ 
 }
 .carousel-item:hover {
-    box-shadow: 0px 0px 60px -4px rgb(168, 138, 210); /* Ajusta la intensidad de la sombra al pasar el mouse */
+    box-shadow: 0px 0px 20px 6px rgba(169, 133, 218, 0.80); 
+    cursor: pointer;
 }
 
 .carousel-item .carousel-content {
     width: 50%;  
     color: white; 
     font-size: 32px; 
-    font-family: 'Times New Roman', Times, serif;
+    font-family: var(--fuente-principal);
     font-weight: 400; 
     word-wrap: break-word;
     padding-left: 20px;
@@ -256,9 +300,13 @@ main {
 }
 
 .price {
-    color: #5EECBC;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    color: var(--price-color);
     font-size: 20px;
-    font-family: 'Merriweather Sans', sans-serif;
+    font-family: var(--fuente-principal);
     font-weight: 400;
     word-wrap: break-word;
 }
@@ -268,11 +316,11 @@ main {
     flex-direction: column;
     margin-top: 2%;
 }
+
 .secundary .carousel-container-recommended {
     display: flex;
     flex-direction: row;
     margin-bottom: 1%;
-
     margin-left: 23%;
 }
 .secundary .carousel-container-adventure {
@@ -284,7 +332,7 @@ main {
 .secundary h1{
     color: #A985DA;
     margin-left: 25%;
-    font-family: serif;
+    font-family: var(--fuente-principal);
     font-size: 30px;
     font-weight: 300;
 }
@@ -313,11 +361,11 @@ main {
 .secundary .carousel-item .title { 
     color: #E4E4E4;
     font-size: 20px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: var(--fuente-principal);
 }
 .secundary .carousel-item .price { 
-    color: #abff9e;
-    font-size: small;
+    color: var(--price-color);
+    font-size: 14px;
 }
 
 #botonMasJuegos {
@@ -336,6 +384,7 @@ main {
 
 #botonMasJuegos:hover {
     background: #331D70; /* Cambia el color de fondo al hacer hover */
+    cursor: pointer;
 }
 #botonMasJuegos .texto{
     color: white; 
@@ -358,7 +407,35 @@ footer {
 }
 footer h1{
     color: #A985DA;
-    font-family: serif;
+    font-family: var(--fuente-principal);
     font-size: 30px;
     font-weight: 300;
+}
+
+
+.free {
+    filter: brightness(2);
+}
+.comprar{
+    padding: 2px 5px 2px 5px;
+    background: rgb(40, 142, 118);
+    color: white;
+    font-family: var(--fuente-principal);
+    border-radius: 15px;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    display: inline-flex;
+    box-shadow: 6px 3px 24px -6px rgba(0, 0, 0, 0.8); 
+}
+.comprar img{
+    width: 15px;
+    margin-left: -10px;
+}
+.pago:hover{
+    cursor:auto;
+}
+.comprar:hover{
+    cursor: pointer;
 }

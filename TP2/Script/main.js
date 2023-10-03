@@ -53,7 +53,7 @@ function checkBoundary() {
   const cardWidth = card.offsetWidth;
   const carouselWidth = carousel.offsetWidth;
   const maxTranslate = 0; // Limita el desplazamiento a 0 (posición inicial)
-  const minTranslate = -carouselWidth*(1/2) + cardWidth; // Evita que se desplace más allá del último elemento
+  const minTranslate = -carouselWidth*(1/2) + cardWidth * 1.45; // Evita que se desplace más allá del último elemento
 
   if (currentTranslate > maxTranslate) {
     currentTranslate = maxTranslate;
@@ -118,7 +118,7 @@ function checkBoundary2() {
   const cardWidth2 = card2.offsetWidth;
   const carouselWidth2 = carousel2.offsetWidth;
   const maxTranslate2 = carouselWidth2/2 - cardWidth2 * 0.9; // Limita el desplazamiento a 0 (posición inicial)
-  const minTranslate2 = -carouselWidth2/2 + cardWidth2 * 0.9; // Evita que se desplace más allá del último elemento
+  const minTranslate2 = -carouselWidth2/2 + cardWidth2 * 0.97; // Evita que se desplace más allá del último elemento
 
   if (currentTranslate2 > maxTranslate2) {
     currentTranslate2 = maxTranslate2;
@@ -184,7 +184,7 @@ function checkBoundary3() {
   const cardWidth3 = card3.offsetWidth;
   const carouselWidth3 = carousel3.offsetWidth;
   const maxTranslate3 = 0; // Limita el desplazamiento a 0 (posición inicial)
-  const minTranslate3 = -carouselWidth3 * (1/2) + cardWidth3; // Evita que se desplace más allá del último elemento
+  const minTranslate3 = -carouselWidth3 * (1/2) + cardWidth3 * 1.45; // Evita que se desplace más allá del último elemento
 
   if (currentTranslate3 > maxTranslate3) {
     currentTranslate3 = maxTranslate3;
@@ -193,4 +193,35 @@ function checkBoundary3() {
   }
 
   updateCarouselPosition3();
+}
+
+
+
+// Funcionalidad agregar al carro
+// function toggleCarrito(botonID) {
+//   const botonCarrito = document.getElementById(`botonCarrito${botonID}`);
+//   const imgCarrito = document.getElementById(`imagenCarrito${botonID}`);
+//   console.log(botonID);
+//   console.log(imgCarrito);
+//   console.log(botonCarrito);
+//   if (imgCarrito.style.visibility === 'hidden') {
+//     botonCarrito.textContent = 'Agregar';
+//     imgCarrito.style.visibility = 'visible';
+//   } else {
+//     botonCarrito.textContent = 'En el carro';
+//     imgCarrito.style.visibility = 'hidden';
+//     console.log(document.getElementById(`botonCarrito${botonID}`));
+//     console.log(document.getElementById(`imagenCarrito${botonID}`));
+//   }
+//   console.log('2');
+//   console.log(imgCarrito);
+
+// }
+function toggleCarrito(botonID) {
+  const botonCarrito = document.getElementById(`botonCarrito${botonID}`);
+  if (botonCarrito.textContent === 'En el carro') {
+    botonCarrito.innerHTML = 'Agregar<img id="imagenCarrito1" src="./Resources/2e7395605e0b4152131b853791b21df4.png">';
+  } else {
+    botonCarrito.textContent = 'En el carro';
+  }
 }
