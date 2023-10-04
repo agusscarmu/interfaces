@@ -729,3 +729,36 @@ footer {
 .footer-section ul li {
     margin-top: 10px;
 }
+
+/* Carrito */
+/* Estilos para el menú de carrito */
+.carrito-menu {
+
+    position: fixed;
+    height: 400px;
+    width: 300px;
+    border-radius: 2%;
+    top: -50%; 
+    right: 5%;
+    background-color: #E8E8EB;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 3;
+    transition: top 0.3s ease; /* Agrega una transición suave */
+}
+
+.carrito-menu ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.carrito-activo{
+    top: 10%;
+}
+

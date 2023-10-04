@@ -229,10 +229,15 @@ function cambiarTexto(elemento) {
 var usuario = document.getElementById("usuarioId");
 var menuLateral = document.getElementById("menuLateral");
 var fondoSemiTransparente = document.getElementById("fondoSemiTransparente");
+var carritoButton = document.getElementById("carritoId");
+var carritoMenu = document.getElementById("carritoMenu");
 
 // Agregar un evento de clic al icono de usuario para abrir el menú lateral
 usuario.addEventListener("click", function () {
     menuLateral.classList.add("menu-activo");
+    if (carritoMenu.classList.contains("carrito-activo")) {
+      carritoMenu.classList.remove("carrito-activo");
+    }
     fondoSemiTransparente.style.display = "block"; // Mostrar el fondo semi-transparente
 });
 
@@ -243,4 +248,20 @@ fondoSemiTransparente.addEventListener("click", function () {
 });
 
 
+
+// CARRITO
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Obtener elementos del DOM
+
+  // Mostrar el menú de carrito al hacer clic en el botón
+  carritoButton.addEventListener("click", function () {
+      // Alternar la visibilidad del menú de carrito
+      if (carritoMenu.classList.contains("carrito-activo")) {
+          carritoMenu.classList.remove("carrito-activo");
+      } else {
+          carritoMenu.classList.add("carrito-activo");
+      }
+  });
+});
 
