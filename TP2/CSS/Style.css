@@ -35,7 +35,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-left: 25vh;
+    padding-left: 30vh;
     height: 100%;
     padding-top: 15vh;
     overflow-y: visible;
@@ -286,6 +286,85 @@ main {
 }
 
 /* CARROUSEL */
+
+.contenidoEnteroCarouselPrincipal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.contenidoEnteroCarouselPrincipal .carousel-arrow {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 2; /* Para que las flechas estén por encima de las tarjetas */
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0) 100%),
+                linear-gradient(to left, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0) 100%);
+    pointer-events: none;
+    opacity: 1; /* Establece la opacidad inicial en 1 */
+    transition: opacity 0.2s ease;
+}
+
+/* modificaciones limites */
+
+.contenidoEnteroCarouselPrincipal .carousel-arrow .limiteDerecho{
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0) 100%);
+}
+.contenidoEnteroCarouselPrincipal .carousel-arrow .limiteIzquierdo{
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0) 100%);
+}
+.contenidoEnteroCarouselPrincipal .carousel-arrow .right-arrow .limiteDerecho{
+    display: none;
+}
+.contenidoEnteroCarouselPrincipal .carousel-arrow .left-arrow .limiteIzquierdo{
+    display: none;
+}
+
+
+
+.contenidoEnteroCarouselPrincipal .carousel-arrow .left-arrow {
+    width: 100px;
+    height: 100px;
+    left: 10px; /* Alinea la flecha izquierda */
+    margin-left: 10px;
+}
+
+.contenidoEnteroCarouselPrincipal .carousel-arrow .left-arrow img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: .7;
+}
+
+.contenidoEnteroCarouselPrincipal .carousel-arrow .right-arrow {
+    width: 100px;
+    height: 100px;
+    right: 10px; /* Alinea la flecha derecha */
+    margin-right: 10px;
+}
+
+.contenidoEnteroCarouselPrincipal .carousel-arrow .right-arrow img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: .7;
+}
+.contenidoEnteroCarouselPrincipal:hover .carousel-arrow {
+    opacity: 0; /* Cambia la opacidad a 0 cuando haces hover en el contenedor principal */
+    pointer-events: none; /* Evita que los eventos de puntero lleguen al div del carrusel */
+}
+.contenidoEnteroCarouselPrincipal .carousel-arrow:hover{
+    opacity: 0;
+    pointer-events: auto;
+}
+
 .carousel-main-container {
     display: flex;
     align-items: center;
@@ -348,7 +427,7 @@ main {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: opacity 0.3s ease; /* Agrega una transición para suavizar el cambio */
     z-index: 1; /* Asegura que overlayOscura esté detrás de info-content */

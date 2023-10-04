@@ -8,6 +8,11 @@ let startPosition = 0;
 let currentTranslate = 0;
 let prevTranslate = 0;
 
+const flechas = document.querySelector(".carousel-arrow")
+const flechaIzquierda = document.querySelector(".carousel-arrow .left-arrow")
+const flechaDerecha = document.querySelector(".carousel-arrow .right-arrow")
+
+
 carousel.style.transition = 'transform 0.3s ease-in-out'; // Agregar transición
 
 carousel.addEventListener('mousedown', (e) => {
@@ -57,8 +62,13 @@ function checkBoundary() {
 
   if (currentTranslate > maxTranslate) {
     currentTranslate = maxTranslate;
+    flechas.classList.add("limiteDerecho")
+    flechaDerecha.classList.add("limiteDerecho")
+
   } else if (currentTranslate < minTranslate) {
     currentTranslate = minTranslate;
+    flechas.classList.add("limiteIzquierdo")
+    flechaIzquierda.classList.add("limiteIzquierdo")
   }
 
   updateCarouselPosition();
