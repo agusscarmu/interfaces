@@ -125,11 +125,17 @@ function updateCarouselPosition2() {
 function checkBoundary2() {
   const cardWidth2 = card2.offsetWidth;
   const carouselWidth2 = carousel2.offsetWidth;
-  const maxTranslate2 = carouselWidth2 / 2 - cardWidth2 * 0.9; // Limita el desplazamiento a 0 (posición inicial)
-  const minTranslate2 = -carouselWidth2 / 2 + cardWidth2 * 0.97; // Evita que se desplace más allá del último elemento
+  const maxTranslate2 = carouselWidth2 / 2 - cardWidth2 * 1.2; // Limita el desplazamiento a 0 (posición inicial)
+  const minTranslate2 = -carouselWidth2 / 2 + cardWidth2 * 1.2; // Evita que se desplace más allá del último elemento
 
   if (currentTranslate2 > maxTranslate2) {
     currentTranslate2 = maxTranslate2;
+    console.log("maxTranslate2");
+    console.log(maxTranslate2);
+    console.log("currentTranslate2");
+    console.log(currentTranslate2);
+    console.log("----------------");
+
     flechas.classList.add("limiteIzquierdo");
     flechaIzquierda.classList.add("limiteIzquierdo");
   } else if (currentTranslate2 < minTranslate2) {
@@ -137,6 +143,11 @@ function checkBoundary2() {
     flechas.classList.add("limiteDerecho");
     flechaDerecha.classList.add("limiteDerecho");
   } else {
+
+    console.log("currentTranslate2");
+    console.log(currentTranslate2);
+    console.log("----------------");
+
     flechas.classList.remove("limiteIzquierdo");
     flechas.classList.remove("limiteDerecho");
     flechaIzquierda.classList.remove("limiteIzquierdo");

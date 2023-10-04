@@ -260,9 +260,11 @@ main {
 
 .navbar-right .carrito:hover{
     cursor: pointer;
+    box-shadow: 0px 0px 12px -4px rgba(169, 133, 218, 0.80); 
 }
 .navbar-right .usuario:hover{
     cursor: pointer;
+    box-shadow: 0px 0px 14px -4px rgba(169, 133, 218, 0.80); 
 }
 
 .navbar-right .carrito img{
@@ -314,18 +316,26 @@ main {
 
 /* modificaciones limites */
 
-.contenidoEnteroCarouselPrincipal .carousel-arrow .limiteDerecho{
-    background: linear-gradient(to left, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0) 100%);
+.contenidoEnteroCarouselPrincipal .carousel-arrow .limiteIzquierdo img{
+    display: none;
 }
-.contenidoEnteroCarouselPrincipal .carousel-arrow .limiteIzquierdo{
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0) 100%);
+.contenidoEnteroCarouselPrincipal .carousel-arrow.limiteIzquierdo{
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0) 100%),
+                linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 0%);
 }
-.contenidoEnteroCarouselPrincipal .carousel-arrow .right-arrow .limiteDerecho{
+.contenidoEnteroCarouselPrincipal .carousel-arrow .limiteDerecho img{
+    display: none;
+}
+.contenidoEnteroCarouselPrincipal .carousel-arrow.limiteDerecho{
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0) 100%),
+                linear-gradient(to left, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 0%);
+}
+/* .contenidoEnteroCarouselPrincipal .carousel-arrow .right-arrow .limiteDerecho{
     display: none;
 }
 .contenidoEnteroCarouselPrincipal .carousel-arrow .left-arrow .limiteIzquierdo{
     display: none;
-}
+} */
 
 
 
