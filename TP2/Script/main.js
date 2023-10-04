@@ -8,9 +8,9 @@ let startPosition = 0;
 let currentTranslate = 0;
 let prevTranslate = 0;
 
-const flechas = document.querySelector(".carousel-arrow")
-const flechaIzquierda = document.querySelector(".carousel-arrow .left-arrow")
-const flechaDerecha = document.querySelector(".carousel-arrow .right-arrow")
+const flechas = document.querySelector(".contenidoEnteroCarouselPrincipal .carousel-arrow")
+const flechaIzquierda = document.querySelector(".contenidoEnteroCarouselPrincipal .carousel-arrow .left-arrow")
+const flechaDerecha = document.querySelector(".contenidoEnteroCarouselPrincipal .carousel-arrow .right-arrow")
 
 
 carousel.style.transition = 'transform 0.3s ease-in-out'; // Agregar transición
@@ -62,13 +62,11 @@ function checkBoundary() {
 
   if (currentTranslate > maxTranslate) {
     currentTranslate = maxTranslate;
-    flechas.classList.add("limiteDerecho")
-    flechaDerecha.classList.add("limiteDerecho")
+
 
   } else if (currentTranslate < minTranslate) {
     currentTranslate = minTranslate;
-    flechas.classList.add("limiteIzquierdo")
-    flechaIzquierda.classList.add("limiteIzquierdo")
+
   }
 
   updateCarouselPosition();
@@ -127,13 +125,22 @@ function updateCarouselPosition2() {
 function checkBoundary2() {
   const cardWidth2 = card2.offsetWidth;
   const carouselWidth2 = carousel2.offsetWidth;
-  const maxTranslate2 = carouselWidth2/2 - cardWidth2 * 0.9; // Limita el desplazamiento a 0 (posición inicial)
-  const minTranslate2 = -carouselWidth2/2 + cardWidth2 * 0.97; // Evita que se desplace más allá del último elemento
+  const maxTranslate2 = carouselWidth2 / 2 - cardWidth2 * 0.9; // Limita el desplazamiento a 0 (posición inicial)
+  const minTranslate2 = -carouselWidth2 / 2 + cardWidth2 * 0.97; // Evita que se desplace más allá del último elemento
 
   if (currentTranslate2 > maxTranslate2) {
     currentTranslate2 = maxTranslate2;
+    flechas.classList.add("limiteIzquierdo");
+    flechaIzquierda.classList.add("limiteIzquierdo");
   } else if (currentTranslate2 < minTranslate2) {
     currentTranslate2 = minTranslate2;
+    flechas.classList.add("limiteDerecho");
+    flechaDerecha.classList.add("limiteDerecho");
+  } else {
+    flechas.classList.remove("limiteIzquierdo");
+    flechas.classList.remove("limiteDerecho");
+    flechaIzquierda.classList.remove("limiteIzquierdo");
+    flechaDerecha.classList.remove("limiteDerecho");
   }
 
   updateCarouselPosition2();
