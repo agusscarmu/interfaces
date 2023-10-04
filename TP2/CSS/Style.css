@@ -389,21 +389,54 @@ main {
     align-items: flex-start; 
     display: inline-flex;
     align-content: space-between;
+    position: relative;
 }
 .secundary .carousel-item .carousel-image {
     width: 100%;
     height: 70%;
+    position: relative;
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
     background-color: rgb(119, 77, 211);
     margin-bottom: 2%;
     overflow: hidden;
 }
 
-.secundary .carousel-item .carousel-image {
+.secundary .carousel-item .carousel-image img{
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.secundary .carousel-item .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, -50%);
+    opacity: 0; /* Inicialmente oculto */
+    transition: opacity 0.3s ease; 
+}
+.secundary .carousel-item:hover .play-button {
+    opacity: 1; /* Mostrar el botón cuando se hace hover */
+}
+
+.secundary .carousel-item .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Color semi-transparente */
+    opacity: 0; /* Inicialmente oculto */
+    transition: opacity 0.3s ease; /* Transición suave de opacidad */
+}
+
+.secundary .carousel-item:hover .overlay {
+    opacity: 1; /* Mostrar la capa semi-transparente al hacer hover */
 }
 
 .secundary .carousel-item .title { 
@@ -449,7 +482,7 @@ main {
 .free {
     filter: brightness(2);
 }
-.comprar{
+.secundary .carousel-item .comprar{
     padding: 2px 5px 2px 5px;
     background: rgb(40, 142, 118);
     color: white;
@@ -462,6 +495,9 @@ main {
     display: inline-flex;
     box-shadow: 6px 3px 24px -6px rgba(0, 0, 0, 0.8); 
     transition: transform 0.3s ease;
+    position: absolute;
+    margin-left: 64%;
+    margin-bottom: 5%;
 }
 
 .comprar.active {
