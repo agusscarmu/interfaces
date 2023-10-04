@@ -229,15 +229,12 @@ function cambiarTexto(elemento) {
 var usuario = document.getElementById("usuarioId");
 var menuLateral = document.getElementById("menuLateral");
 var fondoSemiTransparente = document.getElementById("fondoSemiTransparente");
-var carritoButton = document.getElementById("carritoId");
+var carritoButton = document.querySelector(".carrito");
 var carritoMenu = document.getElementById("carritoMenu");
 
 // Agregar un evento de clic al icono de usuario para abrir el menú lateral
 usuario.addEventListener("click", function () {
     menuLateral.classList.add("menu-activo");
-    if (carritoMenu.classList.contains("carrito-activo")) {
-      carritoMenu.classList.remove("carrito-activo");
-    }
     fondoSemiTransparente.style.display = "block"; // Mostrar el fondo semi-transparente
 });
 
@@ -251,17 +248,127 @@ fondoSemiTransparente.addEventListener("click", function () {
 
 // CARRITO
 
-document.addEventListener("DOMContentLoaded", function () {
-  // Obtener elementos del DOM
 
-  // Mostrar el menú de carrito al hacer clic en el botón
-  carritoButton.addEventListener("click", function () {
-      // Alternar la visibilidad del menú de carrito
-      if (carritoMenu.classList.contains("carrito-activo")) {
-          carritoMenu.classList.remove("carrito-activo");
-      } else {
-          carritoMenu.classList.add("carrito-activo");
+document.addEventListener("DOMContentLoaded", function () {
+  // Obtener el carrito y el elemento del menú del carrito
+  const carrito = {};
+  const carritoMenu = document.getElementById("carritoMenu");
+  const carritoList = carritoMenu.querySelector("ul");
+
+  // Función para agregar un producto al carrito
+  function agregarAlCarrito(productoId, productoImage, productoPrice) {
+          carrito[productoId] = {imagen: productoImage , precio: productoPrice};
+  }
+
+  // Función para eliminar un producto del carrito
+  function eliminarDelCarrito(productoId) {
+      delete carrito[productoId];
+  }
+
+  // Función para actualizar la interfaz del carrito
+  function actualizarCarrito() {
+      carritoList.innerHTML = ""; // Limpiar la lista de productos
+      var totalPrecio = 0;
+      if(Object.keys(carrito).length === 0){
+        carritoButton.querySelector("span").textContent = "";
+        carritoButton.classList.remove("ampliado");
+        carritoButton.querySelector("span").classList.remove("show");
+      }else{
+        carritoButton.querySelector("span").classList.add("show");
+        carritoButton.classList.add("ampliado");
+        carritoButton.querySelector("span").textContent = Object.keys(carrito).length; // Actualizar el número de productos en el botón del carrito
       }
-  });
+      // Agregar productos al menú del carrito
+      for (const productoId in carrito) {
+          const listItem = document.createElement("li");
+
+          const contenedorImagen = document.createElement("div");
+          contenedorImagen.classList.add("contenedorImagenCarrito");
+          listItem.appendChild(contenedorImagen);
+
+          const imagen = document.createElement("img");
+          imagen.src = carrito[productoId].imagen;
+          imagen.classList.add("imagenCarrito");
+          
+          
+          contenedorImagen.appendChild(imagen);
+
+          const contenedorTexto = document.createElement("div");
+          contenedorTexto.classList.add("contenedorTextoCarrito");
+          listItem.appendChild(contenedorTexto);
+
+          const texto = document.createElement("span");
+          texto.classList.add("textoCarrito");
+          texto.textContent = `${productoId}`;
+          contenedorTexto.appendChild(texto);
+
+          const precio = document.createElement("span");
+          precio.classList.add("precioCarrito");
+          precio.textContent = `Precio: $${carrito[productoId].precio}`;
+          contenedorTexto.appendChild(precio);
+
+          const separador = document.createElement("hr");
+          listItem.appendChild(separador);
+
+          carritoList.appendChild(listItem);
+
+          totalPrecio += carrito[productoId].precio;
+      }
+      const contenedorTotalCarrito = document.createElement("div");
+      contenedorTotalCarrito.classList.add("contenedorTotalCarrito");
+      carritoList.appendChild(contenedorTotalCarrito);
+      contenedorTotalCarrito.classList.remove("hidden");
+      const total = document.createElement("li");
+      total.classList.add("totalCarrito");
+      total.textContent = `Total: $${totalPrecio}`;
+      contenedorTotalCarrito.appendChild(total);
+
+      // Si el carrito está vacío, mostrar un mensaje
+      if (Object.keys(carrito).length === 0) {
+          contenedorTotalCarrito.classList.add("hidden");
+          const contenedorMensajeVacio = document.createElement("div");
+          contenedorMensajeVacio.classList.add("contenedorMensajeVacio");
+          carritoList.appendChild(contenedorMensajeVacio);
+
+          const emptyCartMessage = document.createElement("li");
+          emptyCartMessage.textContent = "El carrito está vacío";
+          contenedorMensajeVacio.appendChild(emptyCartMessage);
+      }
+  }
+
+  // Agregar un evento de clic a los botones "Agregar" en los productos
+  const botonesAgregar = document.querySelectorAll(".comprar.botonCarrito");
+botonesAgregar.forEach((boton) => {
+    boton.addEventListener("click", function () {
+
+      // Obtener el nombre del artículo
+      const nombreProducto = boton.closest(".product").querySelector(".title").innerText.trim();
+
+      // Obtener el precio del artículo
+      const precioTexto = boton.closest(".product").querySelector(".price").innerText.trim();
+      const precio = parseFloat(precioTexto.replace("$", "").trim());
+
+      // Obtener la imagen del artículo
+      const imagenProducto = boton.closest(".product").querySelector(".carousel-image img").src;
+      if(boton.closest(".product").querySelector(".textoBotonCarrito").innerText.trim() === "Agregar"){
+        agregarAlCarrito(nombreProducto, imagenProducto, precio);
+      }
+      else{
+        eliminarDelCarrito(nombreProducto);
+      }
+      actualizarCarrito();
+    });
 });
+
+carritoButton.addEventListener("click", function () {
+  // Alternar la visibilidad del menú de carrito
+  if (carritoMenu.classList.contains("carrito-activo")) {
+      carritoMenu.classList.remove("carrito-activo");
+  } else {
+      carritoMenu.classList.add("carrito-activo");
+      actualizarCarrito();
+  }
+});
+});
+
 

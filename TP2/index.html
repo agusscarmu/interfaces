@@ -23,8 +23,11 @@
                 </div>
             </div>
             <div class="navbar-right">
-                    <div class="carrito" id="carritoId">
-                        <img src="./Resources/2e7395605e0b4152131b853791b21df4.png" alt="">
+                    <div class="contenedorIconoCarrito">
+                        <div class="carrito" id="carritoId">
+                            <img src="./Resources/2e7395605e0b4152131b853791b21df4.png" alt="">
+                            <span></span>
+                        </div>
                     </div>
                     <div class="usuario" id="usuarioId">
                         <img src="./Resources/9a76c051333d3e47fdc6aa00a7883865.png" alt="">
@@ -37,8 +40,7 @@
     <div class="fondo-semi-transparente" id="fondoSemiTransparente"></div>
     <div class="carrito-menu" id="carritoMenu">
         <!-- Aquí puedes mostrar los elementos agregados al carrito -->
-        <ul>
-            <li>El carrito esta vacio</li>
+        <ul class="carrito-list">
             <!-- ...otros productos... -->
         </ul>
     </div>
@@ -166,23 +168,23 @@
                             <h1>Recomendados para vos</h1>
                         </div>
                         <div class="carousel-container-recommended">
-                                <div class="carousel-item pago">
-                                    <div class="carousel-image">
-                                        <img src="./Resources/Games/liesOfPi.jpeg" alt="" draggable="false">
-                                        <div class="overlay"></div>
-                                        <div class="play-button">
-                                            <img src="./Resources/play-button-28245.png" alt="Play" class="play-icon" draggable="false">
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="title">Lies of P</div>
-                                    <div class="price">$8400 
-                                        <div class="comprar" class="botonCarrito" onclick="cambiarTexto(this)">
-                                            <span class="textoBotonCarrito">Agregar</span>
-                                            <img class="imagenCarrito" src="./Resources/2e7395605e0b4152131b853791b21df4.png">
-                                        </div>                                        
+                            <div class="carousel-item pago product" >
+                                <div class="carousel-image">
+                                    <img src="./Resources/Games/liesOfPi.jpeg" alt="" draggable="false">
+                                    <div class="overlay"></div>
+                                    <div class="play-button">
+                                        <img src="./Resources/play-button-28245.png" alt="Play" class="play-icon" draggable="false">
                                     </div>
                                 </div>
+                                <div class="title">Lies of P</div>
+                                <div class="price">$8400 
+                                    <div class="comprar botonCarrito" onclick="cambiarTexto(this)">
+                                        <span class="textoBotonCarrito">Agregar</span>
+                                        <img class="imagenCarrito" src="./Resources/2e7395605e0b4152131b853791b21df4.png">
+                                    </div>                                        
+                                </div>
+                            </div>
+                            
                                 <div class="carousel-item">
                                     <div class="carousel-image">
                                         <img src="./Resources/Games/f.jpg" alt="" draggable="false">
@@ -194,7 +196,7 @@
                                     <div class="title">Fortnite</div>
                                     <div class="price free">*Gratis</div>
                                 </div>
-                                <div class="carousel-item">
+                                <div class="carousel-item pago product" >
                                     <div class="carousel-image">
                                         <img src="./Resources/Games/diablo.jpg" alt="">
                                         <div class="overlay"></div>
@@ -204,7 +206,7 @@
                                     </div>
                                     <div class="title">Diablo IV</div>
                                     <div class="price">$12000 
-                                        <div class="comprar" class="botonCarrito" onclick="cambiarTexto(this)">
+                                        <div class="comprar botonCarrito" onclick="cambiarTexto(this)">
                                             <span class="textoBotonCarrito">Agregar</span>
                                             <img class="imagenCarrito" src="./Resources/2e7395605e0b4152131b853791b21df4.png">
                                         </div>    
@@ -221,7 +223,7 @@
                                     <div class="title">Cuatro en Linea: GoT</div>
                                     <div class="price free">*Gratis</div>
                                 </div>
-                                <div class="carousel-item">
+                                <div class="carousel-item pago product" >
                                     <div class="carousel-image">
                                         <img src="./Resources/Games/baldurs-gate-3-pc-2560x1440-12716 copia.jpg" alt="">
                                         <div class="overlay"></div>
@@ -231,7 +233,7 @@
                                     </div>
                                     <div class="title">Baldur's Gate III</div>
                                     <div class="price">$10900
-                                        <div class="comprar" class="botonCarrito" onclick="cambiarTexto(this)">
+                                        <div class="comprar botonCarrito" onclick="cambiarTexto(this)">
                                             <span class="textoBotonCarrito">Agregar</span>
                                             <img class="imagenCarrito" src="./Resources/2e7395605e0b4152131b853791b21df4.png">
                                         </div>    
@@ -268,7 +270,7 @@
                                     <div class="title">Shadow of the Colossus</div>
                                     <div class="price free">*Gratis</div>
                                 </div>
-                                <div class="carousel-item">
+                                <div class="carousel-item pago product" >
                                     <div class="carousel-image">
                                         <img src="./Resources/Games/zelda.jpg" alt="">
                                         <div class="overlay"></div>
@@ -278,7 +280,7 @@
                                     </div>
                                     <div class="title">Legend of Zelda</div>
                                     <div class="price">$7000 
-                                        <div class="comprar" class="botonCarrito" onclick="cambiarTexto(this)">
+                                        <div class="comprar botonCarrito" onclick="cambiarTexto(this)">
                                             <span class="textoBotonCarrito">Agregar</span>
                                             <img class="imagenCarrito" src="./Resources/2e7395605e0b4152131b853791b21df4.png">
                                         </div>    
@@ -306,7 +308,7 @@
                                     <div class="title">Tomb Raider</div>
                                     <div class="price free">*Gratis</div>
                                 </div>
-                                <div class="carousel-item">
+                                <div class="carousel-item pago product">
                                     <div class="carousel-image">
                                         <img src="./Resources/Games/uncharted.png" alt="">
                                         <div class="overlay"></div>
@@ -316,7 +318,7 @@
                                     </div>
                                     <div class="title">Uncharted 4</div>
                                     <div class="price">$8700 
-                                        <div class="comprar" class="botonCarrito" onclick="cambiarTexto(this)">
+                                        <div class="comprar botonCarrito" onclick="cambiarTexto(this)">
                                             <span class="textoBotonCarrito">Agregar</span>
                                             <img class="imagenCarrito" src="./Resources/2e7395605e0b4152131b853791b21df4.png">
                                         </div>    
