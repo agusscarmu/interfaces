@@ -23,16 +23,41 @@
                 </div>
             </div>
             <div class="navbar-right">
-                    <div class="carrito">
+                    <div class="carrito" id="carritoId">
                         <img src="./Resources/2e7395605e0b4152131b853791b21df4.png" alt="">
                     </div>
-                    <div class="usuario">
+                    <div class="usuario" id="usuarioId">
                         <img src="./Resources/9a76c051333d3e47fdc6aa00a7883865.png" alt="">
                     </div>
     
             </div>
         </nav>
     </header>
+    <div class="fondo-semi-transparente" id="fondoSemiTransparente"></div>
+    <div class="menu-lateral" id="menuLateral">
+        <div class="container">
+            <div class="menu">
+                <div class="menu-item">
+                    <div class="menu-link">Perfil</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-link">Biblioteca</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-link">Ajustes</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-link">Cerrar sesión</div>
+                </div>
+            </div>
+            <div class="user-profile">
+                <div class="profile-image">
+                    <img src="./Resources/9a76c051333d3e47fdc6aa00a7883865.png" alt="Profile Image">
+                </div>
+                <div class="profile-name">Usuario</div>
+            </div>
+        </div>
+    </div>
     
     <div class="sidebar">
         <div>
@@ -54,44 +79,72 @@
             <div class="carousel-main-container">
                 <div class="carousel-item">
                     <div class="carousel-content">
-                        <div class="title">Fortnite</div>
-                        <div class="price free">*Gratis</div>
+                        <img src="./Resources/Games/tvcihkyqqln1rgbafqbeufp6.jpg.webp" alt="" draggable="false">
+                        <div class="info-content">
+                            <div class="title">The Witcher 3</div>
+                            <div class="price">$7900</div>
+                        </div>
+                        <div class="overlayOscura"></div>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <div class="carousel-content">
-                        <div class="title">Dark Souls 3</div>
-                        <div class="price">$7000</div>
+                        <img src="./Resources/Games/liesOfPi.jpeg" alt="" draggable="false">
+                        <div class="info-content">
+                            <div class="title">Lies Of P</div>
+                            <div class="price">$9900</div>
+                        </div>
+                        <div class="overlayOscura"></div>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <div class="carousel-content">
-                        <div class="title">The Witcher 3</div>
-                        <div class="price free">*Gratis</div>
+                        <img src="./Resources/Games/thumb-1920-1082077.jpg" alt="" draggable="false">
+                        <div class="info-content">
+                            <div class="title">Minecraft Dungeons</div>
+                            <div class="price">$6900</div>
+                        </div>
+                        <div class="overlayOscura"></div>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <div class="carousel-content">
-                        <div class="title">Castlevania</div>
-                        <div class="price">$10500</div>
+                        <img src="./Resources/Games/got.jpg" alt="" draggable="false">
+                        <div class="info-content">
+                            <div class="title">Cuatro en Linea - GoT</div>
+                            <div class="price free">*Gratis</div>
+                        </div>
+                        <div class="overlayOscura"></div>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <div class="carousel-content">
-                        <div class="title">Cuatro en linea - GoT</div>
-                        <div class="price free">*Gratis</div>
+                        <img src="./Resources/Games/elden-ring-from-software-fromsoftware-hd-wallpaper-68b6dd6800502cb8e05c012e0812c48a.jpg" alt="" draggable="false">
+                        <div class="info-content">
+                            <div class="title">Elden Ring</div>
+                            <div class="price">$9900</div>
+                        </div>
+                        <div class="overlayOscura"></div>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <div class="carousel-content">
-                        <div class="title">Baldurs Gate</div>
-                        <div class="price">$5500</div>
+                        <img src="./Resources/Games/baldurs-gate-3-pc-2560x1440-12716 copia.jpg" alt="" draggable="false">
+                        <div class="info-content">
+                            <div class="title">Baldur's Gate</div>
+                            <div class="price">$10900</div>
+                        </div>
+                        <div class="overlayOscura"></div>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <div class="carousel-content">
-                        <div class="title">Elden Ring</div>
-                        <div class="price free">*Gratis</div>
+                        <img src="./Resources/Games/LsaRVLF2IU2L1FNtu9d3MKLq.jpg.webp" alt="" draggable="false">
+                        <div class="info-content">
+                            <div class="title">God Of War 4</div>
+                            <div class="price">$9900</div>
+                        </div>
+                        <div class="overlayOscura"></div>
                     </div>
                 </div>
                 
@@ -107,9 +160,9 @@
                         <div class="carousel-container-recommended">
                                 <div class="carousel-item">
                                     <div class="carousel-image">
-                                        <!-- <img src="./Resources/Accion.png" alt=""> -->
+                                        <img src="./Resources/Games/liesOfPi.jpeg" alt="" draggable="false">
                                     </div>
-                                    <div class="title">Lifes of Pi</div>
+                                    <div class="title">Lies of P</div>
                                     <div class="price free">*Gratis</div>
                                 </div>
                                 <div class="carousel-item pago">
@@ -118,9 +171,10 @@
                                     </div>
                                     <div class="title">2</div>
                                     <div class="price">$8400 
-                                        <div class="comprar" id="botonCarrito1" onclick="toggleCarrito(1)">Agregar
-                                            <img id="imagenCarrito1" src="./Resources/2e7395605e0b4152131b853791b21df4.png">
-                                        </div>
+                                        <div class="comprar" class="botonCarrito" onclick="cambiarTexto(this)">
+                                            <span class="textoBotonCarrito">Agregar</span>
+                                            <img class="imagenCarrito" src="./Resources/2e7395605e0b4152131b853791b21df4.png">
+                                        </div>                                        
                                     </div>
                                 </div>
                                 <div class="carousel-item">
@@ -143,9 +197,10 @@
                                     </div>
                                     <div class="title">5</div>
                                     <div class="price">$5000 
-                                        <div class="comprar" id="botonCarrito2" onclick="toggleCarrito(2)">Agregar
-                                            <img id="imagenCarrito2" src="./Resources/2e7395605e0b4152131b853791b21df4.png">
-                                        </div>
+                                        <div class="comprar" class="botonCarrito" onclick="cambiarTexto(this)">
+                                            <span class="textoBotonCarrito">Agregar</span>
+                                            <img class="imagenCarrito" src="./Resources/2e7395605e0b4152131b853791b21df4.png">
+                                        </div>    
                                     </div>
                                 </div>
                                 <div class="carousel-item">
@@ -217,10 +272,42 @@
         </div>
     </main>
     <footer>
-        <h1>
-            FOOTER
-        </h1>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3><a href="#">Sobre Dungeon20</a></h3>
+                <p>
+                    Dungeon20 es una página de juegos donde podrás disfrutar de juegos gratuitos y también tendrás la oportunidad de adquirir juegos de pago y jugarlos a través de la nube. <a href="#">Leer más</a>
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>dungeon20@games.com</p>
+                <!-- Iconos de redes sociales -->
+                <img src="./Resources/Rectangle 15.png" alt="Facebook">
+                <img src="./Resources/Rectangle 16.png" alt="X">
+                <img src="./Resources/Rectangle 17.png" alt="Instagram">
+            </div>
+            <div class="footer-section">
+                <h3>Políticas</h3>
+                <ul>
+                    <li><a href="#">Políticas de Privacidad</a></li>
+                    <li><a href="#">Aviso Legal</a></li>
+                    <li><a href="#">Términos de Uso</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Ayuda</h3>
+                <ul>
+                    <li><a href="#">Preguntas Frecuentes (FAQ)</a></li>
+                    <li><a href="#">Soporte Técnico</a></li>
+                    <li><a href="#">Contáctanos</a></li>
+                </ul>
+            </div>
+        </div>
     </footer>
+    
+    
+    
     <script src="./Script/main.js"></script>
 </body>
 </html>

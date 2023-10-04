@@ -15,7 +15,7 @@ carousel.addEventListener('mousedown', (e) => {
     isDragging = true;
     startPosition = e.clientX;
     prevTranslate = currentTranslate;
-    carousel.style.cursor = 'grabbing';
+
     carousel.style.transition = 'none'; // Eliminar transición durante el arrastre
   }
 });
@@ -30,7 +30,7 @@ carousel.addEventListener('mousemove', (e) => {
 carousel.addEventListener('mouseup', () => {
   if (isDragging) {
     isDragging = false;
-    carousel.style.cursor = 'grab';
+ 
     checkBoundary();
     carousel.style.transition = 'transform 0.3s ease-in-out'; // Restablecer transición
   }
@@ -39,7 +39,7 @@ carousel.addEventListener('mouseup', () => {
 carousel.addEventListener('mouseleave', () => {
   if (isDragging) {
     isDragging = false;
-    carousel.style.cursor = 'grab';
+
     checkBoundary();
     carousel.style.transition = 'transform 0.3s ease-in-out'; // Restablecer transición
   }
@@ -80,7 +80,7 @@ carousel2.addEventListener('mousedown', (e) => {
     isDragging2 = true;
     startPosition2 = e.clientX;
     prevTranslate2 = currentTranslate2;
-    carousel2.style.cursor = 'grabbing';
+
     carousel2.style.transition = 'none'; // Eliminar transición durante el arrastre
   }
 });
@@ -95,7 +95,7 @@ carousel2.addEventListener('mousemove', (e) => {
 carousel2.addEventListener('mouseup', () => {
   if (isDragging2) {
     isDragging2 = false;
-    carousel2.style.cursor = 'grab';
+   
     checkBoundary2();
     carousel2.style.transition = 'transform 0.3s ease-in-out'; // Restablecer transición
   }
@@ -104,7 +104,7 @@ carousel2.addEventListener('mouseup', () => {
 carousel2.addEventListener('mouseleave', () => {
   if (isDragging2) {
     isDragging2 = false;
-    carousel2.style.cursor = 'grab';
+
     checkBoundary2();
     carousel2.style.transition = 'transform 0.4s ease-in-out'; // Restablecer transición
   }
@@ -146,7 +146,6 @@ carousel3.addEventListener('mousedown', (e) => {
     isDragging3 = true;
     startPosition3 = e.clientX;
     prevTranslate3 = currentTranslate3;
-    carousel3.style.cursor = 'grabbing';
     carousel3.style.transition = 'none'; // Eliminar transición durante el arrastre
   }
 });
@@ -161,7 +160,7 @@ carousel3.addEventListener('mousemove', (e) => {
 carousel3.addEventListener('mouseup', () => {
   if (isDragging3) {
     isDragging3 = false;
-    carousel3.style.cursor = 'grab';
+
     checkBoundary3();
     carousel3.style.transition = 'transform 0.3s ease-in-out'; // Restablecer transición
   }
@@ -170,7 +169,6 @@ carousel3.addEventListener('mouseup', () => {
 carousel3.addEventListener('mouseleave', () => {
   if (isDragging3) {
     isDragging3 = false;
-    carousel3.style.cursor = 'grab';
     checkBoundary3();
     carousel3.style.transition = 'transform 0.3s ease-in-out'; // Restablecer transición
   }
@@ -195,33 +193,54 @@ function checkBoundary3() {
   updateCarouselPosition3();
 }
 
-
-
-// Funcionalidad agregar al carro
-// function toggleCarrito(botonID) {
-//   const botonCarrito = document.getElementById(`botonCarrito${botonID}`);
-//   const imgCarrito = document.getElementById(`imagenCarrito${botonID}`);
-//   console.log(botonID);
-//   console.log(imgCarrito);
-//   console.log(botonCarrito);
-//   if (imgCarrito.style.visibility === 'hidden') {
-//     botonCarrito.textContent = 'Agregar';
-//     imgCarrito.style.visibility = 'visible';
-//   } else {
-//     botonCarrito.textContent = 'En el carro';
-//     imgCarrito.style.visibility = 'hidden';
-//     console.log(document.getElementById(`botonCarrito${botonID}`));
-//     console.log(document.getElementById(`imagenCarrito${botonID}`));
-//   }
-//   console.log('2');
-//   console.log(imgCarrito);
-
-// }
-function toggleCarrito(botonID) {
-  const botonCarrito = document.getElementById(`botonCarrito${botonID}`);
-  if (botonCarrito.textContent === 'En el carro') {
-    botonCarrito.innerHTML = 'Agregar<img id="imagenCarrito1" src="./Resources/2e7395605e0b4152131b853791b21df4.png">';
+function cambiarTexto(elemento) {
+  var textoBoton = elemento.querySelector(".textoBotonCarrito");
+  var imagenCarrito = elemento.querySelector(".imagenCarrito");
+  
+  if (textoBoton.innerHTML === "Agregar") {
+    textoBoton.classList.add("hidden");
+    imagenCarrito.classList.add("hidden");
+    elemento.classList.add("active");
+    setTimeout(function () {
+      textoBoton.innerHTML = "En carro";
+      textoBoton.classList.remove("hidden");
+      elemento.classList.remove("active");
+      imagenCarrito.classList.remove("hidden");
+      imagenCarrito.src = "./Resources/Tic.png"; // Cambia la fuente de la imagen
+    }, 300); // Cambia el texto después de que la animación de rotación haya terminado
   } else {
-    botonCarrito.textContent = 'En el carro';
+      textoBoton.classList.add("hidden");
+      imagenCarrito.classList.add("hidden");
+      elemento.classList.add("active");
+      setTimeout(function () {
+        textoBoton.innerHTML = "Agregar";
+        textoBoton.classList.remove("hidden");
+        elemento.classList.remove("active");
+        imagenCarrito.classList.remove("hidden");
+        imagenCarrito.src = "./Resources/2e7395605e0b4152131b853791b21df4.png"; // Restaura la fuente original de la imagen
+      }, 300); // Cambia el texto después de que la animación de rotación haya terminado
   }
 }
+
+
+// Menu lateral usuario
+
+// Obtener elementos del DOM
+var usuario = document.getElementById("usuarioId");
+var menuLateral = document.getElementById("menuLateral");
+var fondoSemiTransparente = document.getElementById("fondoSemiTransparente");
+
+// Agregar un evento de clic al icono de usuario para abrir el menú lateral
+usuario.addEventListener("click", function () {
+    menuLateral.classList.add("menu-activo");
+    fondoSemiTransparente.style.display = "block"; // Mostrar el fondo semi-transparente
+});
+
+// Agregar un evento de clic al fondo semi-transparente para cerrar el menú lateral
+fondoSemiTransparente.addEventListener("click", function () {
+    menuLateral.classList.remove("menu-activo");
+    fondoSemiTransparente.style.display = "none"; // Ocultar el fondo semi-transparente
+});
+
+
+

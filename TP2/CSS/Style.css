@@ -28,7 +28,7 @@ main {
     align-items: center;
     padding: 10px 20px;
     box-shadow: 0px 4px 7px 0px rgba(0, 0, 0, 0.30);
-    z-index: 2; /* Asegura que el navbar esté por encima del sidebar */
+    z-index: 4; /* Asegura que el navbar esté por encima del sidebar */
 }
 
 .contenido{
@@ -57,7 +57,7 @@ main {
     display: flex;
     flex-direction: column;
     padding-top: 60px;
-    z-index: 1; /* Asegura que el sidebar esté detrás del navbar */
+    z-index: 3; /* Asegura que el sidebar esté detrás del navbar */
 }
 .sidebar h3{
     color: #A985DA;
@@ -272,32 +272,71 @@ main {
 .carousel-item {
     display: flex;
     height: 43vh;
-    width: 43vw;
+    width: 33vw;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 100%), linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%); 
     box-shadow: 0px 0px 60px -8px rgba(169, 133, 218, 0.80); 
     border-radius: 5px; 
     margin-right: 10px;
     margin-left: 10px;
-    flex-direction: column; 
-    justify-content: flex-end; 
-    align-items: flex-start;
+    align-items: center;
     transition: box-shadow 0.3s ease; /* Agrega una transición para suavizar el cambio */ 
 }
 .carousel-item:hover {
     box-shadow: 0px 0px 20px 6px rgba(169, 133, 218, 0.80); 
+    /* cursor: pointer; */
+}
+
+.carousel-item img{
     cursor: pointer;
 }
 
-.carousel-item .carousel-content {
-    width: 50%;  
-    color: white; 
-    font-size: 32px; 
+.carousel-main-container .carousel-item .carousel-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: white;
+    font-size: 32px;
+    font-weight: 400;
     font-family: var(--fuente-principal);
-    font-weight: 400; 
-    word-wrap: break-word;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+
+}
+
+.carousel-main-container .carousel-item .carousel-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen al tamaño del contenedor sin deformarla */
+}
+.carousel-main-container .carousel-item .carousel-content .info-content {
+    position: absolute;
+    width: 100%;
+    padding-top: 20%;
     padding-left: 20px;
     padding-bottom: 20px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0.8) 100%);
+    cursor: pointer;
+    z-index: 2; /* Ajusta el z-index para que esté por encima de overlayOscura */
 }
+
+.carousel-main-container .carousel-item .carousel-content .overlayOscura {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: opacity 0.3s ease; /* Agrega una transición para suavizar el cambio */
+    z-index: 1; /* Asegura que overlayOscura esté detrás de info-content */
+}
+
+.carousel-main-container .carousel-item:hover .carousel-content .overlayOscura {
+    opacity: 0;
+}
+
+
 
 .price {
     display: flex;
@@ -357,7 +396,16 @@ main {
     border-radius: 5px;
     background-color: rgb(119, 77, 211);
     margin-bottom: 2%;
+    overflow: hidden;
 }
+
+.secundary .carousel-item .carousel-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .secundary .carousel-item .title { 
     color: #E4E4E4;
     font-size: 20px;
@@ -395,22 +443,7 @@ main {
     word-wrap: break-word
 }
 
-/* FOOTER */
-footer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    background-color: #121212;
-    padding: 0px 0px 150px 250px;
-    margin: 0px 0px 0px 0px;
-}
-footer h1{
-    color: #A985DA;
-    font-family: var(--fuente-principal);
-    font-size: 30px;
-    font-weight: 300;
-}
+
 
 
 .free {
@@ -428,7 +461,25 @@ footer h1{
     gap: 10px;
     display: inline-flex;
     box-shadow: 6px 3px 24px -6px rgba(0, 0, 0, 0.8); 
+    transition: transform 0.3s ease;
 }
+
+.comprar.active {
+    transform: rotateY(135deg);
+}
+
+.textoBotonCarrito, .imagenCarrito {
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Agregamos una transición a la imagen */
+}
+
+.textoBotonCarrito.hidden {
+    opacity: 0;
+}
+
+.imagenCarrito.hidden {
+    opacity: 0;
+}
+
 .comprar img{
     width: 15px;
     margin-left: -10px;
@@ -438,4 +489,207 @@ footer h1{
 }
 .comprar:hover{
     cursor: pointer;
+}
+
+
+/* Menu lateral usuario */
+/* Estilo inicial del menú lateral */
+.menu-lateral {
+    position: fixed;
+    top: 0;
+    right: -250px; /* Empieza fuera de la pantalla */
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    color: white;
+    transition: right 0.3s ease; /* Agregamos una transición suave */
+    z-index: 5;
+}
+
+/* Estilo del fondo semi-transparente */
+.fondo-semi-transparente {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Color semi-transparente */
+    display: none; /* Inicialmente oculto */
+    z-index: 1; /* Coloca el fondo por encima de otros elementos */
+}
+
+
+.menu-lateral ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.menu-lateral li {
+    margin: 10px 0;
+}
+
+.menu-lateral a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* Estilo del botón de usuario */
+.usuario:hover {
+    cursor: pointer;
+}
+
+/* Estilo para mostrar el menú lateral */
+.menu-activo {
+    right: 0;
+}
+
+
+.container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #E8E8EB;
+}
+
+/* Estilos del menú lateral */
+.menu {
+    left: 36.50px;
+    top: 155px;
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 37px;
+    display: inline-flex;
+}
+
+.menu-item {
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    display: inline-flex;
+}
+
+.menu-link {
+    color: #6644A6;
+    font-size: 16px;
+    font-family: Merriweather Sans;
+    font-weight: 400;
+    text-decoration: underline;
+    letter-spacing: 2.48px;
+    word-wrap: break-word;
+}
+
+/* Estilos de los íconos de usuario */
+.user-icons {
+    left: 33px;
+    top: 443px;
+    position: absolute;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 23px;
+    display: inline-flex;
+}
+
+.user-icon {
+    width: 49px;
+    height: 47px;
+    border-radius: 15px;
+}
+
+/* Estilos del perfil de usuario */
+.user-profile {
+    width: 72px;
+    height: 72px;
+    left: 33px;
+    top: 29px;
+    position: absolute;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+}
+
+
+.profile-image img {
+    width: 72px;
+    height: 72px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.profile-name {
+    left: 112px;
+    top: 40%;
+    position: absolute;
+    color: #6644A6;
+    font-size: 20px;
+    font-family: Merriweather;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+/* Footer */
+/* Estilos generales del footer */
+/* FOOTER */
+footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #121212;
+    color: #845EC2; /* Color de la fuente */
+    margin-left: 30vh;
+}
+
+/* Estilos para el contenedor principal del footer */
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 30px;
+    padding-bottom: 10%;
+}
+
+/* Estilos para cada sección del footer */
+.footer-section {
+    flex: 1;
+    max-width: 20%; /* Ancho máximo de cada sección */
+    text-align: left; /* Alineación del texto a la izquierda */
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+/* Estilos para los enlaces */
+.footer-section a {
+    text-decoration: none;
+    color: #845EC2;
+}
+
+/* Estilos para los enlaces "Leer más" */
+.footer-section a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para los iconos de redes sociales */
+.footer-section img {
+    width: 40px;
+    height: 40px;
+    margin-top: 10px; /* Espacio entre el párrafo y los iconos */
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0; /* Elimina el padding predeterminado */
+}
+
+.footer-section ul li {
+    margin-top: 10px;
 }
