@@ -222,6 +222,7 @@ function checkBoundary3() {
 }
 
 function cambiarTexto(elemento) {
+  var botonCarrito = elemento.querySelector(".botonCarrito");
   var textoBoton = elemento.querySelector(".textoBotonCarrito");
   var imagenCarrito = elemento.querySelector(".imagenCarrito");
   
@@ -234,12 +235,14 @@ function cambiarTexto(elemento) {
       textoBoton.classList.remove("hidden");
       elemento.classList.remove("active");
       imagenCarrito.classList.remove("hidden");
+      elemento.classList.add("activado");
       imagenCarrito.src = "./Resources/Tic.png"; // Cambia la fuente de la imagen
     }, 300); // Cambia el texto después de que la animación de rotación haya terminado
   } else {
       textoBoton.classList.add("hidden");
       imagenCarrito.classList.add("hidden");
       elemento.classList.add("active");
+      elemento.classList.remove("activado");
       setTimeout(function () {
         textoBoton.innerHTML = "Agregar";
         textoBoton.classList.remove("hidden");

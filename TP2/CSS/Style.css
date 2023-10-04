@@ -593,7 +593,7 @@ main {
 .free {
     filter: brightness(2);
 }
-.secundary .carousel-item .comprar{
+.comprar{
     padding: 2px 5px 2px 5px;
     background: rgb(40, 142, 118);
     color: white;
@@ -613,8 +613,12 @@ main {
 
 .comprar.active {
     transform: rotateY(135deg);
+    background: rgb(23, 76, 94);
 }
 
+.comprar.activado{
+    background: rgb(50, 158, 212);
+}
 .textoBotonCarrito, .imagenCarrito {
     transition: opacity 0.3s ease, transform 0.3s ease; /* Agregamos una transición a la imagen */
 }
