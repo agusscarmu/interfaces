@@ -19,7 +19,7 @@
         display: flex;
         justify-self: center; */
         width: 100vw;
-        padding-top: 10vh;
+        padding-top: 20vh;
         padding-bottom: 5%;
     }
     
@@ -41,24 +41,64 @@
         box-shadow: 0px 4px 7px 0px rgba(0, 0, 0, 0.30);
         z-index: 4; /* Asegura que el navbar esté por encima del sidebar */
     }
-    .mobile-search-bar{
+    .mobile-search-navbar{
         position: fixed;
-        height: 7vh;
+        height: 5vh;
         width: 100vw;
-        padding-top: 2vh;
-        padding-bottom: 2vh;
-        background: var(--secundario1, #111121);
+        top: 10vh;
+        background: #1C1C29;
+        opacity: .8;
         color: white;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         box-shadow: 0px 4px 7px 0px rgba(0, 0, 0, 0.30);
-        z-index: 4; /* Asegura que el navbar esté por encima del sidebar */
+        z-index: 3; /* Asegura que el navbar esté por encima del sidebar */
+        transition: top 1s ease;
     }
+    .input-buscar-mobile {
+        padding-right: 30px; /* Espacio para la imagen de la lupa */
+        border: none;
+        background: #dbdbdb;
+        color: white;
+    }
+    .icono-lupa {
+        position: absolute;
+        margin-left: 35vw;
+        height: 10px;
+        width: 10px;
+        opacity: 0.7;
+    }
+    .mobile-search-navbar.oculto {
+        top: -10vh;
+    }
+
+    .mobile-search-navbar.enfoque {
+        background: #13131b;
+        opacity: 1;
+    }
+    
+    .mobile-header .mobile-search-navbar .contenido-search-navbar{
+        display: flex;
+        width: 90%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        padding-top: 2%;
+        padding-left: 2%;
+    }
+
+    .mobile-search-navbar input[type="text"] {
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 15px; /* Ajusta el valor según la cantidad de redondeo deseada */
+        /* Otros estilos para el input */
+    }
+    
+    
     .sidebar{
         display: none;
     }
-
     .mobile-navbar-left{
         display: flex;
         width: 40px;
@@ -67,45 +107,48 @@
         overflow: hidden;
         flex-shrink: 0;
         margin-left: 5%;
+        transition: height 0.5s ease;
     }
-/* Cuando se activa el burger */
-    .mobile-navbar-left .active{
+    /* Cuando se activa el burger */
+    .mobile-navbar-left-active{
         height: 10px;
         background-color: white;
         border-radius: 10%;
+        transition: height 0.3s ease, background-color 0.5s ease;
     }
     /* Estilos para la parte izquierda de la navbar (logo) */
     .mobile-navbar-left img {
         height: 100%;
         width: 100%;
     }
-
+    
     .mobile-navbar-center{
         display: flex;
         align-items: center;
         flex-shrink: 0;
     }
-
+    
     .mobile-navbar-center img {
         width: 62px;
         height: 71px;
     }
-
+    
     .mobile-navbar-right{
-        display: flex;
-        width: 40px;
-        height: 40px;
-        align-items: center;
-        border-radius: 50%;
-        overflow: hidden;
-        background-color: white;
-        flex-shrink: 0;
         margin-right: 5%;
     }
-
-    .mobile-navbar-right img {
-        height: 100%;
-        object-fit: cover;
+    .mobile-navbar-right .usuario{
+        width: 40px; 
+        height: 40px; 
+        left: 0px; top: 0px; 
+        align-items: center;
+        justify-content: center;
+        background: #E4E4E4; 
+        border-radius: 102px;
+    }
+    
+    .mobile-navbar-right .usuario img{
+        position: relative;
+        max-height: 100%;
     }
 
     .carousel-item {
@@ -256,6 +299,129 @@
     .contenidoEnteroCarouselAdventure .carousel-arrow {
         display: none;
     }
+
+
+    /* Menu lateral usuario */
+    /* Estilo inicial del menú lateral */
+    .menu-lateral {
+        position: fixed;
+        top: 0;
+        right: -200px; /* Empieza fuera de la pantalla */
+        width: 200px;
+        opacity: .97;
+        border-bottom-left-radius: 5%;
+        border-top-left-radius: 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        background-color: #333;
+        color: white;
+        transition: right 0.3s ease; /* Agregamos una transición suave */
+        z-index: 5;
+    }
+    .menu-lateral ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+    
+    .menu-lateral li {
+        margin: 10px 0;
+    }
+    
+    .menu-lateral a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+    }
+    /* Estilos del perfil de usuario */
+    .user-profile {
+        width: 72px;
+        height: 72px;
+        left: 33px;
+        top: 29px;
+        position: absolute;
+        background: #e0e0e0;
+        box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.25);
+        border-radius: 50%;
+    }
+
+
+    .profile-image img {
+        width: 72px;
+        height: 72px;
+        left: 0px;
+        top: 0px;
+        border-radius: 50%;
+    }
+
+    .profile-name {
+        display: none;
+    }
+
+    .sidebar-mobile {
+        position: fixed;
+        top: -1500px; /* Ajusta esto según el alto del navbar */
+        left: 0;
+        bottom: 0;
+        width: 40vw;
+        height: 100vh;
+        background: #1C1C29;
+        padding: 20px;
+        box-shadow: 4px 0px 7px 0px rgba(0, 0, 0, 0.25);
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        padding-top: 17vh;
+        z-index: 3; /* Asegura que el sidebar esté detrás del navbar */
+        transition: top 0.3s ease;
+    }
+
+    .sidebar-mobile-active{
+        top: 0px;
+    }
+
+    .sidebar-mobile h3{
+        color: #A985DA;
+        font-size: 23px;
+        font-family: var(--fuente-principal);
+        font-weight: 400;
+        word-wrap: break-word
+    }
+    
+    .sidebar-mobile ul{
+        list-style: none;
+        margin-top: 30px;
+        padding: 0;
+    }
+    .sidebar-mobile li{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        color: #A985DA;
+        font-family: var(--fuente-principal);
+        font-size: 18px;
+        font-weight: 300;
+        margin-bottom: 15px;
+        letter-spacing: 2px;
+        filter: brightness(1.0);
+        transition: filter 0.3s ease;
+    }
+    .sidebar-mobile li:hover{
+        filter: brightness(1.5);
+        cursor: pointer;
+    }
+    .sidebar-mobile img{
+        width: 20%;
+        height: 20%;
+        margin-right: 13px;
+    }
 }
 
 /* Media query para escritorios */
@@ -272,6 +438,9 @@ main {
 }
 
 .mobile-header{
+    display: none;
+}
+.sidebar-mobile{
     display: none;
 }
 /* Estilos para la navbar */
@@ -721,6 +890,77 @@ main {
         opacity: 1; /* Establece la opacidad inicial en 1 */
         transition: opacity 0.2s ease;
     }
+
+
+    /* Menu lateral usuario */
+    /* Estilo inicial del menú lateral */
+    .menu-lateral {
+        position: fixed;
+        top: 0;
+        right: -250px; /* Empieza fuera de la pantalla */
+        width: 250px;
+        opacity: .97;
+        border-bottom-left-radius: 5%;
+        border-top-left-radius: 5%;
+        height: 100%;
+        background-color: #333;
+        color: white;
+        transition: right 0.3s ease; /* Agregamos una transición suave */
+        z-index: 5;
+    }
+    .menu-lateral ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+    
+    .menu-lateral li {
+        margin: 10px 0;
+    }
+    
+    .menu-lateral a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+    }
+
+    /* Estilos del perfil de usuario */
+    .user-profile {
+        width: 72px;
+        height: 72px;
+        left: 33px;
+        top: 29px;
+        position: absolute;
+        background: #e0e0e0;
+        box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.25);
+        border-radius: 50%;
+    }
+
+
+    .profile-image img {
+        width: 72px;
+        height: 72px;
+        left: 0px;
+        top: 0px;
+        position: absolute;
+        border-radius: 50%;
+    }
+
+    .profile-name {
+        left: 112px;
+        top: 40%;
+        position: absolute;
+        color: #e0e0e0;
+        font-size: 20px;
+        font-family: Merriweather;
+        font-weight: 400;
+        word-wrap: break-word;
+    }
 }
 
 /* CARROUSEL */
@@ -1091,23 +1331,6 @@ main {
 }
 
 
-/* Menu lateral usuario */
-/* Estilo inicial del menú lateral */
-.menu-lateral {
-    position: fixed;
-    top: 0;
-    right: -250px; /* Empieza fuera de la pantalla */
-    width: 250px;
-    opacity: .97;
-    border-bottom-left-radius: 5%;
-    border-top-left-radius: 5%;
-    height: 100%;
-    background-color: #333;
-    color: white;
-    transition: right 0.3s ease; /* Agregamos una transición suave */
-    z-index: 5;
-}
-
 /* Estilo del fondo semi-transparente */
 .fondo-semi-transparente {
     position: fixed;
@@ -1121,26 +1344,6 @@ main {
 }
 
 
-.menu-lateral ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-}
-
-.menu-lateral li {
-    margin: 10px 0;
-}
-
-.menu-lateral a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-}
 
 /* Estilo del botón de usuario */
 .usuario:hover {
@@ -1206,39 +1409,6 @@ main {
     width: 49px;
     height: 47px;
     border-radius: 15px;
-}
-
-/* Estilos del perfil de usuario */
-.user-profile {
-    width: 72px;
-    height: 72px;
-    left: 33px;
-    top: 29px;
-    position: absolute;
-    background: #e0e0e0;
-    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.25);
-    border-radius: 50%;
-}
-
-
-.profile-image img {
-    width: 72px;
-    height: 72px;
-    left: 0px;
-    top: 0px;
-    position: absolute;
-    border-radius: 50%;
-}
-
-.profile-name {
-    left: 112px;
-    top: 40%;
-    position: absolute;
-    color: #e0e0e0;
-    font-size: 20px;
-    font-family: Merriweather;
-    font-weight: 400;
-    word-wrap: break-word;
 }
 
 /* Footer */

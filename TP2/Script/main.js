@@ -44,7 +44,7 @@ function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTra
     e.preventDefault(); // Prevenir el comportamiento predeterminado del evento
     updateCarouselPosition();
   });
-
+  
   carousel.addEventListener('touchmove', (e) => {
     if (!isDragging) return;
     const currentPosition = e.touches[0].clientX;
@@ -124,25 +124,64 @@ initializeCarousel('.carousel-main-container', '.carousel-main-container .carous
 // Menu lateral usuario
 
 // Obtener elementos del DOM
-var usuario = document.getElementById("usuarioId");
+var usuario = document.querySelectorAll(".usuario");
 var menuLateral = document.getElementById("menuLateral");
 var fondoSemiTransparente = document.getElementById("fondoSemiTransparente");
 var carritoButton = document.querySelector(".carrito");
 var carritoMenu = document.getElementById("carritoMenu");
 
-// Agregar un evento de clic al icono de usuario para abrir el menú lateral
-usuario.addEventListener("click", function () {
+
+
+// Menu hamburguesa
+var burger = document.querySelector(".mobile-navbar-left");
+var sidebarMobile = document.querySelector(".sidebar-mobile");
+
+usuario.forEach(function(elemento) {
+  elemento.addEventListener("click", function () {
+    sidebarMobile.classList.remove("sidebar-mobile-active");
+    burger.classList.remove("mobile-navbar-left-active");
     menuLateral.classList.add("menu-activo");
     fondoSemiTransparente.style.display = "block"; // Mostrar el fondo semi-transparente
-});
-
+  });
+}
+);
 // Agregar un evento de clic al fondo semi-transparente para cerrar el menú lateral
 fondoSemiTransparente.addEventListener("click", function () {
     menuLateral.classList.remove("menu-activo");
     fondoSemiTransparente.style.display = "none"; // Ocultar el fondo semi-transparente
 });
 
+burger.addEventListener("click", function () {
+  menuLateral.classList.remove("menu-activo");
+  fondoSemiTransparente.style.display = "none"; // Ocultar el fondo semi-transparente
+  sidebarMobile.classList.toggle("sidebar-mobile-active");
+  burger.classList.toggle("mobile-navbar-left-active");
+});
 
+// Ocultar barra de busqueda en mobile 
+let prevScrollPosMobile = window.pageYOffset;
+
+window.onscroll = function() {
+  const currentScrollPosMobile = window.pageYOffset;
+  
+  // Verifica si el desplazamiento es hacia arriba
+  if (prevScrollPosMobile > currentScrollPosMobile) {
+    document.querySelector(".mobile-search-navbar").classList.remove("oculto");
+  } else {
+    document.querySelector(".mobile-search-navbar").classList.add("oculto");
+    document.querySelector(".mobile-search-navbar").classList.remove("enfoque");
+  }
+
+  prevScrollPosMobile = currentScrollPosMobile;
+
+};
+
+let inputMobile = document.querySelector(".input-buscar-mobile");
+
+inputMobile.addEventListener("click", function() {
+  document.querySelector(".mobile-search-navbar").classList.add("enfoque");
+}
+);
 
 // CARRITO
 
