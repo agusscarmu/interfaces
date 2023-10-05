@@ -48,8 +48,13 @@ function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTra
   carousel.addEventListener('touchmove', (e) => {
     if (!isDragging) return;
     const currentPosition = e.touches[0].clientX;
+    const currentY = e.touches[0].clientY;
+    const diffX = Math.abs(currentPosition - startPosition);
+    const diffY = Math.abs(currentY - startPosition);
+    if (diffX > diffY) {
+      e.preventDefault(); // Prevent default behavior if the difference in the X axis is greater than the difference in the Y axis
+    }
     currentTranslate = prevTranslate + currentPosition - startPosition;
-    e.preventDefault(); // Prevenir el comportamiento predeterminado del evento
     updateCarouselPosition();
   });
 
