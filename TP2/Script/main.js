@@ -268,4 +268,18 @@ carritoButton.addEventListener("click", function () {
 });
 });
 
+function cambiarContenido() {
+  var elementosGratis = document.querySelectorAll(".free");
 
+  elementosGratis.forEach(function(elemento) {
+    if (window.innerWidth <= 768) {
+      elemento.textContent = "Gratis";
+    } else {
+      elemento.textContent = "*Gratis";
+    }
+  });
+}
+
+// Llama a la función cuando se carga la página y cuando se cambia el tamaño de la ventana
+window.addEventListener("load", cambiarContenido);
+window.addEventListener("resize", cambiarContenido);

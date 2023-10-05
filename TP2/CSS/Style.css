@@ -15,14 +15,19 @@
     }
     main {
         overflow-x: hidden;
+        /* flex-direction: column;
+        display: flex;
+        justify-self: center; */
         width: 100vw;
         padding-top: 15vh;
         padding-bottom: 5%;
     }
     
-    
+    .desktop-header{
+        display: none;
+    }
     /* Estilos para la navbar */
-    .navbar {
+    .mobile-navbar {
         position: fixed;
         height: 7vh;
         width: 100vw;
@@ -31,7 +36,7 @@
         background: var(--secundario1, #111121);
         color: white;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         box-shadow: 0px 4px 7px 0px rgba(0, 0, 0, 0.30);
         z-index: 4; /* Asegura que el navbar esté por encima del sidebar */
@@ -40,36 +45,52 @@
         display: none;
     }
 
-    .navbar-left{
+    .mobile-navbar-left{
         display: flex;
-        padding: 0px 5px 2px 0px;
+        width: 40px;
+        height: 40px;
         align-items: center;
+        overflow: hidden;
         flex-shrink: 0;
+        margin-left: 5%;
     }
     /* Estilos para la parte izquierda de la navbar (logo) */
-    .navbar-left img {
-        margin: 0px 5px 0px 5px;
-        width: 62px;
-        height: 71px;
+    .mobile-navbar-left img {
+        height: 100%;
+        object-fit: cover;
     }
-    .navbar-left h1{
+    .mobile-navbar-left h1{
         display: none;
     }
 
-    .navbar-center{
-        display: none;
-    }
-    .navbar-right{
-        display: none;
-    }
-    footer {
+    .mobile-navbar-center{
         display: flex;
-        flex-direction: row;
         align-items: center;
-        justify-content: center;
-        background-color: #121212;
-        color: #845EC2; /* Color de la fuente */
+        flex-shrink: 0;
     }
+
+    .mobile-navbar-center img {
+        width: 62px;
+        height: 71px;
+    }
+
+    .mobile-navbar-right{
+        display: flex;
+        width: 40px;
+        height: 40px;
+        align-items: center;
+        border-radius: 50%;
+        overflow: hidden;
+        background-color: white;
+        flex-shrink: 0;
+        margin-right: 5%;
+    }
+
+    .mobile-navbar-right img {
+        height: 100%;
+        object-fit: cover;
+    }
+
     .carousel-item {
         display: flex;
         height: 50vh;
@@ -94,6 +115,7 @@
         overflow: hidden; 
         align-items: center;
         display: inline-flex;
+        text-align: center;
 
     }
     .comprar{
@@ -109,8 +131,7 @@
         display: inline-flex;
         box-shadow: 6px 3px 24px -6px rgba(0, 0, 0, 0.8); 
         transition: transform 0.3s ease;
-
-        margin-top: 20%;
+        margin-top: 5%;
         margin-bottom: 5%;
     }
     
@@ -123,6 +144,82 @@
         font-size: 20px;
         font-family: var(--fuente-principal);
         font-weight: 400;
+    }
+    .secundary .carousel-item .carousel-image {
+        width: 100%;
+        height: 70%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2%;
+        overflow: hidden;
+    }
+    
+    .secundary .carousel-item .carousel-image img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        cursor: pointer;
+    }
+    .carousel-main-container .carousel-item .carousel-content .info-content {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        padding-bottom: 2%;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0.8) 100%);
+        cursor: pointer;
+        z-index: 2; /* Ajusta el z-index para que esté por encima de overlayOscura */
+    }
+    .contenedor-boton-mas-juegos{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+    #botonMasJuegos {
+        margin-top: 7vh;
+        margin-bottom: 5vh;
+        padding: 10px 20px 10px 20px;
+        background: #6644A6;
+        border-radius: 5px;
+        overflow: hidden;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        display: inline-flex;
+        box-shadow: 6px 3px 24px -6px rgba(0, 0, 0, 0.8); 
+        transition: background-color 0.3s; /* Agrega una transición suave */
+    }
+    .secundary h1{
+        color: #A985DA;
+        margin-left: 5%;
+        font-family: var(--fuente-principal);
+        font-size: 22px;
+        font-weight: 300;
+        text-shadow: 6px 6px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #121212;
+        color: #845EC2; /* Color de la fuente */
+    }
+    
+    .footer-container {
+        justify-content: space-between;
+        gap: 30px;
+        padding-bottom: 10%;
+    }
+    .footer-section {
+        flex: 1;
+        max-width: 100%; /* Ancho máximo de cada sección */
+        text-align: center; /* Alineación del texto a la izquierda */
+        margin-left: 2%;
+        margin-right: 2%;
     }
 }
 
@@ -139,7 +236,9 @@ main {
     overflow: visible;
 }
 
-
+.mobile-header{
+    display: none;
+}
 /* Estilos para la navbar */
 .navbar {
     position: fixed;
@@ -474,6 +573,78 @@ main {
         font-weight: 400;
         word-wrap: break-word;
     }
+    .secundary .carousel-item .carousel-image {
+        width: 100%;
+        height: 70%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2%;
+        overflow: hidden;
+    }
+    
+    .secundary .carousel-item .carousel-image img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        cursor: pointer;
+    }
+
+    .carousel-main-container .carousel-item .carousel-content .info-content {
+        position: absolute;
+        width: 100%;
+        padding-top: 20%;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0.8) 100%);
+        cursor: pointer;
+        z-index: 2; /* Ajusta el z-index para que esté por encima de overlayOscura */
+    }
+    .price {
+        display: flex;
+        width: 100%;
+        color: var(--price-color);
+        font-size: 20px;
+        font-family: var(--fuente-principal);
+        font-weight: 400;
+    }
+    #botonMasJuegos {
+        margin: 100px 0px 50px 53%;
+        padding: 10px 20px 10px 20px;
+        background: #6644A6;
+        border-radius: 5px;
+        overflow: hidden;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        display: inline-flex;
+        box-shadow: 6px 3px 24px -6px rgba(0, 0, 0, 0.8); 
+        transition: background-color 0.3s; /* Agrega una transición suave */
+    }
+    .secundary h1{
+        color: #A985DA;
+        margin-left: 5%;
+        font-family: var(--fuente-principal);
+        font-size: 30px;
+        font-weight: 300;
+    }
+    
+    .footer-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 30px;
+        padding-bottom: 10%;
+    }
+
+    .footer-section {
+        flex: 1;
+        max-width: 20%; /* Ancho máximo de cada sección */
+        text-align: left; /* Alineación del texto a la izquierda */
+        margin-left: 2%;
+        margin-right: 2%;
+    }
 }
 
 /* CARROUSEL */
@@ -743,16 +914,7 @@ main {
     height: 100%;
     object-fit: cover; /* Ajusta la imagen al tamaño del contenedor sin deformarla */
 }
-.carousel-main-container .carousel-item .carousel-content .info-content {
-    position: absolute;
-    width: 100%;
-    padding-top: 20%;
-    padding-left: 20px;
-    padding-bottom: 20px;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0.8) 100%);
-    cursor: pointer;
-    z-index: 2; /* Ajusta el z-index para que esté por encima de overlayOscura */
-}
+
 
 .carousel-main-container .carousel-item .carousel-content .overlayOscura {
     position: absolute;
@@ -793,30 +955,8 @@ main {
     flex-direction: row;
     margin-left: 30vw;
 }
-.secundary h1{
-    color: #A985DA;
-    margin-left: 5%;
-    font-family: var(--fuente-principal);
-    font-size: 30px;
-    font-weight: 300;
-}
 
-.secundary .carousel-item .carousel-image {
-    width: 100%;
-    height: 70%;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2%;
-    overflow: hidden;
-}
 
-.secundary .carousel-item .carousel-image img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    cursor: pointer;
-}
 
 .secundary .carousel-item .play-button {
     position: absolute;
@@ -857,19 +997,7 @@ main {
     font-size: 14px;
 }
 
-#botonMasJuegos {
-    margin: 100px 0px 50px 53%;
-    padding: 10px 20px 10px 20px;
-    background: #6644A6;
-    border-radius: 5px;
-    overflow: hidden;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    display: inline-flex;
-    box-shadow: 6px 3px 24px -6px rgba(0, 0, 0, 0.8); 
-    transition: background-color 0.3s; /* Agrega una transición suave */
-}
+
 
 #botonMasJuegos:hover {
     background: #331D70; /* Cambia el color de fondo al hacer hover */
@@ -1079,22 +1207,10 @@ main {
 
 
 /* Estilos para el contenedor principal del footer */
-.footer-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 30px;
-    padding-bottom: 10%;
-}
+
 
 /* Estilos para cada sección del footer */
-.footer-section {
-    flex: 1;
-    max-width: 20%; /* Ancho máximo de cada sección */
-    text-align: left; /* Alineación del texto a la izquierda */
-    margin-left: 2%;
-    margin-right: 2%;
-}
+
 
 /* Estilos para los enlaces */
 .footer-section a {

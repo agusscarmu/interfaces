@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Merriweather:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
+    <header class="desktop-header">
         <nav class="navbar">
             <div class="navbar-left">
                 <h1>Dungeon</h1>
@@ -34,6 +34,32 @@
                     </div>
     
             </div>
+        </nav>
+    </header>
+    <header class="mobile-header">
+        <nav class="mobile-navbar">
+            <div class="mobile-navbar-left">
+                <img src="./Resources/burger.png" alt="">
+            </div>
+            <div class="mobile-navbar-center">
+                <img src="./Resources/Unknown.png" alt="">
+            </div>
+            <div class="mobile-navbar-right">
+                    <!-- <div class="mobile-contenedor-icono-carrito">
+                        <div class="mobile-carrito" id="carritoId">
+                            <img src="./Resources/2e7395605e0b4152131b853791b21df4.png" alt="">
+                            <span></span>
+                        </div>
+                    </div> -->
+                        <img src="./Resources/9a76c051333d3e47fdc6aa00a7883865.png" alt="">
+    
+            </div>
+        </nav>
+        <nav class="mobile-search-navbar">
+            <input type="text" placeholder="Buscar juego...">
+                <div class="mobile-botonBuscar">
+                    <div class="texto">Buscar</div>
+                </div>
         </nav>
     </header>
     
@@ -366,8 +392,10 @@
                     </div>
                 </div>
             </div>
-            <div id="botonMasJuegos">
-                <div class="texto">Más juegos...</div>
+            <div class="contenedor-boton-mas-juegos">
+                <div id="botonMasJuegos">
+                    <div class="texto">Más juegos...</div>
+                </div>
             </div>
         </div>
     </main>
