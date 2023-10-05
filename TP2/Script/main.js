@@ -5,7 +5,11 @@ const flechaIzquierda = document.querySelector(".contenidoEnteroCarouselPrincipa
 const flechaDerecha = document.querySelector(".contenidoEnteroCarouselPrincipal .carousel-arrow .right-arrow")
 
 
-function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTraslate2) {
+function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTraslate2, arrowContent) {
+  const flechas = document.querySelector(arrowContent+" .carousel-arrow")
+  const flechaIzquierda = document.querySelector(arrowContent+" .carousel-arrow .left-arrow")
+  const flechaDerecha = document.querySelector(arrowContent+" .carousel-arrow .right-arrow")
+
   const carousel = document.querySelector(carouselSelector);
   const card = document.querySelector(cardSelector);
   let isDragging = false;
@@ -59,11 +63,15 @@ function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTra
   if (currentTranslate > maxTranslate) {
     currentTranslate = maxTranslate;
     flechas.classList.add("limiteIzquierdo");
+    flechas.classList.remove("limiteDerecho");
     flechaIzquierda.classList.add("limiteIzquierdo");
+    flechaDerecha.classList.remove("limiteDerecho");
   } else if (currentTranslate < minTranslate) {
     currentTranslate = minTranslate;
     flechas.classList.add("limiteDerecho");
+    flechas.classList.remove("limiteIzquierdo");
     flechaDerecha.classList.add("limiteDerecho");
+    flechaIzquierda.classList.remove("limiteIzquierdo");
   } else {
     flechas.classList.remove("limiteIzquierdo");
     flechas.classList.remove("limiteDerecho");
@@ -75,9 +83,9 @@ function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTra
 }
 
 // Llamar a la función para inicializar ambos carruseles
-initializeCarousel('.carousel-container-recommended', '.carousel-container-recommended .carousel-item', 0, (-0.35));
-initializeCarousel('.carousel-container-adventure', '.carousel-container-adventure .carousel-item', 0, (-0.35));
-initializeCarousel('.carousel-main-container', '.carousel-main-container .carousel-item', 0.4, -0.4);
+initializeCarousel('.carousel-container-recommended', '.carousel-container-recommended .carousel-item', 0, (-0.32), ".contenidoEnteroCarouselRecommended");
+initializeCarousel('.carousel-container-adventure', '.carousel-container-adventure .carousel-item', 0, (-0.32), ".contenidoEnteroCarouselAdventure");
+initializeCarousel('.carousel-main-container', '.carousel-main-container .carousel-item', 0.4, -0.4, ".contenidoEnteroCarouselPrincipal");
 
 
 
