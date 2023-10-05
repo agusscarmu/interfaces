@@ -119,7 +119,7 @@ function updateCarouselPosition() {
     updateCarouselPosition();
   }
 }
-var isMobile=false;
+
 function initializeCarouselElecc(carouselSelector, cardSelector, auxTraslate1Desk, auxTraslate2Desk, auxTraslate1Mobile, auxTraslate2Mobile, arrowContent){
   if(window.innerWidth <= 768){
     initializeCarousel(carouselSelector, cardSelector, auxTraslate1Mobile, auxTraslate2Mobile, arrowContent);
@@ -181,7 +181,7 @@ window.onscroll = function() {
   const currentScrollPosMobile = window.pageYOffset;
   
   // Verifica si el desplazamiento es hacia arriba
-  if (prevScrollPosMobile > currentScrollPosMobile) {
+  if (prevScrollPosMobile > currentScrollPosMobile || currentScrollPosMobile < 80) {
     document.querySelector(".mobile-search-navbar").classList.remove("oculto");
   } else {
     document.querySelector(".mobile-search-navbar").classList.add("oculto");
@@ -360,9 +360,7 @@ function cambiarContenido() {
   elementosGratis.forEach(function(elemento) {
     if (window.innerWidth <= 768) {
       elemento.textContent = "Gratis";
-      isMobile=true;
     } else {
-      isMobile=false;
       elemento.textContent = "*Gratis";
     }
   });
