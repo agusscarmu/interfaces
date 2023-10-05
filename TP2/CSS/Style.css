@@ -22,7 +22,33 @@
         padding-top: 20vh;
         padding-bottom: 5%;
     }
-    
+    .categoria-carrusel{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .categoria-carrusel h1{
+        color: #A985DA;
+        font-family: var(--fuente-principal);
+        font-size: 22px;
+        font-weight: 300;
+        text-shadow: 6px 6px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .categoria-carrusel h3{
+        height: 50%;
+        color: #A985DA;
+        font-size: 15px;
+        font-weight: 200;
+        font-family: var(--fuente-principal);
+        text-shadow: 6px 6px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .categoria-carrusel h3.hidden{
+        display: none;
+    }
     .desktop-header{
         display: none;
     }
@@ -164,6 +190,7 @@
         align-items: center;
         transition: box-shadow 0.3s ease; /* Agrega una transición para suavizar el cambio */ 
     }
+
     .secundary .carousel-item {
         display: flex;
         background: #111121;
@@ -251,14 +278,6 @@
         display: inline-flex;
         box-shadow: 6px 3px 24px -6px rgba(0, 0, 0, 0.8); 
         transition: background-color 0.3s; /* Agrega una transición suave */
-    }
-    .secundary h1{
-        color: #A985DA;
-        margin-left: 5%;
-        font-family: var(--fuente-principal);
-        font-size: 22px;
-        font-weight: 300;
-        text-shadow: 6px 6px 5px rgba(0, 0, 0, 0.5);
     }
 
     footer {
@@ -423,6 +442,17 @@
         height: 20%;
         margin-right: 13px;
     }
+    .secundary .carousel-container-recommended {
+        display: flex;
+        flex-direction: row;
+        margin-left: 170vw;
+    }
+    .secundary .carousel-container-adventure {
+        display: flex;
+        flex-direction: row;
+        margin-left: 170vw;
+    }
+    
 }
 
 /* Media query para escritorios */
@@ -438,6 +468,9 @@ main {
     overflow: visible;
 }
 
+.categoria-carrusel h3{
+    display: none;
+}
 .mobile-header{
     display: none;
 }
@@ -962,6 +995,17 @@ main {
         font-weight: 400;
         word-wrap: break-word;
     }
+    .secundary .carousel-container-recommended {
+        display: flex;
+        flex-direction: row;
+        margin-left: 30vw;
+    }
+    .secundary .carousel-container-adventure {
+        display: flex;
+        flex-direction: row;
+        margin-left: 30vw;
+    }
+    
 }
 
 /* CARROUSEL */
@@ -1226,16 +1270,6 @@ main {
 
 }
 
-.secundary .carousel-container-recommended {
-    display: flex;
-    flex-direction: row;
-    margin-left: 30vw;
-}
-.secundary .carousel-container-adventure {
-    display: flex;
-    flex-direction: row;
-    margin-left: 30vw;
-}
 
 
 

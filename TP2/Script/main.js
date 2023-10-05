@@ -9,6 +9,9 @@ function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTra
   const flechas = document.querySelector(arrowContent+" .carousel-arrow")
   const flechaIzquierda = document.querySelector(arrowContent+" .carousel-arrow .left-arrow")
   const flechaDerecha = document.querySelector(arrowContent+" .carousel-arrow .right-arrow")
+  const h3flechaAdeventure = document.querySelector(".adventure .categoria-carrusel h3")
+  const h3flechaRecommended = document.querySelector(".recommended .categoria-carrusel h3")
+  
 
   const carousel = document.querySelector(carouselSelector);
   const card = document.querySelector(cardSelector);
@@ -100,17 +103,32 @@ function updateCarouselPosition() {
     const minTranslate = auxTraslate2 * (carouselWidth - cardWidth); // Evita que se desplace más allá del último elemento
   if (currentTranslate > maxTranslate) {
     currentTranslate = maxTranslate;
+    if(cardSelector.includes("adventure")){
+      h3flechaAdeventure.classList.remove("hidden");
+    }else if(cardSelector.includes("recommended")){
+      h3flechaRecommended.classList.remove("hidden");
+    }
     flechas.classList.add("limiteIzquierdo");
     flechas.classList.remove("limiteDerecho");
     flechaIzquierda.classList.add("limiteIzquierdo");
     flechaDerecha.classList.remove("limiteDerecho");
   } else if (currentTranslate < minTranslate) {
+    if(cardSelector.includes("adventure")){
+      h3flechaAdeventure.classList.add("hidden");
+    }else if(cardSelector.includes("recommended")){
+      h3flechaRecommended.classList.add("hidden");
+    }
     currentTranslate = minTranslate;
     flechas.classList.add("limiteDerecho");
     flechas.classList.remove("limiteIzquierdo");
     flechaDerecha.classList.add("limiteDerecho");
     flechaIzquierda.classList.remove("limiteIzquierdo");
   } else {
+    if(cardSelector.includes("adventure")){
+      h3flechaAdeventure.classList.remove("hidden");
+    }else if(cardSelector.includes("recommended")){
+      h3flechaRecommended.classList.remove("hidden");
+    }
     flechas.classList.remove("limiteIzquierdo");
     flechas.classList.remove("limiteDerecho");
     flechaIzquierda.classList.remove("limiteIzquierdo");
@@ -130,8 +148,8 @@ function initializeCarouselElecc(carouselSelector, cardSelector, auxTraslate1Des
 
 
 // Llamar a la función para inicializar ambos carruseles
-initializeCarouselElecc('.carousel-container-recommended', '.carousel-container-recommended .carousel-item', 0, (-0.32), 0.31, (-0.44),".contenidoEnteroCarouselRecommended");
-initializeCarouselElecc('.carousel-container-adventure', '.carousel-container-adventure .carousel-item', 0, (-0.32), 0.31, (-0.44), ".contenidoEnteroCarouselAdventure");
+initializeCarouselElecc('.carousel-container-recommended', '.carousel-container-recommended .carousel-item', 0, (-0.32), 0, (-0.75),".contenidoEnteroCarouselRecommended");
+initializeCarouselElecc('.carousel-container-adventure', '.carousel-container-adventure .carousel-item', 0, (-0.32), 0, (-0.75), ".contenidoEnteroCarouselAdventure");
 initializeCarouselElecc('.carousel-main-container', '.carousel-main-container .carousel-item', 0.4, -0.4, 0.474, -0.474,".contenidoEnteroCarouselPrincipal");
 
 
