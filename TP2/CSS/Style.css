@@ -2,6 +2,83 @@
     --fuente-principal: 'Franklin Gothic Medium';
     --price-color:  #35ab62;
 }
+
+/* Media query para tabletas */
+@media (max-width: 768px) {
+    body {
+        font-family: var(--fuente-principal);
+        margin: 0;
+        padding: 0;
+        background-color: #282831;
+        width: 100vw;
+        overflow-x: hidden;
+    }
+    main {
+        overflow: visible;
+        width: 100vw;
+    }
+    
+    
+    /* Estilos para la navbar */
+    .navbar {
+        position: fixed;
+        height: 7vh;
+        width: 100vw;
+        padding-top: 1vh;
+        padding-bottom: 1vh;
+        background: var(--secundario1, #111121);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0px 4px 7px 0px rgba(0, 0, 0, 0.30);
+        z-index: 4; /* Asegura que el navbar esté por encima del sidebar */
+    }
+    
+    .contenido{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        width: 100vw;
+        padding-top: 15vh;
+        overflow-y: hidden;
+        overflow-x: hidden;
+        padding-bottom: 5%;
+        margin-left: auto;
+        margin-right: 1;
+    }
+
+    .sidebar{
+        display: none;
+    }
+
+    .navbar-left{
+        display: flex;
+        padding: 0px 5px 2px 0px;
+        align-items: center;
+        flex-shrink: 0;
+    }
+    /* Estilos para la parte izquierda de la navbar (logo) */
+    .navbar-left img {
+        margin: 0px 5px 0px 5px;
+        width: 62px;
+        height: 71px;
+    }
+    .navbar-left h1{
+        display: none;
+    }
+
+    .navbar-center{
+        display: none;
+    }
+    .navbar-right{
+        display: none;
+    }
+}
+
+/* Media query para escritorios */
+@media (min-width: 1024px) {
 /* Estilos generales */
 body {
     font-family: var(--fuente-principal);
@@ -39,11 +116,11 @@ main {
     height: 100%;
     padding-top: 15vh;
     overflow-y: visible;
-    overflow-x: visible;
+    overflow-x: hidden;
+    padding-bottom: 5%;
     margin-left: auto;
     margin-right: 1;
 }
-
 .sidebar {
     position: fixed;
     top: 60px; /* Ajusta esto según el alto del navbar */
@@ -94,8 +171,6 @@ main {
     height: 20%;
     margin-right: 13px;
 }
-
-
 .navbar-left{
     display: flex;
     padding: 0px 5px 2px 0px;
@@ -122,169 +197,167 @@ main {
     height: 76px; /* Nuevo alto cuando se coloca el mouse encima */
     margin: 0px 2.5px 0px 2.5px;
   }
-
-.navbar-left h1{
-    color: #A985DA;
-    font-size: 30px;
-    font-family: 'MedievalSharp', cursive;
-    font-weight: 500;
-    word-wrap: break-word
-}
-.navbar-center{
-    display: flex;
-    width: 380px;
-    height: 75%;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-}
-.navbar-center .botonBuscar {
-    width: 100%;
-    height: 100%;
-    padding-left: 50px;
-    padding-right: 50px;
-    background: #6644A6;
-    border-radius: 5px;
-    overflow: hidden;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    display: inline-flex;
-    transition: background-color 0.3s; /* Agrega una transición suave */
-}
-
-.navbar-center .botonBuscar:hover {
-    background: #331D70; /* Cambia el color de fondo al hacer hover */
-    cursor: pointer;
-}
-
-
-.botonBuscar .texto{
-    color: white; 
-    font-size: 16px; 
-    font-family: var(--fuente-principal);
-    font-weight: 400; 
-    letter-spacing: 2.48px; 
-    word-wrap: break-word
-}
-
-/* Estilos para la parte central de la navbar (barra de búsqueda) */
-.navbar-center input {
-    width: 100%;
-    height: 80%;
-    flex-shrink: 0;
-    background-color: #dbdbdb;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    font-size: 16px;
-    padding-left: 4%;
-}
-.navbar-center input::placeholder{
-    color: rgb(152, 152, 152);
-}
-/* Estilos para el contenedor del input */
-.search-input {
-    display: flex;
-    align-items: center;
-    background-color: #fff; /* Fondo blanco para el input */
-    border: 1px solid #ccc; /* Borde del input */
-    border-radius: 5px;
-    padding: 5px;
-}
-
-/* Estilos para el input */
-.search-input input {
-    flex: 1;
-    border: none;
-    outline: none; /* Quita el borde al hacer clic */
-    padding: 5px;
-    background: url('./Resources/e1c614ce98832b729e1034e23fb0dd88.png') no-repeat left center; /* Agrega la imagen de la lupa a la izquierda */
-    background-size: 20px; /* Ajusta el tamaño de la imagen */
-}
-
-/* Estilos para el botón */
-.search-input button {
-    border: none;
-    background-color: #333;
-    color: white;
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-/* Estilo para el botón al hacer hover */
-.search-input button:hover {
-    background-color: #555;
-    cursor: pointer;
-}
-
-.navbar-right{
-    display: flex;
-    padding: 0px 0px 2px 5px;
-    align-items: center;
-    flex-shrink: 0;
-    justify-content: flex-end;
-}
-
-.navbar-right .contenedorIconoCarrito{
-    display: flex;
-    justify-content: flex-end;
-    width: 80px;
-}
-
-.navbar-right .contenedorIconoCarrito .carrito {
-    width: 65px; 
-    height: 44px; 
-    justify-content: center; 
-    align-items: center; 
-    display: inline-flex;
-    background: linear-gradient(0deg, #6644A6 0%, #6644A6 100%); 
-    border-radius: 35px;
-    margin-right: 10%;
-    padding-right: 2%;
-    transition: width 0.3s; /* Agregar la propiedad de transición */
-}
-
-.navbar-right .contenedorIconoCarrito .carrito span{
-    display: none;
-    padding-left: 5px;
-}
-
-.navbar-right .contenedorIconoCarrito .carrito .show{
-    display:block;
-}
-
-.navbar-right .carrito.ampliado {
-    width: 80px;
-}
-
-.navbar-right .carrito:hover{
-    cursor: pointer;
-    box-shadow: 0px 0px 12px -4px rgba(169, 133, 218, 0.80); 
-}
-.navbar-right .usuario:hover{
-    cursor: pointer;
-    box-shadow: 0px 0px 14px -4px rgba(169, 133, 218, 0.80); 
-}
-
-.navbar-right .carrito img{
-    position: relative;
-    max-height: 73%;
-}
-
-.navbar-right .usuario{
-    width: 44px; 
-    height: 44px; 
-    left: 0px; top: 0px; 
-    align-items: center;
-    justify-content: center;
-    background: #E4E4E4; 
-    border-radius: 102px;
-}
-
-.navbar-right .usuario img{
-    position: relative;
-    max-height: 100%;
+  .navbar-left h1{
+      color: #A985DA;
+      font-size: 30px;
+      font-family: 'MedievalSharp', cursive;
+      font-weight: 500;
+      word-wrap: break-word
+  }
+  .navbar-center{
+      display: flex;
+      width: 380px;
+      height: 75%;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+  }
+  .navbar-center .botonBuscar {
+      width: 100%;
+      height: 100%;
+      padding-left: 50px;
+      padding-right: 50px;
+      background: #6644A6;
+      border-radius: 5px;
+      overflow: hidden;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      display: inline-flex;
+      transition: background-color 0.3s; /* Agrega una transición suave */
+  }
+  .navbar-center .botonBuscar:hover {
+      background: #331D70; /* Cambia el color de fondo al hacer hover */
+      cursor: pointer;
+  }
+  
+  
+  .botonBuscar .texto{
+      color: white; 
+      font-size: 16px; 
+      font-family: var(--fuente-principal);
+      font-weight: 400; 
+      letter-spacing: 2.48px; 
+      word-wrap: break-word
+  }
+  
+  /* Estilos para la parte central de la navbar (barra de búsqueda) */
+  .navbar-center input {
+      width: 100%;
+      height: 80%;
+      flex-shrink: 0;
+      background-color: #dbdbdb;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      font-size: 16px;
+      padding-left: 4%;
+  }
+  .navbar-center input::placeholder{
+      color: rgb(152, 152, 152);
+  }
+  /* Estilos para el contenedor del input */
+  .search-input {
+      display: flex;
+      align-items: center;
+      background-color: #fff; /* Fondo blanco para el input */
+      border: 1px solid #ccc; /* Borde del input */
+      border-radius: 5px;
+      padding: 5px;
+  }
+  
+  /* Estilos para el input */
+  .search-input input {
+      flex: 1;
+      border: none;
+      outline: none; /* Quita el borde al hacer clic */
+      padding: 5px;
+      background: url('./Resources/e1c614ce98832b729e1034e23fb0dd88.png') no-repeat left center; /* Agrega la imagen de la lupa a la izquierda */
+      background-size: 20px; /* Ajusta el tamaño de la imagen */
+  }
+  
+  /* Estilos para el botón */
+  .search-input button {
+      border: none;
+      background-color: #333;
+      color: white;
+      border-radius: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+  }
+  
+  /* Estilo para el botón al hacer hover */
+  .search-input button:hover {
+      background-color: #555;
+      cursor: pointer;
+    }
+    .navbar-right{
+        display: flex;
+        padding: 0px 0px 2px 5px;
+        align-items: center;
+        flex-shrink: 0;
+        justify-content: flex-end;
+    }
+    
+    .navbar-right .contenedorIconoCarrito{
+        display: flex;
+        justify-content: flex-end;
+        width: 80px;
+    }
+    
+    .navbar-right .contenedorIconoCarrito .carrito {
+        width: 65px; 
+        height: 44px; 
+        justify-content: center; 
+        align-items: center; 
+        display: inline-flex;
+        background: linear-gradient(0deg, #6644A6 0%, #6644A6 100%); 
+        border-radius: 35px;
+        margin-right: 10%;
+        padding-right: 2%;
+        transition: width 0.3s; /* Agregar la propiedad de transición */
+    }
+    
+    .navbar-right .contenedorIconoCarrito .carrito span{
+        display: none;
+        padding-left: 5px;
+    }
+    
+    .navbar-right .contenedorIconoCarrito .carrito .show{
+        display:block;
+    }
+    
+    .navbar-right .carrito.ampliado {
+        width: 80px;
+    }
+    
+    .navbar-right .carrito:hover{
+        cursor: pointer;
+        box-shadow: 0px 0px 12px -4px rgba(169, 133, 218, 0.80); 
+    }
+    .navbar-right .usuario:hover{
+        cursor: pointer;
+        box-shadow: 0px 0px 14px -4px rgba(169, 133, 218, 0.80); 
+    }
+    
+    .navbar-right .carrito img{
+        position: relative;
+        max-height: 73%;
+    }
+    
+    .navbar-right .usuario{
+        width: 44px; 
+        height: 44px; 
+        left: 0px; top: 0px; 
+        align-items: center;
+        justify-content: center;
+        background: #E4E4E4; 
+        border-radius: 102px;
+    }
+    
+    .navbar-right .usuario img{
+        position: relative;
+        max-height: 100%;
+    }
 }
 
 /* CARROUSEL */
@@ -452,7 +525,7 @@ main {
     width: 100%;
     height: 100%;
     position: relative;
-    overflow:visible;
+
 }
 .contenidoEnteroCarouselAdventure .carousel-arrow {
     position: absolute;
@@ -605,13 +678,13 @@ main {
 }
 .second-content{
     width: 100%;
-    overflow:visible;
+
 }
 .secundary { 
     display: flex;
     flex-direction: column;
     margin-top: 2%;
-    overflow:visible;
+
 
 }
 
@@ -853,7 +926,7 @@ main {
     width: 100%;
     height: 100%;
     position: relative;
-    background: linear-gradient(to top, #845EC2 0%, #38383A 100%);
+    background: linear-gradient(to top, #36323b 0%, #ae8bc2 100%);
     border-bottom-left-radius: 5%;
     border-top-left-radius: 5%;
 }
@@ -1118,3 +1191,11 @@ footer {
     font-family: var(--fuente-principal);
     letter-spacing: 2.48px;
 }
+
+
+
+
+
+
+
+
