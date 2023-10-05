@@ -28,6 +28,15 @@ function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTra
     }
   });
 
+  carousel.addEventListener('touchstart', (e) => {
+    if (!isDragging) {
+      isDragging = true;
+      startPosition = e.touches[0].clientX;
+      prevTranslate = currentTranslate;
+      carousel.style.transition = 'none'; // Eliminar transición durante el arrastre
+    }
+  });
+
   carousel.addEventListener('mousemove', (e) => {
     if (!isDragging) return;
     const currentPosition = e.clientX;
@@ -35,7 +44,22 @@ function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTra
     updateCarouselPosition();
   });
 
+  carousel.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    const currentPosition = e.touches[0].clientX;
+    currentTranslate = prevTranslate + currentPosition - startPosition;
+    updateCarouselPosition();
+  });
+
   carousel.addEventListener('mouseup', () => {
+    if (isDragging) {
+      isDragging = false;
+      checkBoundary();
+      carousel.style.transition = 'transform 0.3s ease-in-out'; // Restablecer transición
+    }
+  });
+
+  carousel.addEventListener('touchend', () => {
     if (isDragging) {
       isDragging = false;
       checkBoundary();
