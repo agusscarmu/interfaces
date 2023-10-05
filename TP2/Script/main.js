@@ -119,11 +119,20 @@ function updateCarouselPosition() {
     updateCarouselPosition();
   }
 }
+var isMobile=false;
+function initializeCarouselElecc(carouselSelector, cardSelector, auxTraslate1Desk, auxTraslate2Desk, auxTraslate1Mobile, auxTraslate2Mobile, arrowContent){
+  if(window.innerWidth <= 768){
+    initializeCarousel(carouselSelector, cardSelector, auxTraslate1Mobile, auxTraslate2Mobile, arrowContent);
+  }else{
+    initializeCarousel(carouselSelector, cardSelector, auxTraslate1Desk, auxTraslate2Desk, arrowContent);
+  }
+}
+
 
 // Llamar a la función para inicializar ambos carruseles
-initializeCarousel('.carousel-container-recommended', '.carousel-container-recommended .carousel-item', 0, (-0.32), ".contenidoEnteroCarouselRecommended");
-initializeCarousel('.carousel-container-adventure', '.carousel-container-adventure .carousel-item', 0, (-0.32), ".contenidoEnteroCarouselAdventure");
-initializeCarousel('.carousel-main-container', '.carousel-main-container .carousel-item', 0.4, -0.4, ".contenidoEnteroCarouselPrincipal");
+initializeCarouselElecc('.carousel-container-recommended', '.carousel-container-recommended .carousel-item', 0, (-0.32), 0.31, (-0.44),".contenidoEnteroCarouselRecommended");
+initializeCarouselElecc('.carousel-container-adventure', '.carousel-container-adventure .carousel-item', 0, (-0.32), 0.31, (-0.44), ".contenidoEnteroCarouselAdventure");
+initializeCarouselElecc('.carousel-main-container', '.carousel-main-container .carousel-item', 0.4, -0.4, 0.474, -0.474,".contenidoEnteroCarouselPrincipal");
 
 
 
@@ -351,7 +360,9 @@ function cambiarContenido() {
   elementosGratis.forEach(function(elemento) {
     if (window.innerWidth <= 768) {
       elemento.textContent = "Gratis";
+      isMobile=true;
     } else {
+      isMobile=false;
       elemento.textContent = "*Gratis";
     }
   });
