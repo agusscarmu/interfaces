@@ -41,6 +41,7 @@ function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTra
     if (!isDragging) return;
     const currentPosition = e.clientX;
     currentTranslate = prevTranslate + currentPosition - startPosition;
+    e.preventDefault(); // Prevenir el comportamiento predeterminado del evento
     updateCarouselPosition();
   });
 
@@ -48,6 +49,7 @@ function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTra
     if (!isDragging) return;
     const currentPosition = e.touches[0].clientX;
     currentTranslate = prevTranslate + currentPosition - startPosition;
+    e.preventDefault(); // Prevenir el comportamiento predeterminado del evento
     updateCarouselPosition();
   });
 
@@ -307,3 +309,6 @@ function cambiarContenido() {
 // Llama a la función cuando se carga la página y cuando se cambia el tamaño de la ventana
 window.addEventListener("load", cambiarContenido);
 window.addEventListener("resize", cambiarContenido);
+
+
+

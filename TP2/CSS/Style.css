@@ -41,6 +41,20 @@
         box-shadow: 0px 4px 7px 0px rgba(0, 0, 0, 0.30);
         z-index: 4; /* Asegura que el navbar esté por encima del sidebar */
     }
+    .mobile-search-bar{
+        position: fixed;
+        height: 7vh;
+        width: 100vw;
+        padding-top: 2vh;
+        padding-bottom: 2vh;
+        background: var(--secundario1, #111121);
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0px 4px 7px 0px rgba(0, 0, 0, 0.30);
+        z-index: 4; /* Asegura que el navbar esté por encima del sidebar */
+    }
     .sidebar{
         display: none;
     }
@@ -54,13 +68,16 @@
         flex-shrink: 0;
         margin-left: 5%;
     }
+/* Cuando se activa el burger */
+    .mobile-navbar-left .active{
+        height: 10px;
+        background-color: white;
+        border-radius: 10%;
+    }
     /* Estilos para la parte izquierda de la navbar (logo) */
     .mobile-navbar-left img {
         height: 100%;
-        object-fit: cover;
-    }
-    .mobile-navbar-left h1{
-        display: none;
+        width: 100%;
     }
 
     .mobile-navbar-center{
