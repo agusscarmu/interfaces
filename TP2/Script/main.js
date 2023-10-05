@@ -107,6 +107,36 @@ fondoSemiTransparente.addEventListener("click", function () {
 
 // CARRITO
 
+function cambiarTexto(elemento) {
+  var textoBoton = elemento.querySelector(".textoBotonCarrito");
+  var imagenCarrito = elemento.querySelector(".imagenCarrito");
+
+  if (textoBoton.innerHTML === "Agregar") {
+    textoBoton.classList.add("hidden");
+    imagenCarrito.classList.add("hidden");
+    elemento.classList.add("active");
+    setTimeout(function () {
+      textoBoton.innerHTML = "En carro";
+      textoBoton.classList.remove("hidden");
+      elemento.classList.remove("active");
+      imagenCarrito.classList.remove("hidden");
+      elemento.classList.add("activado");
+      imagenCarrito.src = "./Resources/Tic.png"; // Cambia la fuente de la imagen
+    }, 300); // Cambia el texto después de que la animación de rotación haya terminado
+  } else {
+      textoBoton.classList.add("hidden");
+      imagenCarrito.classList.add("hidden");
+      elemento.classList.add("active");
+      elemento.classList.remove("activado");
+      setTimeout(function () {
+        textoBoton.innerHTML = "Agregar";
+        textoBoton.classList.remove("hidden");
+        elemento.classList.remove("active");
+        imagenCarrito.classList.remove("hidden");
+        imagenCarrito.src = "./Resources/2e7395605e0b4152131b853791b21df4.png"; // Restaura la fuente original de la imagen
+      }, 300); // Cambia el texto después de que la animación de rotación haya terminado
+  }
+}
 
 document.addEventListener("DOMContentLoaded", function () {
   // Obtener el carrito y el elemento del menú del carrito
