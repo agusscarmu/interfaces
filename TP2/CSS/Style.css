@@ -43,7 +43,7 @@
     }
     .mobile-search-navbar{
         position: fixed;
-        height: 5vh;
+        height: 7vh;
         width: 100vw;
         top: 10vh;
         background: #1C1C29;
@@ -59,6 +59,7 @@
     .input-buscar-mobile {
         padding-right: 30px; /* Espacio para la imagen de la lupa */
         border: none;
+        height: 4vh;
         background: #dbdbdb;
         color: white;
     }

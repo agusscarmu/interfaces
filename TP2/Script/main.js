@@ -16,6 +16,7 @@ function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTra
   let startPosition = 0;
   let currentTranslate = 0;
   let prevTranslate = 0;
+  let startPositionY = 0;
 
   carousel.style.transition = 'transform 0.3s ease-in-out'; // Agregar transición
 
@@ -28,33 +29,11 @@ function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTra
     }
   });
 
-  carousel.addEventListener('touchstart', (e) => {
-    if (!isDragging) {
-      isDragging = true;
-      startPosition = e.touches[0].clientX;
-      prevTranslate = currentTranslate;
-      carousel.style.transition = 'none'; // Eliminar transición durante el arrastre
-    }
-  });
-
   carousel.addEventListener('mousemove', (e) => {
     if (!isDragging) return;
     const currentPosition = e.clientX;
     currentTranslate = prevTranslate + currentPosition - startPosition;
     e.preventDefault(); // Prevenir el comportamiento predeterminado del evento
-    updateCarouselPosition();
-  });
-  
-  carousel.addEventListener('touchmove', (e) => {
-    if (!isDragging) return;
-    const currentPosition = e.touches[0].clientX;
-    const currentY = e.touches[0].clientY;
-    const diffX = Math.abs(currentPosition - startPosition);
-    const diffY = Math.abs(currentY - startPosition);
-    if (diffX > diffY) {
-      e.preventDefault(); // Prevent default behavior if the difference in the X axis is greater than the difference in the Y axis
-    }
-    currentTranslate = prevTranslate + currentPosition - startPosition;
     updateCarouselPosition();
   });
 
@@ -66,13 +45,6 @@ function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTra
     }
   });
 
-  carousel.addEventListener('touchend', () => {
-    if (isDragging) {
-      isDragging = false;
-      checkBoundary();
-      carousel.style.transition = 'transform 0.3s ease-in-out'; // Restablecer transición
-    }
-  });
 
   carousel.addEventListener('mouseleave', () => {
     if (isDragging) {
@@ -82,9 +54,44 @@ function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTra
     }
   });
 
-  function updateCarouselPosition() {
-    carousel.style.transform = `translateX(${currentTranslate}px)`;
+
+
+carousel.addEventListener('touchstart', (e) => {
+  if (!isDragging) {
+    isDragging = true;
+    startPosition = e.touches[0].clientX;
+    startPositionY = e.touches[0].clientY;
+    prevTranslate = currentTranslate;
+    carousel.style.transition = 'none'; // Eliminar transición durante el arrastre
   }
+});
+
+carousel.addEventListener('touchmove', (e) => {
+  if (!isDragging) return;
+  const currentPosition = e.touches[0].clientX;
+  const currentPositionY = e.touches[0].clientY;
+  const xDiff = currentPosition - startPosition;
+  const yDiff = currentPositionY - startPositionY;
+
+  if (Math.abs(xDiff) > Math.abs(yDiff)) {
+    e.preventDefault(); 
+    currentTranslate = prevTranslate + currentPosition - startPosition;
+    updateCarouselPosition();
+  }
+});
+
+carousel.addEventListener('touchend', () => {
+  if (isDragging) {
+    isDragging = false;
+    checkBoundary();
+    carousel.style.transition = 'transform 0.3s ease-in-out'; // Restablecer transición
+  }
+});
+
+function updateCarouselPosition() {
+  carousel.style.transform = `translate3d(${currentTranslate}px, 0px, 0px)`;
+}
+
 
   function checkBoundary() {
     const cardWidth = card.offsetWidth;
