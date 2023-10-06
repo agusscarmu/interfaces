@@ -162,6 +162,8 @@ var usuario = document.querySelectorAll(".usuario");
 var menuLateral = document.getElementById("menuLateral");
 var fondoSemiTransparente = document.getElementById("fondoSemiTransparente");
 var carritoButton = document.querySelector(".carrito");
+var carritoButtonMobile = document.querySelector(".mobile-carrito");
+var notificacionCarritoMobile = document.querySelector(".notificacion-usuario");
 var carritoMenu = document.getElementById("carritoMenu");
 
 
@@ -265,7 +267,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function eliminarDelCarrito(productoId) {
       delete carrito[productoId];
   }
-
+  
   // Función para actualizar la interfaz del carrito
   function actualizarCarrito() {
       carritoList.innerHTML = ""; // Limpiar la lista de productos
@@ -274,10 +276,21 @@ document.addEventListener("DOMContentLoaded", function () {
         carritoButton.querySelector("span").textContent = "";
         carritoButton.classList.remove("ampliado");
         carritoButton.querySelector("span").classList.remove("show");
+        carritoButtonMobile.querySelector("span").textContent = "";
+        notificacionCarritoMobile.classList.add("oculto");
+        carritoButtonMobile.classList.remove("ampliado");
+        carritoButtonMobile.querySelector("span").classList.remove("show");
+        carritoButtonMobile.classList.remove("wElem");
       }else{
+        notificacionCarritoMobile.classList.remove("oculto");
         carritoButton.querySelector("span").classList.add("show");
         carritoButton.classList.add("ampliado");
         carritoButton.querySelector("span").textContent = Object.keys(carrito).length; // Actualizar el número de productos en el botón del carrito
+        carritoButtonMobile.querySelector("span").classList.add("show");
+        carritoButtonMobile.classList.add("ampliado");
+        carritoButtonMobile.querySelector("span").textContent = Object.keys(carrito).length;
+        carritoButtonMobile.classList.add("wElem");
+        notificacionCarritoMobile.textContent = Object.keys(carrito).length;
       }
       // Agregar productos al menú del carrito
       for (const productoId in carrito) {
