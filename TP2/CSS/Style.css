@@ -233,6 +233,7 @@
         margin-right: 10px;
         margin-left: 10px;
         align-items: center;
+        overflow-x: hidden;
         transition: box-shadow 0.3s ease; /* Agrega una transición para suavizar el cambio */ 
     }
 
@@ -282,6 +283,13 @@
             font-size: 20px;
             font-family: var(--fuente-principal);
             font-weight: 400;
+    }
+    .secundary .carousel-item .title { 
+        color: #E4E4E4;
+        font-size: 100%;
+        max-width: 90%;
+        font-family: var(--fuente-principal);
+        overflow: hidden; /* Ocultar el texto desbordado */
     }
     
     .secundary .carousel-item .price {
@@ -1135,6 +1143,12 @@ main {
     .secundary .carousel-item:hover .overlay {
         opacity: 1; /* Mostrar la capa semi-transparente al hacer hover */
     }
+    .secundary .carousel-item .title { 
+        color: #E4E4E4;
+        font-size: 20px;
+        font-family: var(--fuente-principal);
+        
+    }
 
 }
 
@@ -1399,11 +1413,7 @@ main {
 
 
 
-.secundary .carousel-item .title { 
-    color: #E4E4E4;
-    font-size: 20px;
-    font-family: var(--fuente-principal);
-}
+
 .secundary .carousel-item .price { 
     color: var(--price-color);
     font-size: 14px;
