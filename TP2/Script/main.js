@@ -390,7 +390,7 @@ function cambiarContenido() {
 
   elementosGratis.forEach(function(elemento) {
     if (window.innerWidth <= 768) {
-      elemento.textContent = "Gratis";
+      elemento.textContent = "Gratuito";
     } else {
       elemento.textContent = "*Gratis";
     }
