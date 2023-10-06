@@ -1090,7 +1090,7 @@ main {
     }
 
     .profile-name {
-        left: 112px;
+        left: 7vw;
         top: 40%;
         position: absolute;
         color: #e0e0e0;
@@ -1559,6 +1559,7 @@ main {
     text-decoration: underline;
     letter-spacing: 2.48px;
     word-wrap: break-word;
+    cursor: pointer;
 }
 
 /* Estilos de los íconos de usuario */
@@ -1769,79 +1770,126 @@ footer.footer-login {
 }
 
 
-.form-registro {
+.formulario.registro{
+    position:relative;
+    display: flex;
     text-align: center;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 20vw;
+    width: 30vw;
     background: rgba(28, 28, 41, 0.75);
-    height: 80vh;
-    padding: 1vh 5vw 0vh 5vw;
+    height: 85vh;
+    padding-left: 2vw;
+    left: 0;
+    padding-right: 2vw;
     border-radius: 10px;
     box-shadow: 0 0 30px 0px rgba(167, 125, 251, 0.647);
+    transition: left 0.9s ease; /* Agrega una transición suave */
 }
-.form-registro div {
+.formulario.login {
+    position: absolute;
+    height: 60vh;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    width: 30vw;
+    background: rgba(28, 28, 41, 0.75);
+    padding-left: 2vw;
+    padding-right: 2vw;
+    border-radius: 10px;
+    box-shadow: 0 0 30px 0px rgba(167, 125, 251, 0.647);
+    transition: left 0.9s ease; /* Agrega una transición suave */
+}
+.formulario.login.hidden{
+    left:-100vw;
+}
+.formulario.registro.hidden{
+    left:-100vw;
+}
+
+.formulario div {
+    width: 80%;
     display: flex;
     flex-direction: column;
     text-align: start;
 }
-.form-registro .botones {
-    margin: 0.8vh 0 1vh 0;
-    height: 8vh;
-    width: 100%;
+
+
+
+.formulario h4{
+    color: rgb(182, 152, 240);
+    margin: 0;
+    padding: 0;
+}
+.formulario h4#nocuenta{
+    font-size: 15px;
+    color: rgb(141, 122, 179);
+    margin-bottom: 1vh;
 }
 
-.form-registro label{
-    color: rgb(182, 152, 240);
-}
-.form-registro h2 {
+.formulario h2 {
+    margin-top: 3vh;
     margin-bottom: 3vh;
     color: rgb(182, 152, 240);
 }
 
-.form-registro input {
+.formulario input {
     width: 95%;
     border-radius: 5px;
     margin-bottom: 10px;
-    padding: 3.5px;
+    padding: 4px;
 }
 
-.form-registro .botones {
+.formulario .botones {
+    
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.form-registro .button {
-    width: 15vh;
-    height: 4vh;
+.formulario .botones .button {
+    width: 20vw;
+    height: 5vh;
+    display: flex;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
     font-size: 1.7vh;
     font-weight: 300;
     color: white;
     background: #6644A6;
     border-radius: 5px;
-    overflow: hidden;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    display: inline-flex;
     transition: background-color 0.3s; /* Agrega una transición suave */
 }
-.form-registro .button:hover {
+.formulario .button:hover {
     background: #331D70;
     cursor: pointer;
-} */
+}
 .contenido-login {
     position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    top: 100vh;
-    overflow-y: visible;
-    overflow-x: hidden;
-    padding-bottom: 5%;
-    margin-left: auto;
+    top: 12.5vh;
+    left: 10vw;
+}
+
+.formulario .botones .recaptcha{
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulario .botones .recaptcha img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 main.login{
@@ -1850,3 +1898,69 @@ main.login{
     background-image: url("../Resources/Games/background2.png");
     background-size: cover;
 }
+
+.formulario .botones #tengo-cuenta{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(182, 152, 240);
+    font-size: 2vh;
+    margin-bottom: 3vh;
+    cursor: pointer;
+}
+
+#tengo-cuenta:hover{
+    text-decoration: underline;
+}
+
+#registrarse{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(182, 152, 240);
+    font-size: 2vh;
+    margin-bottom: 3vh;
+    cursor: pointer;
+}
+
+#registrarse:hover{
+    text-decoration: underline;
+}
+
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    margin-bottom: 0;
+    padding-left: 30px;
+    cursor: pointer;
+    color: rgb(182, 152, 240);
+}
+
+.custom-checkbox input {
+    display: none;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+}
+
+.custom-checkbox input:checked + .checkmark:after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid rgb(142, 90, 247);;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+

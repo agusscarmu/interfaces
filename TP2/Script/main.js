@@ -415,3 +415,9 @@ document.addEventListener("DOMContentLoaded", function() {
   recaptchaDiv.style.width = '200px'; // Ancho deseado
   recaptchaDiv.style.height = '50px'; // Alto deseado
 });
+
+const cerrarSesion = document.getElementById("cerrar-sesion");
+
+cerrarSesion.addEventListener("click", () => {
+  window.location.href = "index.html";
+});

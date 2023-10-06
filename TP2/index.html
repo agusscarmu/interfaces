@@ -27,44 +27,74 @@
     </header>
     <main class="login">
         <div class="contenido-login">
-            <form class="form-registro">
+            <form class="formulario registro">
                 <h2>Registro</h2>
                 <div>
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre">
+                    <h4>* Nombre:</h4>
+                    <input type="text" name="nombre">
                 </div>
                 <div>
-                    <label for="apellido">Apellido:</label>
-                    <input type="text" id="apellido">
+                    <h4>* Apellido:</h4>
+                    <input type="text">
                 </div>
                 <div>
-                    <label for="nickname">Nickname:</label>
-                    <input type="text" id="nickname">
+                    <h4>Nickname:</h4>
+                    <input type="text">
                 </div>
                 <div>
-                    <label for="fecha-nacimiento">Fecha de nacimiento:</label>
-                    <input type="date" id="fecha-nacimiento">
+                    <h4>* Fecha de nacimiento:</h4>
+                    <input type="date">
                 </div>
                 <div>
-                    <label for="mail">Mail:</label>
-                    <input type="email" id="mail">
+                    <h4>* Mail:</h4>
+                    <input type="email">
                 </div>
                 <div>
-                    <label for="contrasena">Contraseña:</label>
-                    <input type="password" id="contrasena">
+                    <h4>* Contraseña:</h4>
+                    <input type="password">
                 </div>
                 <div>
-                    <label for="repetir-contrasena">Repetir contraseña:</label>
-                    <input type="password" id="repetir-contrasena">
+                    <h4>* Repetir contraseña:</h4>
+                    <input type="password">
                 </div>
-                <div class="recaptcha">
-                    <img src="./Resources/reCAPTCHA.png" alt="Captcha">
-                </div>                
                 <div class="botones">
+                    <label class="custom-checkbox">
+                        <input type="checkbox" name="terminos">
+                        <span class="checkmark"></span>
+                        Acepto los terminos y condiciones
+                    </label>
+                    <br>
+                    <div class="recaptcha">
+                        <img src="./Resources/reCAPTCHA.png" alt="Captcha">
+                    </div>                
                     <div class="button">Registrarse</div>
-                    <div>Ya tengo cuenta</div>
+                    <div id="tengo-cuenta">Ya tengo cuenta</div>
                 </div>
             </form>
+            <form class="formulario login hidden">
+                <h2>Login</h2>
+                <div>
+                    <h4>Mail o Nickname:</h4>
+                    <input type="text">
+                </div>
+                <div>
+                    <h4>Contraseña:</h4>
+                    <input type="password">
+                </div>
+                <br>
+                <div class="botones">
+                    <label class="custom-checkbox">
+                        <input type="checkbox" name="terminos">
+                        <span class="checkmark"></span>
+                        Mantener sesión iniciada
+                    </label>
+                    <br>
+                    <div class="button">Iniciar sesión</div>
+                    <h4 id="nocuenta">¿Aun no tienes cuenta?</h4>
+                    <div id="registrarse">Registrarse</div>
+                </div>
+            </form>
+            
         </div>
     </main>
     <footer class="footer-login">
@@ -102,6 +132,6 @@
         </div>
     </footer>
     
-    <script src="./Script/main.js"></script>
+    <script src="./Script/login.js"></script>
 </body>
 </html>
