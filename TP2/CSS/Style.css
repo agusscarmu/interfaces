@@ -556,7 +556,7 @@
 }
 
 /* Media query para escritorios */
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
 /* Estilos generales */
 body {
     font-family: var(--fuente-principal);
@@ -1722,3 +1722,119 @@ main {
 
 
 
+/* LOGIN REGISTER  */
+.navbar-login{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    filter: brightness(1.0);
+    transition: filter 0.3s ease;
+}
+.navbar-login img {
+    margin-left: 0.3vw;
+    width: 4vw;
+    flex-shrink: 0;
+}
+.navbar-login h1{
+    color: #A985DA;
+    font-size: 30px;
+    font-family: 'MedievalSharp', cursive;
+    font-weight: 500;
+    word-wrap: break-word
+}
+
+.mobile-navbar-login{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.mobile-navbar-login img {
+    width: 9vh;
+}
+
+footer.footer-login {
+    margin-left: 0px;
+}
+
+
+.form-registro {
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20vw;
+    height: 80vh;
+    padding: 1vh 5vw 0vh 5vw;
+    border-radius: 10px;
+    box-shadow: 0 0 30px 0px rgba(167, 125, 251, 0.647);
+}
+.form-registro div {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+}
+.form-registro .botones {
+    margin: 0.8vh 0 1vh 0;
+    height: 8vh;
+    width: 100%;
+}
+
+.form-registro label{
+    color: rgb(182, 152, 240);
+}
+.form-registro h2 {
+    margin-bottom: 3vh;
+    color: rgb(182, 152, 240);
+}
+
+.form-registro input {
+    width: 95%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 3.5px;
+}
+
+.form-registro .botones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-registro .button {
+    width: 15vh;
+    height: 4vh;
+    font-size: 1.7vh;
+    font-weight: 300;
+    color: white;
+    background: #6644A6;
+    border-radius: 5px;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    display: inline-flex;
+    transition: background-color 0.3s; /* Agrega una transición suave */
+}
+.form-registro .button:hover {
+    background: #331D70;
+    cursor: pointer;
+} */
+.contenido.login {
+    align-items: flex-start;
+    justify-content: center;
+    padding: 5vh 0 0 10vh;
+    overflow-y: visible;
+    overflow-x: hidden;
+    padding-bottom: 5%;
+    margin-left: auto;
+    margin-right: 1;
+}
+
+main.login{
+    height: 100vh;
+}

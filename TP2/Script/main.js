@@ -405,3 +405,12 @@ window.addEventListener("resize", cambiarContenido);
 
 
 
+// Espera a que se cargue el documento
+document.addEventListener("DOMContentLoaded", function() {
+  // Selecciona el div generado por reCAPTCHA
+  var recaptchaDiv = document.querySelector('div[style="width: 304px; height: 78px;"]');
+
+  // Modifica el tamaño del div
+  recaptchaDiv.style.width = '200px'; // Ancho deseado
+  recaptchaDiv.style.height = '50px'; // Alto deseado
+});
