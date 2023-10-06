@@ -385,6 +385,7 @@ carritoButton.addEventListener("click", function () {
 });
 });
 
+
 function cambiarContenido() {
   var elementosGratis = document.querySelectorAll(".free");
 
