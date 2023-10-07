@@ -125,9 +125,10 @@ function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTra
     const touchDeltaX = touchCurrentX - touchStartX;
   
     // Puedes ajustar este valor según la sensibilidad del deslizamiento
-    const sensitivity = 100;
+    const sensitivity = 60;
   
     if (Math.abs(touchDeltaX) > sensitivity) {
+      e.preventDefault();
       if (touchDeltaX > 0) {
         moveCaroselLeftPrincipal();
       } else {
