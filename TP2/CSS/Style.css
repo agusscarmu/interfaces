@@ -604,6 +604,7 @@ main {
     align-items: center;
     padding-left: 30vh;
     height: 100%;
+    min-height: 100vh;
     padding-top: 15vh;
     overflow-y: visible;
     overflow-x: hidden;
@@ -817,6 +818,7 @@ main {
     }
     
     .navbar-right .carrito.ampliado {
+        background: linear-gradient(0deg, #6313f8 0%, #6644A6 100%); 
         width: 80px;
     }
     
@@ -1963,4 +1965,348 @@ main.login{
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
 }
+
+.contenido.pagina-juego{
+    padding-top: 12vh;
+}
+
+.nav-menu-juego{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-right: 2vw;
+    padding-left: 2vw;
+    height: 8vh;
+    width: 75vw;
+    border-radius: 10px;
+    background: var(--primario2, #4B2F8B);
+    box-shadow: 8px 8px 17px 2px rgba(0, 0, 0, 0.18);
+}
+
+.nav-menu-juego .boton-volver{
+    color: #FFF;
+    display: flex;
+    width: 8%;
+    height: 25%;
+    padding: 14px 15px;
+    align-items: center;
+    gap: 10px;
+    background-color: #845EC2;
+    flex-shrink: 0;
+    border-radius: 35px;
+    border: 0px solid #000;
+    box-shadow: 0px -5px 10px 0px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.3s; /* Agrega una transición suave */
+}
+
+.nav-menu-juego .boton-volver img{
+    height: 90%;
+    object-fit: cover;
+}
+.nav-menu-juego .boton-volver h4{
+    font-size: 16px;
+    font-family: var(--fuente-principal);
+    font-weight: 400;
+    letter-spacing: 2.48px;
+    word-wrap: break-word;
+}
+
+.nav-menu-juego .boton-volver:hover{
+    background-color: #664897;
+    cursor: pointer;
+}
+
+.nav-menu-juego .ubicacion-actual{
+    display: flex;
+    width: 40%;
+    height: 25%;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 2vw;
+}
+.nav-menu-juego .ubicacion-actual h4{
+    font-size: 16px;
+    font-family: var(--fuente-principal);
+    font-weight: 400;
+    letter-spacing: 2.48px;
+    word-wrap: break-word;
+    color: var(--acento4, #00C0A3);
+}
+
+.nav-menu-juego .ubicacion-actual h4.texto{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.nav-menu-juego .ubicacion-actual h4.texto:hover{
+    color: var(--acento3, #00A18C);
+}
+
+.nav-menu-juego .boton-compartir{
+    position: absolute;
+    left: auto;
+    right: 0;
+    margin-right: 2vw;
+    color: #FFF;
+    display: flex;
+    width: 8%;
+    height: 25%;
+    padding: 14px 15px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #845EC2;
+    flex-shrink: 0;
+    border-radius: 7px;
+    border: 0px solid #000;
+    box-shadow: 0px -5px 10px 0px rgba(0, 0, 0, 0.25);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.nav-menu-juego .boton-compartir h4{
+    font-size: 16px;
+    font-family: var(--fuente-principal);
+    font-weight: 400;
+    letter-spacing: 2.48px;
+    word-wrap: break-word;
+}
+
+.nav-menu-juego .boton-compartir:hover{
+    background-color: #9666dd;
+    box-shadow: #C4A3EC 0px -1px 10px -5px;
+    cursor: pointer;
+    transition: box-shadow .9s;
+}
+
+.contenedor-juego{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70vw;
+    margin-top: 3vh;
+    height: 70vh;
+    background: #131313;
+    border-radius: 10px;
+    padding: 1.5%;
+    box-shadow: 0px 0px 20px 1px rgba(169, 133, 218, 0.80); 
+}
+
+.contenedor-juego .pantalla{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #8a7889;
+    border-radius: 3px;
+    width: 100%;
+    height: 100%;
+}
+
+.contenedor-juego .pantalla .titulo-juego{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3vh;
+}
+
+.contenedor-juego .pantalla .titulo-juego h2{
+    color: var(--primario6, #C4A3EC);
+    padding: 0;
+    margin: 0;
+    text-shadow: #000 0px 0px 10px;
+}
+
+.contenedor-juego .pantalla .boton-jugar{
+    display: flex;
+    width: 6vw;
+    height: 4vh;
+    padding: 14px 24px;
+    align-items: center;
+    justify-content: space-between;
+    gap: -16px;
+    flex-shrink: 0;
+    background-color: #00A59B;
+    border-radius: 35px;
+    border: 0px solid #000;
+    transition: background-color 0.3s, box-shadow 0.9s; /* Agrega una transición suave */
+    box-shadow: #000 0px 0px 20px -5px;
+}
+.contenedor-juego .pantalla .boton-jugar h4{
+    font-size: 16px;
+    font-family: var(--fuente-principal);
+    font-weight: 400;
+    letter-spacing: 2.48px;
+    word-wrap: break-word;
+    color: white;
+}
+
+.contenedor-juego .pantalla .boton-jugar img{
+    height: 90%;
+    object-fit: cover;
+}
+
+.contenedor-juego .pantalla .boton-jugar:hover{
+    background-color: #49bcb4;
+    box-shadow: #00C0A3 0px 0px 20px -5px;
+    cursor: pointer;
+}
+
+.galeria-imagenes{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2vw;
+    width: 100%;
+    height: 100%;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
+.galeria-imagenes .imagenes{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 80%;
+    height: 20vh;
+}
+
+
+.galeria-imagenes .imagenes img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.galeria-imagenes h2{
+    color: var(--primario6, #C4A3EC);
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+    text-shadow: #000 0px 0px 10px;
+    text-decoration: underline;
+}
+
+
+
+/* Estilos generales de la caja de comentarios */
+.comentarios {
+    border-radius: 15px;
+    background: var(--secundario2, #1C1C29);
+    box-shadow: 6px 6px 12px 0px rgba(0, 0, 0, 0.20);
+    width: 100%;
+    max-width: 600px; 
+    margin: 0 auto; 
+    padding: 20px;
+    border-radius: 10px; 
+}
+
+/* Estilos para el área de comentario */
+.comentar {
+    display: flex;
+    height: 7vh;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background: var(--blanco, #E4E4E4);
+    overflow: hidden;
+    
+}
+.comentar .usuario-comentario{
+    position: absolute;
+    margin-left: .75%;
+}
+.usuario-comentario{
+    position: absolute;
+    display: flex;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+}
+/* Estilos para la imagen de usuario */
+.usuario-comentario img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%; /* Hacer la imagen circular */
+    object-fit: cover;
+}
+.contenido-comentario{
+    margin-left: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 5px;
+    width: 100%;
+    height: 100%;
+}
+/* Estilos para el cuadro de comentario */
+textarea[name="comentario"] {
+    left: 50px;
+    right: auto;
+    width: 75%;
+    height: 100%;
+    padding: 10px;
+    border: transparent;
+    background-color: transparent;
+    resize: none; 
+    outline: none;
+}
+
+textarea[name="comentario"]::placeholder {
+    color: #534464;
+}
+
+
+/* Estilos para el botón de comentario */
+.boton-comentar {
+    position: absolute;
+    width: 6%;
+    height: 6%;
+    left: auto;
+    right: 22%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #A985DA; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease; /* Transición de color de fondo */
+}
+
+.boton-comentar.activado:hover {
+    background-color: #0056b3; /* Color de fondo al pasar el mouse */
+}
+
+/* Estilos para cada comentario */
+.comentario {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el nombre del usuario */
+.comentario h4 {
+    margin: 0;
+    font-weight: bold;
+}
+
+/* Estilos para el contenido del comentario */
+.contenido-comentario p {
+    margin: 0;
+    padding: 5px 0;
+}
+
 

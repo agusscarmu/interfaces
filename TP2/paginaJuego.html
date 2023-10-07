@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dungeon20</title>
+    <link rel="stylesheet" href="./CSS/Style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Merriweather:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="desktop-header">
+        <nav class="navbar">
+            <div class="navbar-left">
+                <h1>Dungeon</h1>
+                <img src="./Resources/Unknown.png" alt="">
+            </div>
+            <div class="navbar-center">
+                <input type="text" placeholder="Buscar juego...">
+                <div class="botonBuscar">
+                    <div class="texto">Buscar</div>
+                </div>
+            </div>
+            <div class="navbar-right">
+                    <div class="contenedorIconoCarrito">
+                        <div class="carrito" id="carritoId">
+                            <img src="./Resources/2e7395605e0b4152131b853791b21df4.png" alt="">
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="usuario">
+                        <img src="./Resources/9a76c051333d3e47fdc6aa00a7883865.png" alt="">
+                    </div>
+    
+            </div>
+        </nav>
+    </header>
+    <header class="mobile-header">
+        <nav class="mobile-navbar">
+            <div class="mobile-navbar-left">
+                <img src="./Resources/burger.png" alt="">
+            </div>
+            <div class="mobile-navbar-center">
+                <img src="./Resources/Unknown.png" alt="">
+            </div>
+            <div class="mobile-navbar-right">
+                <div class="usuario-y-notificacion">
+                    <div class="notificacion-usuario oculto"></div>
+                    <div class="usuario">
+                        <img src="./Resources/9a76c051333d3e47fdc6aa00a7883865.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <nav class="mobile-search-navbar">
+            <div class="contenido-search-navbar">
+                <input class="input-buscar-mobile" type="text" placeholder="Buscar juego...">
+                <img class="icono-lupa" src="./Resources/lupa.png" alt="Lupa">
+            </div>
+        </nav>
+    </header>
+    <div class="fondo-semi-transparente" id="fondoSemiTransparente"></div>
+    
+    <div class="carrito-menu" id="carritoMenu">
+        <!-- Aquí puedes mostrar los elementos agregados al carrito -->
+        <ul class="carrito-list">
+            <!-- ...otros productos... -->
+        </ul>
+    </div>
+    <div class="menu-lateral" id="menuLateral">
+        <div class="container">
+            <div class="menu">
+                <div class="mobile-contenedor-icono-carrito">
+                    <div class="mobile-carrito" id="carritoId">
+                        Carrito 
+                        <img src="./Resources/2e7395605e0b4152131b853791b21df4.png" alt="">
+                        <span></span>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-link">Perfil</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-link">Biblioteca</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-link">Ajustes</div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-link" id="cerrar-sesion">Cerrar sesión</div>
+                </div>
+            </div>
+            <div class="user-profile">
+                <div class="profile-image">
+                    <img src="./Resources/9a76c051333d3e47fdc6aa00a7883865.png" alt="Profile Image">
+                </div>
+                <div class="profile-name">Usuario</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="sidebar">
+        <div>
+            <h3>Generos</h3>
+        </div>
+        <div>
+            <ul>
+                <li><img src="./Resources/Accion.png" alt=""> Accion</li>
+                <li><img src="./Resources/Aventura.png" alt="">Aventura</li>
+                <li><img src="./Resources/Puzzle.png" alt="">Puzzle</li>
+                <li><img src="./Resources/Estrategia.png" alt="">Estrategia</li>
+                <li><img src="./Resources/Rol.png" alt="">Rol</li>
+                <li><img src="./Resources/Horror.png" alt="">Horror</li>
+            </ul>
+        </div>
+    </div>
+    <div class="sidebar-mobile">
+        <div>
+            <h3>Generos</h3>
+        </div>
+        <div>
+            <ul>
+                <li><img src="./Resources/Accion.png" alt=""> Accion</li>
+                <li><img src="./Resources/Aventura.png" alt="">Aventura</li>
+                <li><img src="./Resources/Puzzle.png" alt="">Puzzle</li>
+                <li><img src="./Resources/Estrategia.png" alt="">Estrategia</li>
+                <li><img src="./Resources/Rol.png" alt="">Rol</li>
+                <li><img src="./Resources/Horror.png" alt="">Horror</li>
+            </ul>
+        </div>
+    </div>
+    <main>
+        <div class="contenido pagina-juego">
+            <div class="nav-menu-juego">
+                <div class="boton-volver">
+                    <img src="./Resources/volver.png" alt="">
+                    <h4>Volver</h4>
+                </div>
+                <div class="ubicacion-actual">
+                    <h4 class="texto">Estrategia</h4>
+                    <h4>/</h4>
+                    <h4 class="texto">Cuatro en Lina: Game of Thrones</h4>
+                </div>
+                <div class="boton-compartir">
+                    <h4>Compartir</h4>
+                </div>
+            </div>
+
+            <div class="contenedor-juego">
+                <div class="pantalla">
+                    <div class="titulo-juego">
+                        <h2>Cuatro en Linea</h2>
+                        <h2>GAME OF THRONES</h2>
+                    </div>
+                    <div class="boton-jugar">
+                        <h4>Jugar</h4>
+                        <img src="./Resources/jugar.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="galeria-imagenes">
+                <h2>Galeria de imagenes</h2>
+                <div class="imagenes">
+                    <img src="./Resources/Imagen1.png" alt="">
+                    <img src="./Resources/Imagen2.png" alt="">
+                    <img src="./Resources/Imagen3.png" alt="">
+                    <img src="./Resources/Imagen4.png" alt="">
+            </div>
+
+            <div class="encabezado-comentarios">
+                <h3>Comentarios</h3>
+            </div>
+            <div class="comentarios">
+                <div class="comentar">
+                    <div class="usuario-comentario">
+                        <img src="./Resources/9a76c051333d3e47fdc6aa00a7883865.png" alt="">
+                    </div>
+                    <div class="contenido-comentario">
+                        <textarea name="comentario" id="comentario" cols="30" rows="10" placeholder="Escribe un comentario..."></textarea>
+                    </div>
+                    <div class="boton-comentar">
+                        <h4>Comentar</h4>
+                    </div>
+                </div>
+                <div class="comentario-zone">
+                    <div class="comentario">
+                        <div class="usuario-comentario">
+                            <img src="./Resources/9a76c051333d3e47fdc6aa00a7883865.png" alt="">
+                            <h4>Spectroh</h4>
+                        </div>
+                        <div class="contenido-comentario">
+                            <p>Obra maestra 😎</p>
+                    </div>
+                    <div class="comentario">
+                        <div class="usuario-comentario">
+                            <img src="./Resources/9a76c051333d3e47fdc6aa00a7883865.png" alt="">
+                            <h4>Terah</h4>
+                        </div>
+                        <div class="contenido-comentario">
+                            <p>Facilito 🥱🥱</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3><a href="#">Sobre Dungeon20</a></h3>
+                <p>
+                    Dungeon20 es una página de juegos donde podrás disfrutar de juegos gratuitos y también tendrás la oportunidad de adquirir juegos de pago y jugarlos a través de la nube. <a href="#">Leer más</a>
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>dungeon20@games.com</p>
+                <!-- Iconos de redes sociales -->
+                <img src="./Resources/Rectangle 15.png" alt="Facebook">
+                <img src="./Resources/Rectangle 16.png" alt="X">
+                <img src="./Resources/Rectangle 17.png" alt="Instagram">
+            </div>
+            <div class="footer-section">
+                <h3>Políticas</h3>
+                <ul>
+                    <li><a href="#">Políticas de Privacidad</a></li>
+                    <li><a href="#">Aviso Legal</a></li>
+                    <li><a href="#">Términos de Uso</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Ayuda</h3>
+                <ul>
+                    <li><a href="#">Preguntas Frecuentes (FAQ)</a></li>
+                    <li><a href="#">Soporte Técnico</a></li>
+                    <li><a href="#">Contáctanos</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    
+    
+    
+    <script src="./Script/nav.js"></script>
+    <script src="./Script/juego.js"></script>
+</body>
+</html>
