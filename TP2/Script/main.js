@@ -80,7 +80,7 @@ function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTra
       flechas.classList.remove("limiteIzquierdo");
       flechaIzquierda.classList.remove("limiteIzquierdo");
     }
-    if(currentTranslate<-maxTranslate){
+    if(currentTranslate<= -maxTranslate){
       flechas.classList.add("limiteDerecho");
       flechaDerecha.classList.add("limiteDerecho");
     }
@@ -100,7 +100,8 @@ function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTra
       flechas.classList.remove("limiteDerecho");
       flechaDerecha.classList.remove("limiteDerecho");
     }
-    if(currentTranslate>maxTranslate){
+    console.log("posicion: ("+currentTranslate+" | "+maxTranslate+")")
+    if(currentTranslate>=maxTranslate){
       flechas.classList.add("limiteIzquierdo");
       flechaIzquierda.classList.add("limiteIzquierdo");
     }
