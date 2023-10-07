@@ -20,3 +20,21 @@ textarea.addEventListener("focus", function() {
 textarea.addEventListener("blur", function() {
     divContenedor.classList.remove("activado");
 });
+
+"use strict";
+
+let container = document.querySelector("#mg-container");
+let mg = container.querySelector(".mg");
+
+
+container.addEventListener("click", function(e){
+    if(mg){
+        mg.classList.add('mg-click');
+    }
+    mg.addEventListener("animationend", function(e){
+        if(mg){
+            mg.classList.remove('mg-click');
+        }
+    }
+    );
+});
