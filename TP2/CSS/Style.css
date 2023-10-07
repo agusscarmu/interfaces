@@ -2235,6 +2235,11 @@ main.login{
     align-items: center;
     gap: 20px;
     margin-top: 3vh;
+    transition: box-shadow 0.9s ease; /* Agrega una transición suave */
+}
+
+.comentarios.activado{
+    box-shadow: 0px 0px 20px 1px rgba(169, 133, 218, 0.80); 
 }
 
 /* Estilos para el área de comentario */
@@ -2245,11 +2250,13 @@ main.login{
     align-items: center;
     margin-bottom: 20px;
     border-radius: 10px;
-    background-color: var(--blanco, #cdcdcd);
+    background-color:  #baa1d2;
+    opacity: .8;
     overflow: hidden;
-    transition: background-color 0.9s, boxshadow 0.9s;
+    transition: background-color 0.9s, boxshadow 0.9s, opacity 0.9s;
 }
 .comentar.activado{
+    opacity: 1;
     background-color: var(--primario6, #efefef);
     box-shadow: 0px 0px 10px 0px rgba(169, 133, 218, 0.4);
 }
@@ -2329,14 +2336,11 @@ textarea[name="comentario"]::placeholder {
 }
 
 /* Estilos para cada comentario */
-.comentario {
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-}
 
+.mi-comentario h4{
+    margin: 0;
+    font-weight: bold;
+}
 /* Estilos para el nombre del usuario */
 .comentario h4 {
     margin: 0;
@@ -2368,8 +2372,8 @@ textarea[name="comentario"]::placeholder {
 .comentario-zone{
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     width: 98%;
+    justify-content: center;
     margin-top: 3vh;
     height: 100%;
     background: rgba(0, 0, 0, 0.1);
@@ -2385,10 +2389,41 @@ textarea[name="comentario"]::placeholder {
     align-items: center;
     margin-bottom: 10px;
     padding: 10px;
-    background-color: white;
+    background-color: rgb(222, 222, 222);
     border-radius: 5px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    width: 60%;
+    width: 80%;
+    top: 0;
+}
+
+.comentario-zone .mi-comentario{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: rgb(193, 183, 204);
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    margin-left: 17.5%;
+    opacity: 0;
+    transition: opacity 0.9s ease;
+}
+
+.mi-comentario.show{
+    opacity: 1;
+}
+.comentario-zone .mi-comentario .contenido-comentario{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
+    height: 100%;
+    margin-left: 3%;
 }
 
 .comentario-zone .comentario .contenido-comentario{
@@ -2401,6 +2436,27 @@ textarea[name="comentario"]::placeholder {
     margin-left: 3%;
 }
 
+.comentario-zone .mi-comentario .contenido-comentario{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
+    height: 100%;
+    margin-right: 9%;
+}
+
+.mi-comentario .usuario-comentario{
+    position: absolute;
+    display: flex;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 50px;
+    background-color: white;
+}
+
 .usuario-comentario{
     display: flex;
     border-radius: 50%;
@@ -2410,26 +2466,50 @@ textarea[name="comentario"]::placeholder {
     width: 50px;
     background-color: white;
 }
-#mg-container{
+.mi-comentario .valoracion{
+    position: absolute;
     display: flex;
+    left: 0;
+    right: auto;
+    margin-left: 3%;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 15%;
+    height: 15%;
+}
+.valoracion{
+    position: absolute;
+    display: flex;
+    left: 68%;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     gap: 10px;
-    width: 40px;
-    height: 40px;
-    margin-left: 3%;
+    width: 15%;
+    height: 15%;
+    overflow: visible;
 }
-#no-mg-container{
+.valoracion .cont{
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 10px;
-    width: 40px;
-    height: 40px;
-    margin-left: 3%;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background-color 0.9s ease;
+    overflow: visible;
 }
+
+.valoracion .cont img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: visible;
+}
+
 /* Estilos para la imagen de usuario */
 .usuario-comentario img {
     width: 100%;
@@ -2437,7 +2517,19 @@ textarea[name="comentario"]::placeholder {
     border-radius: 50%; /* Hacer la imagen circular */
     object-fit: cover;
 }
+.mg.activado{
+    filter:invert(100%);
+}
+.nomg.activado{
+    filter:invert(100%);
+}
+.mg-container.activado{
+    background-color: rgb(99, 159, 255);
+}
 
+.no-mg-container.activado{
+    background-color: rgb(255, 99, 99);
+}
 
 .mg-click{
     animation: mgMovement .8s ease forwards;
