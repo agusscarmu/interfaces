@@ -1,149 +1,162 @@
 "use strict";
 
-const flechas = document.querySelector(".contenidoEnteroCarouselPrincipal .carousel-arrow")
 const flechaIzquierda = document.querySelector(".contenidoEnteroCarouselPrincipal .carousel-arrow .left-arrow")
 const flechaDerecha = document.querySelector(".contenidoEnteroCarouselPrincipal .carousel-arrow .right-arrow")
 
 
 function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTraslate2, arrowContent) {
   const flechas = document.querySelector(arrowContent+" .carousel-arrow")
-  const flechaIzquierda = document.querySelector(arrowContent+" .carousel-arrow .left-arrow")
-  const flechaDerecha = document.querySelector(arrowContent+" .carousel-arrow .right-arrow")
-  const h3flechaAdeventure = document.querySelector(".adventure .categoria-carrusel h3")
-  const h3flechaRecommended = document.querySelector(".recommended .categoria-carrusel h3")
-  
-
+  const flechaIzquierda = document.querySelector(arrowContent + " .carousel-arrow .left-arrow");
+  const flechaDerecha = document.querySelector(arrowContent + " .carousel-arrow .right-arrow");
+  const h3flechaAdeventure = document.querySelector(".adventure .categoria-carrusel h3");
+  const h3flechaRecommended = document.querySelector(".recommended .categoria-carrusel h3");
+  let touchStartX = 0;
+  let isDragging = false;
+  const carouselPrincipal = document.querySelector(".carousel-main-container");
   const carousel = document.querySelector(carouselSelector);
   const card = document.querySelector(cardSelector);
-  let isDragging = false;
-  let startPosition = 0;
   let currentTranslate = 0;
-  let prevTranslate = 0;
-  let startPositionY = 0;
 
-  carousel.style.transition = 'transform 0.3s ease-in-out'; // Agregar transición
-
-  carousel.addEventListener('mousedown', (e) => {
-    if (!isDragging) {
-      isDragging = true;
-      startPosition = e.clientX;
-      prevTranslate = currentTranslate;
-      carousel.style.transition = 'none'; // Eliminar transición durante el arrastre
-    }
-  });
-
-  carousel.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-    const currentPosition = e.clientX;
-    currentTranslate = prevTranslate + currentPosition - startPosition;
-    e.preventDefault(); // Prevenir el comportamiento predeterminado del evento
-    updateCarouselPosition();
-  });
-
-  carousel.addEventListener('mouseup', () => {
-    if (isDragging) {
-      isDragging = false;
-      checkBoundary();
-      carousel.style.transition = 'transform 0.3s ease-in-out'; // Restablecer transición
-    }
-  });
-
-
-  carousel.addEventListener('mouseleave', () => {
-    if (isDragging) {
-      isDragging = false;
-      checkBoundary();
-      carousel.style.transition = 'transform 0.3s ease-in-out'; // Restablecer transición
-    }
-  });
-
-
-
-carousel.addEventListener('touchstart', (e) => {
-  if (!isDragging) {
-    isDragging = true;
-    startPosition = e.touches[0].clientX;
-    startPositionY = e.touches[0].clientY;
-    prevTranslate = currentTranslate;
-    carousel.style.transition = 'none'; // Eliminar transición durante el arrastre
+  function updateCarouselPosition() {
+    carousel.style.transform = `translate3d(${currentTranslate}px, 0px, 0px)`;
   }
-});
-
-carousel.addEventListener('touchmove', (e) => {
-  if (!isDragging) return;
-  const currentPosition = e.touches[0].clientX;
-  const currentPositionY = e.touches[0].clientY;
-  const xDiff = currentPosition - startPosition;
-  const yDiff = currentPositionY - startPositionY;
-
-  if (Math.abs(xDiff) > Math.abs(yDiff)) {
-    e.preventDefault(); 
-    currentTranslate = prevTranslate + currentPosition - startPosition;
-    updateCarouselPosition();
-  }
-});
-carousel.addEventListener('touchleave', () => {
-  if (isDragging) {
-    isDragging = false;
-    checkBoundary();
-    carousel.style.transition = 'transform 0.3s ease-in-out'; // Restablecer transición
-  }
-}
-);
-carousel.addEventListener('touchend', () => {
-  if (isDragging) {
-    isDragging = false;
-    checkBoundary();
-    carousel.style.transition = 'transform 0.3s ease-in-out'; // Restablecer transición
-
-  }
-});
-
-function updateCarouselPosition() {
-  carousel.style.transform = `translate3d(${currentTranslate}px, 0px, 0px)`;
-}
-
-
-  function checkBoundary() {
+  
+  function moveCarouselRight() {
     const cardWidth = card.offsetWidth;
-    const carouselWidth = carousel.offsetWidth;
-    const maxTranslate = auxTraslate1 * (carouselWidth - cardWidth); // Limita el desplazamiento a 0 (posición inicial)
-    const minTranslate = auxTraslate2 * (carouselWidth - cardWidth); // Evita que se desplace más allá del último elemento
-  if (currentTranslate > maxTranslate) {
-    currentTranslate = maxTranslate;
-    if(cardSelector.includes("adventure")){
-      h3flechaAdeventure.classList.remove("hidden");
-    }else if(cardSelector.includes("recommended")){
-      h3flechaRecommended.classList.remove("hidden");
+    const minTranslate = auxTraslate2 * (carousel.offsetWidth - cardWidth);
+    
+    if ((currentTranslate-cardWidth)> minTranslate) {
+      currentTranslate -= cardWidth;
+      updateCarouselPosition();
+    }else{
+      currentTranslate = minTranslate;
+      updateCarouselPosition();
     }
-    flechas.classList.add("limiteIzquierdo");
-    flechas.classList.remove("limiteDerecho");
-    flechaIzquierda.classList.add("limiteIzquierdo");
-    flechaDerecha.classList.remove("limiteDerecho");
-  } else if (currentTranslate < minTranslate) {
-    if(cardSelector.includes("adventure")){
-      h3flechaAdeventure.classList.add("hidden");
-    }else if(cardSelector.includes("recommended")){
-      h3flechaRecommended.classList.add("hidden");
+  
+    if(flechas.classList.contains("limiteIzquierdo")){
+      flechas.classList.remove("limiteIzquierdo");
+      flechaIzquierda.classList.remove("limiteIzquierdo");
     }
-    currentTranslate = minTranslate;
-    flechas.classList.add("limiteDerecho");
-    flechas.classList.remove("limiteIzquierdo");
-    flechaDerecha.classList.add("limiteDerecho");
-    flechaIzquierda.classList.remove("limiteIzquierdo");
-  } else {
-    if(cardSelector.includes("adventure")){
-      h3flechaAdeventure.classList.remove("hidden");
-    }else if(cardSelector.includes("recommended")){
-      h3flechaRecommended.classList.remove("hidden");
+
+    if(currentTranslate===minTranslate){
+      flechas.classList.add("limiteDerecho");
+      flechaDerecha.classList.add("limiteDerecho");
     }
-    flechas.classList.remove("limiteIzquierdo");
-    flechas.classList.remove("limiteDerecho");
-    flechaIzquierda.classList.remove("limiteIzquierdo");
-    flechaDerecha.classList.remove("limiteDerecho");
   }
-    updateCarouselPosition();
+  function moveCarouselLeft() {
+    const cardWidth = card.offsetWidth;
+    const maxTranslate = auxTraslate1 * (carousel.offsetWidth - cardWidth);
+    if ((currentTranslate + cardWidth) < maxTranslate) {
+      currentTranslate += cardWidth;
+      updateCarouselPosition();
+    }else{
+      currentTranslate = maxTranslate;
+      updateCarouselPosition();
+    }
+    if(flechas.classList.contains("limiteDerecho")){
+      flechas.classList.remove("limiteDerecho");
+      flechaDerecha.classList.remove("limiteDerecho");
+    }
+
+    if(currentTranslate===maxTranslate){
+      flechas.classList.add("limiteIzquierdo");
+      flechaIzquierda.classList.add("limiteIzquierdo");
+    }
   }
+  
+  
+  function updateCarouselPositionPrincipal() {
+    carouselPrincipal.style.transform = `translate3d(${currentTranslate}px, 0px, 0px)`;
+  }
+  function moveCarouselRightPrincipal() {
+    const cardWidth = card.offsetWidth + 20; // 10px de margen a la derecha y 10px de margen a la izquierda
+    const cardsInView = Math.floor(carousel.offsetWidth / cardWidth);
+    const maxTranslate = (cardsInView - 1) * (cardWidth/2);
+  
+    if (currentTranslate > -maxTranslate) {
+      currentTranslate -= cardWidth;
+    } 
+    if(flechas.classList.contains("limiteIzquierdo")){
+      flechas.classList.remove("limiteIzquierdo");
+      flechaIzquierda.classList.remove("limiteIzquierdo");
+    }
+    if(currentTranslate<-maxTranslate){
+      flechas.classList.add("limiteDerecho");
+      flechaDerecha.classList.add("limiteDerecho");
+    }
+  
+    updateCarouselPositionPrincipal();
+  }
+  
+  function moveCaroselLeftPrincipal() {
+    const cardWidth = card.offsetWidth + 20; // 10px de margen a la derecha y 10px de margen a la izquierda
+    const cardsInView = Math.floor(carousel.offsetWidth / cardWidth);
+    const maxTranslate = (cardsInView - 1) * (cardWidth/2);
+  
+    if (currentTranslate < maxTranslate) {
+      currentTranslate += cardWidth;
+    }
+    if(flechas.classList.contains("limiteDerecho")){
+      flechas.classList.remove("limiteDerecho");
+      flechaDerecha.classList.remove("limiteDerecho");
+    }
+    if(currentTranslate>maxTranslate){
+      flechas.classList.add("limiteIzquierdo");
+      flechaIzquierda.classList.add("limiteIzquierdo");
+    }
+  
+    updateCarouselPositionPrincipal();
+  }
+  
+  carouselPrincipal.addEventListener('touchstart', (e) => {
+    if (!isDragging) {
+      touchStartX = e.touches[0].clientX;
+    }
+  });
+  
+  // Agregar event listener para el movimiento del toque (touchmove)
+  carouselPrincipal.addEventListener('touchmove', (e) => {
+    if (isDragging) {
+      return;
+    }
+  
+    const touchCurrentX = e.touches[0].clientX;
+    const touchDeltaX = touchCurrentX - touchStartX;
+  
+    // Puedes ajustar este valor según la sensibilidad del deslizamiento
+    const sensitivity = 100;
+  
+    if (Math.abs(touchDeltaX) > sensitivity) {
+      if (touchDeltaX > 0) {
+        moveCaroselLeftPrincipal();
+      } else {
+        moveCarouselRightPrincipal();
+      }
+      isDragging = true; // Marcar que se está realizando un deslizamiento
+    }
+  });
+  
+  // Agregar event listener para el final del toque (touchend)
+  carouselPrincipal.addEventListener('touchend', () => {
+    isDragging = false; // Restablecer la variable de estado al finalizar el toque
+  });
+  flechaIzquierda.addEventListener('click', () => {
+    if(cardSelector.includes(".carousel-main-container")){
+      moveCaroselLeftPrincipal();
+    }else{
+      moveCarouselLeft();
+    }
+  });
+  flechaDerecha.addEventListener('click', () => {
+    if(cardSelector.includes(".carousel-main-container")){
+      moveCarouselRightPrincipal();
+    }else{
+      moveCarouselRight();
+    }
+  });
+
+
+  
 }
 
 function initializeCarouselElecc(carouselSelector, cardSelector, auxTraslate1Desk, auxTraslate2Desk, auxTraslate1Mobile, auxTraslate2Mobile, arrowContent){
@@ -155,7 +168,7 @@ function initializeCarouselElecc(carouselSelector, cardSelector, auxTraslate1Des
 }
 
 
-// Llamar a la función para inicializar ambos carruseles
+// Llamar a la función para inicializar todos los carruseles
 initializeCarouselElecc('.carousel-container-recommended', '.carousel-container-recommended .carousel-item', 0, (-0.32), 0, (-0.75),".contenidoEnteroCarouselRecommended");
 initializeCarouselElecc('.carousel-container-adventure', '.carousel-container-adventure .carousel-item', 0, (-0.32), 0, (-0.75), ".contenidoEnteroCarouselAdventure");
 initializeCarouselElecc('.carousel-main-container', '.carousel-main-container .carousel-item', 0.4, -0.4, 0.474, -0.474,".contenidoEnteroCarouselPrincipal");
