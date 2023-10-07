@@ -22,17 +22,13 @@ const overlayLight = document.getElementById("overlay-light");
 
 function mostrarOverlay() {
     overlay.style.display = "block";
-    setTimeout(() => {
-        overlay.style.backgroundColor = "rgba(0, 0, 0, 0.85)"; // Cambia el fondo al color deseado
-      }, 10); // Pequeño retraso para activar la transición
-    setTimeout(mostrarOverlayLight, 5000); // Mostrar overlay-light después de 5 segundos
+    setTimeout(overlay.classList.add("visible"), 1000);
+    setTimeout(mostrarOverlayLight, 4000);
     setTimeout(startAnimation, 300);
 }
 function mostrarOverlayLight() {
     overlayLight.style.display = "block";
-    setTimeout(() => {
-      overlayLight.style.backgroundColor = "rgba(255, 255, 255, 0.85)"; // Cambia el fondo al color deseado
-    }, 10); // Pequeño retraso para activar la transición
+    overlayLight.classList.add("on");
  }
 
 function changeHTML() {
