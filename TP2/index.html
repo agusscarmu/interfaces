@@ -25,18 +25,26 @@
             </div>
         </nav>
     </header>
-    <main class="login">
+    <main class="login-registro">
         <div class="contenido-login">
+            <div class="mensaje hidden">
+                <p>Registrado con exito</p>
+                <div class="imagen-mensaje">
+                    <img src="./Resources/Tic.png" alt="">
+                </div>
+            </div>
             <form class="formulario registro">
                 <h2>Registro</h2>
                 <label class="warning">* Campo requerido</label>
-                <div>
-                    <h4>Nombre *</h4>
-                    <input type="text" name="nombre">
-                </div>
-                <div>
-                    <h4>Apellido *</h4>
-                    <input type="text">
+                <div class="nombre-apellido">
+                    <div>
+                        <h4>Nombre *</h4>
+                        <input type="text" name="nombre" required>
+                    </div>
+                    <div>
+                        <h4>Apellido *</h4>
+                        <input type="text" required>
+                    </div>
                 </div>
                 <div>
                     <h4>Nickname</h4>
@@ -44,31 +52,31 @@
                 </div>
                 <div>
                     <h4>Fecha de nacimiento *</h4>
-                    <input type="date">
+                    <input type="date" required>
                 </div>
                 <div>
                     <h4>Mail *</h4>
-                    <input type="email">
+                    <input type="email" required>
                 </div>
                 <div>
                     <h4>Contraseña *</h4>
-                    <input type="password">
+                    <input type="password" required>
                 </div>
                 <div>
                     <h4>Repetir contraseña *</h4>
-                    <input type="password">
+                    <input type="password" required>
                 </div>
                 <div class="botones">
                     <label class="custom-checkbox">
-                        <input type="checkbox" name="terminos">
+                        <input type="checkbox" name="terminos" required>
                         <span class="checkmark"></span>
                         Acepto los terminos y condiciones
                     </label>
                     <br>
                     <div class="recaptcha">
                         <img src="./Resources/reCAPTCHA.png" alt="Captcha">
-                    </div>                
-                    <div class="button">Registrarse</div>
+                    </div>              
+                    <button type="submit" class="button">Registrarse</button>
                     <div id="tengo-cuenta">Ya tengo cuenta</div>
                 </div>
             </form>
@@ -76,21 +84,21 @@
                 <h2>Login</h2>
                 <div>
                     <h4>Mail o Nickname:</h4>
-                    <input type="text">
+                    <input type="text" required>
                 </div>
                 <div>
                     <h4>Contraseña:</h4>
-                    <input type="password">
+                    <input type="password" required>
                 </div>
                 <br>
                 <div class="botones">
                     <label class="custom-checkbox">
-                        <input type="checkbox" name="terminos">
+                        <input type="checkbox" name="mantener-sesion">
                         <span class="checkmark"></span>
                         Mantener sesión iniciada
                     </label>
                     <br>
-                    <div class="button">Iniciar sesión</div>
+                    <button type="submit" class="button">Iniciar sesión</button>
                     <h4 id="nocuenta">¿Aun no tienes cuenta?</h4>
                     <div id="registrarse">Registrarse</div>
                 </div>
@@ -134,7 +142,6 @@
     </footer>
     <div class="overlay" id="overlay" style="display: none;">
         <div class="light" id="overlay-light" style="display: none;"></div>
-        <!-- partial:index.partial.html -->
         <div class="content">
           <div class="dice-content">
             <div class="die">

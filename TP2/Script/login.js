@@ -48,11 +48,32 @@ $(document).ready(function () {
     $die = $(".die");
 });
 
-const iniciar = document.querySelectorAll(".button");
+// const iniciar = document.querySelectorAll(".button");
 
-iniciar.forEach((button) => {
-    button.addEventListener("click", () => {
-        mostrarOverlay();
-        setTimeout(changeHTML, 7000);
+// iniciar.forEach((button) => {
+//     button.addEventListener("click", () => {
+//         mostrarOverlay();
+//         setTimeout(changeHTML, 7000);
+//     });
+// });
+
+
+const form = document.querySelectorAll(".formulario");
+
+form.forEach((formulario) => {
+    formulario.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if(formulario.classList.contains("registro")){
+            registro.classList.add("hidden");
+            login.classList.remove("hidden");
+            let mensaje = document.querySelector(".contenido-login .mensaje");
+            mensaje.classList.remove("hidden");
+            setTimeout(function() {
+                mensaje.classList.add("hidden");
+            }, 3000);
+        }else{
+            mostrarOverlay();
+            setTimeout(changeHTML, 7000);
+        }
     });
 });
