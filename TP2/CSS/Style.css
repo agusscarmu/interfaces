@@ -788,27 +788,35 @@ body {
       justify-content: center;
   }
   .navbar-center .botonBuscar {
-      width: 100%;
-      height: 100%;
-      padding-left: 50px;
-      padding-right: 50px;
-      background: #6644A6;
-      border-radius: 5px;
-      overflow: hidden;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      display: inline-flex;
-      transition: background-color 0.3s; /* Agrega una transición suave */
+        width: 100%;
+        height: 100%;
+        padding-left: 50px;
+        padding-right: 50px;
+        background: #6644A6;
+        color: #ccaafb;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        overflow: hidden;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        display: inline-flex;
+        transition: background-color 0.3s; /* Agrega una transición suave */
   }
-  .navbar-center .botonBuscar:hover {
-      background: #331D70; /* Cambia el color de fondo al hacer hover */
+
+  .navbar-center .botonBuscar.activado{
+    background: rgb(126, 88, 231); /* Cambia el color de fondo al hacer hover */
+    box-shadow: 0px 0px 10px -2px rgba(175, 118, 255, 0.8); 
+    color: white;
+    cursor: pointer;
+  }
+  .navbar-center .botonBuscar.activado:hover {
+      background: #5d469d; /* Cambia el color de fondo al hacer hover */
       cursor: pointer;
   }
   
   
   .botonBuscar .texto{
-      color: white; 
       font-size: 16px; 
       font-family: var(--fuente-principal);
       font-weight: 400; 
@@ -819,17 +827,10 @@ body {
   /* Estilos para la parte central de la navbar (barra de búsqueda) */
   .navbar-center input {
       width: 100%;
-      height: 80%;
       flex-shrink: 0;
-      background-color: #dbdbdb;
-      border-top-left-radius: 5px;
-      border-bottom-left-radius: 5px;
-      font-size: 16px;
       padding-left: 4%;
   }
-  .navbar-center input::placeholder{
-      color: rgb(152, 152, 152);
-  }
+
   /* Estilos para el contenedor del input */
   .search-input {
       display: flex;
@@ -987,8 +988,9 @@ body {
         box-shadow: 6px 3px 24px -6px rgba(0, 0, 0, 0.8); 
         transition: transform 0.3s ease;
         position: absolute;
-        margin-left: 64%;
-        margin-bottom: 5%;
+        right: 0;
+        left: auto;
+        margin-right: 8px;
     }
     .secundary.carousel-item.price {
         display: flex;
@@ -1312,6 +1314,26 @@ body {
     .galeria-imagenes{
         width: 80%;
     }
+    .navbar-center input{
+        width: 100%;
+        height: 95%;
+        border: none;
+        background-color: #3b296c;
+        outline: none;
+        color: #FFF;
+        font-size: 16px;
+        font-family: var(--fuente-principal);
+        font-weight: 400;
+        letter-spacing: 2.48px;
+        border-bottom-left-radius: 5px;
+        border-top-left-radius: 5px;
+        word-wrap: break-word;
+        transition: background-color 0.3s;
+    }
+    .navbar-center input.activado{
+        color: #000;
+        background-color: #e2deec;
+    }
 }
 
 
@@ -1616,7 +1638,7 @@ body {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5); /* Color semi-transparente */
     display: none; /* Inicialmente oculto */
-    z-index: 1; /* Coloca el fondo por encima de otros elementos */
+    z-index: 3; /* Coloca el fondo por encima de otros elementos */
 }
 
 
@@ -2379,12 +2401,15 @@ footer.footer-login {
     rotate: 45deg; /* Esto debería ser "transform: rotate(45deg);" */
     opacity: .2;
     right: -60%;
-    transition: right 0.9s ease, transform 0.9s ease; /* Agrega una transición suave */
+    transition: right 0.9s ease, transform 0.9s ease, opacity .5s ease; /* Agrega una transición suave */
     pointer-events: none;
+    opacity: 0;
 }
 
 .reflejo.activado {
-    right: 150%;
+    right: 150%;;
+    opacity: .5;
+    transition: right 0.9s ease, transform 0.9s ease, opacity 0.5s ease; /* Agrega una transición suave */
 }
 
 
@@ -2467,6 +2492,8 @@ footer.footer-login {
     background-color: var(--primario6, #efefef);
     box-shadow: 0px 0px 10px 0px rgba(169, 133, 218, 0.4);
 }
+
+
 .comentar .usuario-comentario{
     margin-left: .75%;
     position: absolute;

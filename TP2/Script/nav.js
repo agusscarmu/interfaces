@@ -11,6 +11,27 @@ var carritoButtonMobile = document.querySelector(".mobile-carrito");
 var notificacionCarritoMobile = document.querySelector(".notificacion-usuario");
 var carritoMenu = document.getElementById("carritoMenu");
 const logos = document.querySelectorAll(".logo");
+const inputBuscarJuego = document.querySelector(".input-buscar-juego");
+
+inputBuscarJuego.addEventListener("input", function() {
+    let botonBuscar = document.querySelector(".botonBuscar");
+    if(inputBuscarJuego.value === "") {
+        botonBuscar.classList.remove("activado");
+    } else {
+        botonBuscar.classList.add("activado");
+    }
+}
+);
+
+inputBuscarJuego.addEventListener("focus", function() {
+    inputBuscarJuego.classList.add("activado");
+    }
+);
+
+inputBuscarJuego.addEventListener("blur", function() {
+    inputBuscarJuego.classList.remove("activado");
+    }
+);
 
 logos.forEach(function(logo) {
 logo.addEventListener("click", () => {
@@ -18,7 +39,7 @@ logo.addEventListener("click", () => {
 });
 
 logo.addEventListener("mouseenter", () => {
-    const reflejo = logo.querySelector(".reflejo");
+    const reflejo = logo.querySelector(".logo .reflejo");
     const logoImg = logo.querySelector("img");
     logoImg.classList.add("activado");
     logo.classList.add("activado");
@@ -40,6 +61,7 @@ var sidebarMobile = document.querySelector(".sidebar-mobile");
 usuario.forEach(function(elemento) {
   elemento.addEventListener("click", function () {
     sidebarMobile.classList.remove("sidebar-mobile-active");
+    carritoMenu.classList.remove("carrito-activo");
     burger.classList.remove("mobile-navbar-left-active");
     menuLateral.classList.add("menu-activo");
     fondoSemiTransparente.style.display = "block"; // Mostrar el fondo semi-transparente

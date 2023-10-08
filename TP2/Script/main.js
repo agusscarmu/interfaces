@@ -262,7 +262,7 @@ function updateCardSize(cardWidth, currentTranslate, maxTranslate) {
   cards.forEach((card, index) => {
     if (currentTranslate == index*cardWidth) {
       card.style.transform = `scale(${cardScale})`;
-      card.style.zIndex = "5";
+      card.style.zIndex = "1";
       card.style.width = "45vw";
       card.style.boxShadow = "0px 0px 20px 6px rgba(169, 133, 218, 0.80)";
       card.style.transition = `transform ${transitionDuration}, width ${transitionDuration}, box-shadow ${transitionDuration}`;
