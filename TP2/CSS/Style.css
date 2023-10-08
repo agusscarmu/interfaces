@@ -625,7 +625,89 @@
     .galeria-imagenes .imagenes::-webkit-scrollbar {
         display: none;
     }
+
+    .formulario.login{
+        width: 90vw;
+    }
+    .formulario.registro{
+        position:relative;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 80vw;
+        background: rgba(28, 28, 41, 0.75);
+        height: 85vh;
+        left: 0;
+        padding-top: 2vh;
+        padding-bottom: 2vh;
+        border-radius: 10px;
+        box-shadow: 0 0 30px 0px rgba(167, 125, 251, 0.647);
+        transition: left 0.9s ease; /* Agrega una transición suave */
+    }
+
+    .formulario.login {
+        position: absolute;
+        height: 60vh;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        left: 0;
+        width: 80vw;
+        background: rgba(28, 28, 41, 0.75);
+        border-radius: 10px;
+        box-shadow: 0 0 30px 0px rgba(167, 125, 251, 0.647);
+        transition: left 0.9s ease, transform .9s ease; /* Agrega una transición suave */
+    }
     
+    .contenido.pagina-juego{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        height: 100%;
+        padding-top: 0vh;
+    }
+
+    .nav-menu-juego .ubicacion-actual{
+        display: none;
+    }
+
+    .nav-menu-juego .boton-volver{
+        width: 30%;
+    }
+
+    .nav-menu-juego .boton-compartir{
+        width: 30%;
+    }
+
+    .nav-menu-juego .boton-jugar img{
+        display: none;
+    }
+
+    .contenedor-juego{
+        width: 90vw;
+        height: 80vh;
+    }
+    .contenedor-juego .pantalla .pantalla-prejuego .boton-jugar{
+        width: 30%;
+        justify-content: center;
+    }
+
+    textarea[name="comentario"] {
+        width: 50%;
+        margin-left: 10%;
+    }
+    .boton-comentar {
+        width: 20%;
+        right: auto;
+        left: 65%;
+    }
 }
 
 /* Media query para escritorios */
@@ -1334,6 +1416,75 @@ body {
         color: #000;
         background-color: #e2deec;
     }
+    .formulario.registro{
+        position:relative;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 30vw;
+        background: rgba(28, 28, 41, 0.75);
+        height: 85vh;
+        padding-left: 2vw;
+        left: 0;
+        padding-right: 2vw;
+        border-radius: 10px;
+        box-shadow: 0 0 30px 0px rgba(167, 125, 251, 0.647);
+        transition: left 0.9s ease; /* Agrega una transición suave */
+    }
+    .formulario.login {
+        position: absolute;
+        height: 60vh;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        left: 0;
+        width: 30vw;
+        background: rgba(28, 28, 41, 0.75);
+        padding-left: 2vw;
+        padding-right: 2vw;
+        border-radius: 10px;
+        box-shadow: 0 0 30px 0px rgba(167, 125, 251, 0.647);
+        transition: left 0.9s ease, transform .9s ease; /* Agrega una transición suave */
+    }
+    
+
+    .contenido.pagina-juego{
+        padding-top: 12vh;
+    }
+    .nav-menu-juego .ubicacion-actual{
+        display: flex;
+    }
+
+    .nav-menu-juego .boton-volver{
+        width: 8%;
+    }
+
+    .nav-menu-juego .boton-compartir{
+        width: 8%;
+    }
+
+    .contenedor-juego{
+        width: 70vw;
+        height: 70vh;
+    }
+    .contenedor-juego .pantalla .pantalla-prejuego .boton-jugar{
+        justify-content: space-between;
+        width: 6vw;
+    }
+    textarea[name="comentario"] {
+        width: 82%;
+    }
+
+    .boton-comentar {
+        width: 8%;
+        right: auto;
+        left: 80.5%;
+    }
+    
 }
 
 
@@ -1912,40 +2063,7 @@ footer.footer-login {
 }
 
 
-.formulario.registro{
-    position:relative;
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 30vw;
-    background: rgba(28, 28, 41, 0.75);
-    height: 85vh;
-    padding-left: 2vw;
-    left: 0;
-    padding-right: 2vw;
-    border-radius: 10px;
-    box-shadow: 0 0 30px 0px rgba(167, 125, 251, 0.647);
-    transition: left 0.9s ease; /* Agrega una transición suave */
-}
-.formulario.login {
-    position: absolute;
-    height: 60vh;
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    left: 0;
-    width: 30vw;
-    background: rgba(28, 28, 41, 0.75);
-    padding-left: 2vw;
-    padding-right: 2vw;
-    border-radius: 10px;
-    box-shadow: 0 0 30px 0px rgba(167, 125, 251, 0.647);
-    transition: left 0.9s ease, transform .9s ease; /* Agrega una transición suave */
-}
+
 
 .formulario.login.escondido{
     display: none;
@@ -2000,6 +2118,7 @@ footer.footer-login {
     color: rgb(246, 99, 99);
 }
 .msj.error .contexto-error{
+    text-align: center;
     color: rgb(246, 99, 99);
 }
 .circulo-estado img{
@@ -2271,9 +2390,6 @@ footer.footer-login {
 }
 
 
-.contenido.pagina-juego{
-    padding-top: 12vh;
-}
 
 .nav-menu-juego{
     position: relative;
@@ -2293,7 +2409,6 @@ footer.footer-login {
 .nav-menu-juego .boton-volver{
     color: #FFF;
     display: flex;
-    width: 8%;
     height: 25%;
     padding: 14px 15px;
     align-items: center;
@@ -2324,7 +2439,6 @@ footer.footer-login {
 }
 
 .nav-menu-juego .ubicacion-actual{
-    display: flex;
     width: 40%;
     height: 25%;
     justify-content: space-between;
@@ -2356,7 +2470,6 @@ footer.footer-login {
     margin-right: 2vw;
     color: #FFF;
     display: flex;
-    width: 8%;
     height: 25%;
     padding: 14px 15px;
     align-items: center;
@@ -2390,9 +2503,7 @@ footer.footer-login {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 70vw;
     margin-top: 3vh;
-    height: 70vh;
     background: #131313;
     border-radius: 10px;
     padding: 1.5%;
@@ -2460,11 +2571,10 @@ footer.footer-login {
 }
 .contenedor-juego .pantalla .pantalla-prejuego .boton-jugar{
     display: flex;
-    width: 6vw;
     height: 4vh;
     padding: 14px 24px;
     align-items: center;
-    justify-content: space-between;
+
     gap: -16px;
     flex-shrink: 0;
     background-color: #00A59B;
@@ -2630,7 +2740,6 @@ footer.footer-login {
 textarea[name="comentario"] {
     left: 50px;
     right: auto;
-    width: 82%;
     height: 100%;
     padding: 10px;
     border: transparent;
@@ -2649,10 +2758,7 @@ textarea[name="comentario"]::placeholder {
 .boton-comentar {
     position: absolute;
     display: flex;
-    width: 8%;
     height: 6%;
-    right: auto;
-    left: 80.5%;
     justify-content: center;
     align-items: center;
     background-color: #A985DA; /* Color de fondo del botón */
