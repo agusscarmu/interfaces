@@ -19,9 +19,11 @@ function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTra
   let cardWidth = card.offsetWidth;
   if(esCarruselPrincipal(carouselSelector)){
     cardWidth = cardWidth + 20; // 10px de margen a la derecha y 10px de margen a la izquierda
-    const cardsInView = Math.floor(carousel.offsetWidth / cardWidth);
-    const maxTranslate = (cardsInView - 1) * (cardWidth/2);
-    updateCardSize(cardWidth, 0, maxTranslate);
+    if(window.innerWidth>768){
+      const cardsInView = Math.floor(carousel.offsetWidth / cardWidth);
+      const maxTranslate = (cardsInView - 1) * (cardWidth/2);
+      updateCardSize(cardWidth, 0, maxTranslate);
+    }
   }
 
   function updateCarouselPosition() {
@@ -95,7 +97,9 @@ function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTra
   
     updateCarouselPositionPrincipal();
     console.log("posicion: ("+currentTranslate+" | "+maxTranslate+") cardWidth: "+cardWidth)
-    updateCardSize(cardWidth, currentTranslate, maxTranslate);
+    if(window.innerWidth>768){
+      updateCardSize(cardWidth, currentTranslate, maxTranslate);
+    }
   }
   
   function moveCaroselLeftPrincipal() {
@@ -116,7 +120,9 @@ function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTra
   
     updateCarouselPositionPrincipal();
     console.log("posicion: ("+currentTranslate+" | "+maxTranslate+") cardWidth: "+cardWidth)
-    updateCardSize(cardWidth, currentTranslate, maxTranslate);
+    if(window.innerWidth>768){
+      updateCardSize(cardWidth, currentTranslate, maxTranslate);
+    }
   }
   
   carouselPrincipal.addEventListener('touchstart', (e) => {
