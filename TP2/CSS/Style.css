@@ -719,11 +719,30 @@ body {
     flex-shrink: 0;
     filter: brightness(1.0);
     transition: filter 0.3s ease;
+
 }
-.navbar-left:hover{
+
+.navbar-left .imagen-logo{
+    display: flex;
+    position: relative;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    overflow: hidden;
+}
+.imagen-logo .reflejo{
+    top: -100%;
+    opacity: 0;
+    transition: right .9s ease,opacity 0.5s ease;
+}
+.imagen-logo .reflejo.activado{
+    right: 300%;
+    opacity: .2;
+    transition: right .9s ease,opacity 0s ease;
+}
+.navbar-left.activado{
     filter: brightness(1.5);
     cursor: pointer;
 }
+
 /* Estilos para la parte izquierda de la navbar (logo) */
 .navbar-left img {
     margin: 0px 5px 0px 5px;
@@ -732,7 +751,7 @@ body {
     flex-shrink: 0;
     transition: width 0.3s ease, height 0.3s ease, margin 0.3s ease; /* Agregar transiciones para width y height */
 }
-.navbar-left img:hover {
+.navbar-left img.activado {
     width: 67px; /* Nuevo ancho cuando se coloca el mouse encima */
     height: 76px; /* Nuevo alto cuando se coloca el mouse encima */
     margin: 0px 2.5px 0px 2.5px;
@@ -2265,6 +2284,7 @@ footer.footer-login {
     height: 100%;
     object-fit: cover;
     border-radius: 5px;
+    overflow: hidden;
 }
 
 .contenedor-juego .pantalla .titulo-juego{

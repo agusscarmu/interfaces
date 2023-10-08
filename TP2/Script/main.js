@@ -210,14 +210,48 @@ function runGame(buttonElement) {
         break;
   }
 }
+const cards = document.querySelectorAll(".carousel-main-container .carousel-item");
+cards.forEach((card) =>
+card.addEventListener("click", function() {
+  let tituloJuego = card.querySelector(".title");
+  switch (tituloJuego.textContent) {
+    case "Cuatro en Linea - GoT":
+      window.location.href = "paginaJuego.html";
+      break;
+    default:
+      console.log("Iniciando juego: " + tituloJuego.textContent);
+      break;
+  }
+}
+));
+
+const cardsCarruselesSecundarios = document.querySelectorAll(".carousel-container-adventure .carousel-item, .carousel-container-recommended .carousel-item");
+cardsCarruselesSecundarios.forEach((card) =>
+  {
+    const imagenJuego = card.querySelector(".carousel-image img");
+    const tituloJuego = card.querySelector(".title");
+    if(window.innerWidth <= 768){
+      imagenJuego.addEventListener("click", function() {
+        switch (tituloJuego.textContent) {
+          case "Cuatro en Linea: GoT":
+            window.location.href = "paginaJuego.html";
+            break;
+          default:
+            console.log("Iniciando juego: " + tituloJuego.textContent);
+            break;
+        }
+      });
+    }
+  }
+);
 
 function updateCardSize(cardWidth, currentTranslate, maxTranslate) {
   currentTranslate *= -1;
   currentTranslate += maxTranslate;
   console.log("currentTranslate: "+currentTranslate);
   const cardScale = 1.1; // Tamaño aumentado para la tarjeta centrada
-  const cards = document.querySelectorAll(".carousel-main-container .carousel-item");
   const transitionDuration = "0.5s"; // Duración de la transición
+  const cards = document.querySelectorAll(".carousel-main-container .carousel-item");
   const mouseoverHandler = function() {
     this.style.boxShadow = "0px 0px 20px 6px rgba(169, 133, 218, 0.80)";
   };

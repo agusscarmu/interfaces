@@ -48,15 +48,6 @@ $(document).ready(function () {
     $die = $(".die");
 });
 
-// const iniciar = document.querySelectorAll(".button");
-
-// iniciar.forEach((button) => {
-//     button.addEventListener("click", () => {
-//         mostrarOverlay();
-//         setTimeout(changeHTML, 7000);
-//     });
-// });
-
 
 const form = document.querySelectorAll(".formulario");
 

@@ -9,6 +9,14 @@ const botonJugar = document.querySelector(".boton-jugar");
 const reflejo = document.querySelector(".reflejo");
 const pantallaJuego = document.querySelector(".pantalla-juego");
 const pantallaPreJuego = document.querySelector(".pantalla-prejuego");
+const botonVolver = document.querySelector(".boton-volver");
+
+botonVolver.addEventListener("click", function() {
+    pantallaJuego.classList.remove("mostrar");
+    window.location.href = "menuPrincipal.html";
+}
+);
+
 
 botonJugar.addEventListener("mouseenter", function() {
     reflejo.classList.add("activado");
@@ -125,6 +133,9 @@ let containers = document.querySelectorAll(".mg-container");
 containers.forEach(function(container) {
     container.addEventListener("click", function(e){
         let mg = container.querySelector(".mg");
+        let contador = container.parentNode.querySelector(".contador");
+        let opuesto = container.parentNode.querySelector(".no-mg-container");
+        let mgopuesto = container.parentNode.querySelector(".nomg");
         if(!container.classList.contains('activado')){
             if(mg){
                 mg.classList.add('mg-click');
@@ -139,14 +150,16 @@ containers.forEach(function(container) {
             });
 
             // Accede al elemento contador
-            let contador = container.parentNode.querySelector(".contador");
-            let opuesto = container.parentNode.querySelector(".no-mg-container");
-            let mgopuesto = container.parentNode.querySelector(".nomg");
-            if(mgopuesto){
+            if(mgopuesto.classList.contains('activado')){
                 mgopuesto.classList.remove('activado');
+                contador.innerHTML = parseInt(contador.innerHTML) + 1;
             }
             opuesto.classList.remove('activado');
             contador.innerHTML = parseInt(contador.innerHTML) + 1;
+        }else{
+            container.classList.remove('activado');
+            mg.classList.remove('activado');
+            contador.innerHTML = parseInt(contador.innerHTML) - 1;
         }
     });
 });
@@ -156,6 +169,9 @@ containers = document.querySelectorAll(".no-mg-container");
 containers.forEach(function(container) {
     container.addEventListener("click", function(e){
         let mg = container.querySelector(".nomg");
+        let contador = container.parentNode.querySelector(".contador");
+        let opuesto = container.parentNode.querySelector(".mg-container");
+        let mgopuesto = container.parentNode.querySelector(".mg");
         
         if(!container.classList.contains('activado')){
 
@@ -171,15 +187,17 @@ containers.forEach(function(container) {
                 }
             });
 
-            // Accede al elemento contador
-            let contador = container.parentNode.querySelector(".contador");
-            let opuesto = container.parentNode.querySelector(".mg-container");
-            let mgopuesto = container.parentNode.querySelector(".mg");
-            if(mgopuesto){
+
+            if(mgopuesto.classList.contains('activado')){
                 mgopuesto.classList.remove('activado');
+                contador.innerHTML = parseInt(contador.innerHTML) - 1;
             }
             opuesto.classList.remove('activado');
             contador.innerHTML = parseInt(contador.innerHTML) - 1;
+        }else{
+            container.classList.remove('activado');
+            mg.classList.remove('activado');
+            contador.innerHTML = parseInt(contador.innerHTML) + 1;
         }
     });
 });
