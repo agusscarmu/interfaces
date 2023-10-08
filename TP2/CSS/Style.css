@@ -2376,6 +2376,14 @@ footer.footer-login {
     height: 100%;
     margin-top: 3vh;
     margin-bottom: 3vh;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+}
+.galeria-imagenes::-webkit-scrollbar {
+    display: none;
 }
 .galeria-imagenes .imagenes{
     display: flex;
