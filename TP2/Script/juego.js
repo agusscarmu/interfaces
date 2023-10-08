@@ -5,6 +5,32 @@ const divContenedor = document.querySelector('.comentar');
 const boton = document.querySelector('.boton-comentar');
 const comentariosZona = document.querySelector('.comentario-zone');
 const comm = document.querySelector(".comentarios");
+const botonJugar = document.querySelector(".boton-jugar");
+const reflejo = document.querySelector(".reflejo");
+const pantallaJuego = document.querySelector(".pantalla-juego");
+const pantallaPreJuego = document.querySelector(".pantalla-prejuego");
+
+botonJugar.addEventListener("mouseenter", function() {
+    reflejo.classList.add("activado");
+}
+);
+
+botonJugar.addEventListener("mouseleave", function() {
+    reflejo.classList.remove("activado");
+}
+);
+
+botonJugar.addEventListener("click", function() {
+    pantallaPreJuego.classList.add("hidden");
+    pantallaJuego.classList.remove("hidden");
+    setTimeout(function() {
+        pantallaJuego.classList.add("mostrar");
+    }
+    , 100);
+}
+);
+
+
 
 textarea.addEventListener("input", function() {
     boton.classList.add("activado");

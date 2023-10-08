@@ -2232,7 +2232,7 @@ footer.footer-login {
     box-shadow: 0px 0px 20px 1px rgba(169, 133, 218, 0.80); 
 }
 
-.contenedor-juego .pantalla{
+.contenedor-juego .pantalla, .pantalla-prejuego, .pantalla-juego{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -2241,6 +2241,23 @@ footer.footer-login {
     width: 100%;
     height: 100%;
     position: relative;
+}
+
+.pantalla-juego img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+.pantalla-juego{
+    opacity: 0;
+    transition: opacity 1s ease; /* Agrega una transición para suavizar el cambio */
+}
+.pantalla-juego.mostrar{
+    opacity: 1;
+}
+.pantalla-prejuego.hidden, .pantalla-juego.hidden{
+    display: none;
 }
 
 .contenedor-juego .pantalla video{
@@ -2273,8 +2290,7 @@ footer.footer-login {
     margin: 0;
     text-shadow: #000 0px 0px 10px;
 }
-
-.contenedor-juego .pantalla .boton-jugar{
+.contenedor-juego .pantalla .pantalla-prejuego .boton-jugar{
     display: flex;
     width: 6vw;
     height: 4vh;
@@ -2286,14 +2302,24 @@ footer.footer-login {
     background-color: #00A59B;
     border-radius: 35px;
     border: 0px solid #000;
-    transition: background-color 0.3s, box-shadow 0.9s; /* Agrega una transición suave */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 1.5s ease;
     box-shadow: #000 0px 0px 20px -5px;
+    overflow: hidden;
+    position: relative;
+}
+
+
+.contenedor-juego .pantalla .pantalla-prejuego .boton-jugar:hover {
+    background-color: #49bcb4;
+    box-shadow: #00C0A3 0px 0px 20px -5px;
+    cursor: pointer;
+    transform: scale(1.05);
 }
 .contenedor-juego .pantalla .boton-jugar h4{
     font-size: 16px;
     font-family: var(--fuente-principal);
     font-weight: 400;
-    letter-spacing: 2.48px;
+    letter-spacing: 3px;
     word-wrap: break-word;
     color: white;
 }
@@ -2303,11 +2329,22 @@ footer.footer-login {
     object-fit: cover;
 }
 
-.contenedor-juego .pantalla .boton-jugar:hover{
-    background-color: #49bcb4;
-    box-shadow: #00C0A3 0px 0px 20px -5px;
-    cursor: pointer;
+.reflejo {
+    position: absolute;
+    width: 2vw;
+    height: 50vh;
+    background: white;
+    rotate: 45deg; /* Esto debería ser "transform: rotate(45deg);" */
+    opacity: .2;
+    right: -60%;
+    transition: right 0.9s ease, transform 0.9s ease; /* Agrega una transición suave */
+    pointer-events: none;
 }
+
+.reflejo.activado {
+    right: 150%;
+}
+
 
 .galeria-imagenes{
     display: flex;
@@ -2911,3 +2948,4 @@ body > .overlay.visible {
     0% { width: 0; }
     100% { width: 100%; }
   }
+  
