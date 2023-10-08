@@ -23,7 +23,7 @@ const overlayLight = document.getElementById("overlay-light");
 function mostrarOverlay() {
     overlay.style.display = "block";
     setTimeout(overlay.classList.add("visible"), 1000);
-    setTimeout(mostrarOverlayLight, 4000);
+    setTimeout(mostrarOverlayLight, 3000);
     setTimeout(startAnimation, 300);
 }
 function mostrarOverlayLight() {
@@ -41,7 +41,7 @@ function startAnimation() {
 
     timeoutId = setTimeout(function () {
         $die.removeClass("rolling");
-    }, 7000);
+    }, 5000);
 }
 
 $(document).ready(function () {
@@ -90,11 +90,9 @@ form.forEach((formulario) => {
                     carga.classList.add("escondido");
                 }, 800);
                 setTimeout(function() {
-                    mensaje.classList.add("escondido");
-                    contenido.classList.remove("escondido");
                     mostrarOverlay();
-                    setTimeout(changeHTML, 7000);
-                }, 3000);
+                    setTimeout(changeHTML, 5000);
+                }, 1000);
                 
             }
         }

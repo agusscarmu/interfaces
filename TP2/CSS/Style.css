@@ -3104,8 +3104,8 @@ body > .overlay.visible {
   
   
   .die.rolling {
-    -webkit-animation: roll 8s ease;
-            animation: roll 8s ease;
+    -webkit-animation: roll 5s ease;
+            animation: roll 5s ease;
   }
   
   .die[data-face="20"] {
@@ -3214,7 +3214,7 @@ body > .overlay.visible {
   }
   
   .progress-value {
-    animation: load 7s normal forwards;
+    animation: load 5s normal forwards;
     box-shadow: 0 10px 40px -10px rgb(235, 195, 255);
     border-radius: 100px;
     background: linear-gradient(to right, rgb(207, 96, 255) 0%, rgb(255, 255, 255) 100%);
