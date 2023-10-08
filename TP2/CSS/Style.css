@@ -2189,7 +2189,7 @@ footer.footer-login {
     font-weight: 400;
     letter-spacing: 2.48px;
     word-wrap: break-word;
-    color: var(--acento4, #00C0A3);
+    color: var(--primario6, #C4A3EC);
 }
 
 .nav-menu-juego .ubicacion-actual h4.texto{
@@ -2198,7 +2198,7 @@ footer.footer-login {
 }
 
 .nav-menu-juego .ubicacion-actual h4.texto:hover{
-    color: var(--acento3, #00A18C);
+    color: var(--primario6, #eddeff);
 }
 
 .nav-menu-juego .boton-compartir{
