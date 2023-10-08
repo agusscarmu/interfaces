@@ -2376,24 +2376,26 @@ footer.footer-login {
     height: 100%;
     margin-top: 3vh;
     margin-bottom: 3vh;
+
+}
+
+.galeria-imagenes .imagenes{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 80%;
+    height: 20vh;
     overflow-x: scroll;
     overflow-y: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
     scroll-behavior: smooth;
 }
-.galeria-imagenes::-webkit-scrollbar {
+
+.galeria-imagenes .imagenes::-webkit-scrollbar {
     display: none;
 }
-.galeria-imagenes .imagenes{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    height: 20vh;
-}
-
 
 .galeria-imagenes .imagenes img{
     width: 100%;
