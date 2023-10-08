@@ -2237,10 +2237,17 @@ footer.footer-login {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: #8a7889;
     border-radius: 3px;
     width: 100%;
     height: 100%;
+    position: relative;
+}
+
+.contenedor-juego .pantalla video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
 }
 
 .contenedor-juego .pantalla .titulo-juego{
@@ -2251,6 +2258,15 @@ footer.footer-login {
     margin-bottom: 3vh;
 }
 
+.overlay-juego{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .contenedor-juego .pantalla .titulo-juego h2{
     color: var(--primario6, #C4A3EC);
     padding: 0;
