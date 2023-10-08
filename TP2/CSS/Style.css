@@ -609,6 +609,22 @@
     .carrito-menu {
        display: none;
     }
+    .galeria-imagenes{
+        width: 100%;
+    }
+    .galeria-imagenes .imagenes{
+        flex-direction: flex-start;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        scroll-behavior: smooth;
+        width: 100%;
+    }
+    
+    .galeria-imagenes .imagenes::-webkit-scrollbar {
+        display: none;
+    }
     
 }
 
@@ -1289,6 +1305,12 @@ body {
     }
     .contenidoEnteroCarouselPrincipal .carousel-arrow:hover {
         opacity: 1; /* Muestra las flechas al hacer hover */
+    }
+    .galeria-imagenes .imagenes{
+        justify-content: center;
+    }
+    .galeria-imagenes{
+        width: 80%;
     }
 }
 
@@ -2372,7 +2394,6 @@ footer.footer-login {
     justify-content: flex-start;
     align-items: center;
     gap: 2vw;
-    width: 80%;
     height: 100%;
     margin-top: 3vh;
     margin-bottom: 3vh;
@@ -2382,20 +2403,11 @@ footer.footer-login {
 .galeria-imagenes .imagenes{
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
     align-items: center;
     width: 80%;
     height: 20vh;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    scroll-behavior: smooth;
 }
 
-.galeria-imagenes .imagenes::-webkit-scrollbar {
-    display: none;
-}
 
 .galeria-imagenes .imagenes img{
     width: 100%;
