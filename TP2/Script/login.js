@@ -63,8 +63,40 @@ form.forEach((formulario) => {
                 mensaje.classList.add("hidden");
             }, 3000);
         }else{
-            mostrarOverlay();
-            setTimeout(changeHTML, 7000);
+            let nickname = document.getElementById("nickname");
+            let password = document.getElementById("pass");
+            let contenido = login.querySelector(".formulario.login");
+            let carga = document.querySelector(".loader");
+            if(nickname.value === "" || password.value === ""){
+                let mensaje = document.querySelector(".msj.error");
+                let context = document.querySelector(".contexto-error");
+                context.textContent = "Por favor, complete todos los campos.";
+                carga.classList.remove("escondido");
+                contenido.classList.add("escondido");
+                setTimeout(function() {
+                    mensaje.classList.remove("escondido");
+                    carga.classList.add("escondido");
+                }, 800);
+                setTimeout(function() {
+                    mensaje.classList.add("escondido");
+                    contenido.classList.remove("escondido");
+                }, 3000);
+            }else{
+                let mensaje = document.querySelector(".msj.exito");
+                carga.classList.remove("escondido");
+                contenido.classList.add("escondido");
+                setTimeout(function() {
+                    mensaje.classList.remove("escondido");
+                    carga.classList.add("escondido");
+                }, 800);
+                setTimeout(function() {
+                    mensaje.classList.add("escondido");
+                    contenido.classList.remove("escondido");
+                    mostrarOverlay();
+                    setTimeout(changeHTML, 7000);
+                }, 3000);
+                
+            }
         }
     });
 });

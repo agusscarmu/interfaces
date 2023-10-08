@@ -81,26 +81,42 @@
                 </div>
             </form>
             <form class="formulario login hidden">
-                <h2>Login</h2>
-                <div>
-                    <h4>Mail o Nickname:</h4>
-                    <input type="text" required>
+                <span class="loader escondido"></span>
+                <div class="msj exito escondido">
+                    <h3>Login exitoso</h3>
+                    <div class="circulo-estado" style="height: 40px; width: 40px;">
+                        <img src="./Resources/Tic.png" alt="">
+                    </div>
                 </div>
-                <div>
-                    <h4>Contraseña:</h4>
-                    <input type="password" required>
+                <div class="msj error escondido">
+                    <h3>Login incorrecto</h3>
+                    <p class="contexto-error"></p>
+                    <div class="circulo-estado" style="height: 40px; width: 40px;">
+                        <h3>X</h3>
+                    </div>
                 </div>
-                <br>
-                <div class="botones">
-                    <label class="custom-checkbox">
-                        <input type="checkbox" name="mantener-sesion">
-                        <span class="checkmark"></span>
-                        Mantener sesión iniciada
-                    </label>
+                <div class="formulario login">
+                    <h2>Login</h2>
+                    <div>
+                        <h4>Mail o Nickname:</h4>
+                        <input id="nickname" type="text">
+                    </div>
+                    <div>
+                        <h4>Contraseña:</h4>
+                        <input id="pass" type="password">
+                    </div>
                     <br>
-                    <button type="submit" class="button">Iniciar sesión</button>
-                    <h4 id="nocuenta">¿Aun no tienes cuenta?</h4>
-                    <div id="registrarse">Registrarse</div>
+                    <div class="botones">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="mantener-sesion">
+                            <span class="checkmark"></span>
+                            Mantener sesión iniciada
+                        </label>
+                        <br>
+                        <button type="submit" class="button">Iniciar sesión</button>
+                        <h4 id="nocuenta">¿Aun no tienes cuenta?</h4>
+                        <div id="registrarse">Registrarse</div>
+                    </div>
                 </div>
             </form>
             

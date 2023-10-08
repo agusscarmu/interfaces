@@ -1946,6 +1946,110 @@ footer.footer-login {
     box-shadow: 0 0 30px 0px rgba(167, 125, 251, 0.647);
     transition: left 0.9s ease, transform .9s ease; /* Agrega una transición suave */
 }
+
+.formulario.login.escondido{
+    display: none;
+}
+.msj.exito.escondido{
+    display: none;
+}
+.msj.error.escondido{
+    display: none;
+}
+.escondido{
+    display: none;
+}
+
+.msj{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.circulo-estado{
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    color: white;   
+}
+
+.msj.error .circulo-estado h3{
+    font-size: 18px;
+    font-weight: 300;
+    color: white;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+}
+.msj.exito .circulo-estado{
+    background: rgba(214, 251, 191, .6);
+    box-shadow: 0 0 10px 0px rgba(52, 255, 82, 0.647);
+}
+.msj.error .circulo-estado{
+    background: rgba(251, 191, 191, .6);
+    box-shadow: 0 0 10px 0px rgba(255, 52, 52, 0.647);
+}
+.msj.exito h3{
+    color: rgb(130, 225, 144);
+}
+
+.msj.error h3{
+    color: rgb(246, 99, 99);
+}
+.msj.error .contexto-error{
+    color: rgb(246, 99, 99);
+}
+.circulo-estado img{
+    width: 60%;
+    height: 60%;
+    object-fit: cover;
+}
+
+
+/* loader */
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 3px solid #9666dd;
+    border-radius: 50%;
+    box-shadow: 0 0 9px -2px #ae8de1 inset, 0 0 7px -2px #ae8de1; /* Agrega dos sombras, una interna y otra externa */
+
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    animation: rotation .7s linear infinite;
+}
+.loader.escondido{
+    display: none;
+}
+
+  .loader::after {
+      content: '';  
+    box-sizing: border-box;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-bottom-color: #e6d8f8;
+  }
+      
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  } 
+
 .contenido-login .mensaje{
     position: absolute;
     display: flex;
