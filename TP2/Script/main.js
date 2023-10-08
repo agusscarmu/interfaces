@@ -16,13 +16,19 @@ function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTra
   const carousel = document.querySelector(carouselSelector);
   const card = document.querySelector(cardSelector);
   let currentTranslate = 0;
+  let cardWidth = card.offsetWidth;
+  if(esCarruselPrincipal(carouselSelector)){
+    cardWidth = cardWidth + 20; // 10px de margen a la derecha y 10px de margen a la izquierda
+    const cardsInView = Math.floor(carousel.offsetWidth / cardWidth);
+    const maxTranslate = (cardsInView - 1) * (cardWidth/2);
+    updateCardSize(cardWidth, 0, maxTranslate);
+  }
 
   function updateCarouselPosition() {
     carousel.style.transform = `translate3d(${currentTranslate}px, 0px, 0px)`;
   }
   
   function moveCarouselRight() {
-    const cardWidth = card.offsetWidth;
     const minTranslate = auxTraslate2 * (carousel.offsetWidth - cardWidth);
     
     if ((currentTranslate-cardWidth)> minTranslate) {
@@ -44,7 +50,6 @@ function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTra
     }
   }
   function moveCarouselLeft() {
-    const cardWidth = card.offsetWidth;
     const maxTranslate = auxTraslate1 * (carousel.offsetWidth - cardWidth);
     if ((currentTranslate + cardWidth) < maxTranslate) {
       currentTranslate += cardWidth;
@@ -69,9 +74,12 @@ function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTra
     carouselPrincipal.style.transform = `translate3d(${currentTranslate}px, 0px, 0px)`;
   }
   function moveCarouselRightPrincipal() {
-    const cardWidth = card.offsetWidth + 20; // 10px de margen a la derecha y 10px de margen a la izquierda
     const cardsInView = Math.floor(carousel.offsetWidth / cardWidth);
     const maxTranslate = (cardsInView - 1) * (cardWidth/2);
+    console.log("CARDWIDTH: "+cardWidth);
+    console.log("CARDWIDTH: "+cardWidth);
+    console.log("CARDWIDTH: "+cardWidth);
+
   
     if (currentTranslate > -maxTranslate) {
       currentTranslate -= cardWidth;
@@ -86,10 +94,11 @@ function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTra
     }
   
     updateCarouselPositionPrincipal();
+    console.log("posicion: ("+currentTranslate+" | "+maxTranslate+") cardWidth: "+cardWidth)
+    updateCardSize(cardWidth, currentTranslate, maxTranslate);
   }
   
   function moveCaroselLeftPrincipal() {
-    const cardWidth = card.offsetWidth + 20; // 10px de margen a la derecha y 10px de margen a la izquierda
     const cardsInView = Math.floor(carousel.offsetWidth / cardWidth);
     const maxTranslate = (cardsInView - 1) * (cardWidth/2);
   
@@ -100,13 +109,14 @@ function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTra
       flechas.classList.remove("limiteDerecho");
       flechaDerecha.classList.remove("limiteDerecho");
     }
-    console.log("posicion: ("+currentTranslate+" | "+maxTranslate+")")
     if(currentTranslate>=maxTranslate){
       flechas.classList.add("limiteIzquierdo");
       flechaIzquierda.classList.add("limiteIzquierdo");
     }
   
     updateCarouselPositionPrincipal();
+    console.log("posicion: ("+currentTranslate+" | "+maxTranslate+") cardWidth: "+cardWidth)
+    updateCardSize(cardWidth, currentTranslate, maxTranslate);
   }
   
   carouselPrincipal.addEventListener('touchstart', (e) => {
@@ -195,5 +205,41 @@ function runGame(buttonElement) {
   }
 }
 
+function updateCardSize(cardWidth, currentTranslate, maxTranslate) {
+  currentTranslate *= -1;
+  currentTranslate += maxTranslate;
+  console.log("currentTranslate: "+currentTranslate);
+  const cardScale = 1.1; // Tamaño aumentado para la tarjeta centrada
+  const cards = document.querySelectorAll(".carousel-main-container .carousel-item");
+  const transitionDuration = "0.5s"; // Duración de la transición
+  const mouseoverHandler = function() {
+    this.style.boxShadow = "0px 0px 20px 6px rgba(169, 133, 218, 0.80)";
+  };
+  const mouseoutHandler = function() {
+    this.style.boxShadow = "0px 0px 60px -8px rgba(169, 133, 218, 0.80)";
+  };
 
-
+  cards.forEach((card, index) => {
+    if (currentTranslate == index*cardWidth) {
+      card.style.transform = `scale(${cardScale})`;
+      card.style.zIndex = "5";
+      card.style.width = "45vw";
+      card.style.boxShadow = "0px 0px 20px 6px rgba(169, 133, 218, 0.80)";
+      card.style.transition = `transform ${transitionDuration}, width ${transitionDuration}, box-shadow ${transitionDuration}`;
+      card.addEventListener("mouseover", mouseoverHandler);
+      card.addEventListener("mouseout", mouseoutHandler);
+    } else {
+      card.style.transform = "scale(1)";
+      card.style.boxShadow = "none";
+      card.style.zIndex = "0";
+      card.style.width = "33vw";
+      card.style.transition = `transform ${transitionDuration}, width ${transitionDuration}, box-shadow ${transitionDuration}`;
+      card.removeEventListener("mouseout", mouseoverHandler);
+      card.removeEventListener("mouseover", mouseoverHandler);
+    }
+  });
+}
+function esCarruselPrincipal(selector) {
+  // Comprueba si el selector contiene la cadena ".carousel-main-container"
+  return selector.includes(".carousel-main-container");
+}

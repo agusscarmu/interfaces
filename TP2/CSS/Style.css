@@ -1043,19 +1043,26 @@ main {
         margin-right: 2%;
     }
 
+    .contenidoEnteroCarouselPrincipal .carousel-arrow {
+        pointer-events: none;
+    }
     .contenidoEnteroCarouselPrincipal .carousel-arrow .left-arrow {
         height: 20%;
         width: auto;
+        padding: 15% 15% 15% 0%;
         left: 10px; /* Alinea la flecha izquierda */
         margin-left: 10px;
         cursor: pointer;
+        pointer-events: visible;
     }
     .contenidoEnteroCarouselPrincipal .carousel-arrow .right-arrow {
         height: 20%;
         width: auto;
+        padding: 15% 0% 15% 15%;
         right: 10px; /* Alinea la flecha derecha */
         margin-right: 10px;
         cursor: pointer;
+        pointer-events: visible;
     }
     .contenidoEnteroCarouselRecommended .carousel-arrow {
         position: absolute;
@@ -1275,12 +1282,18 @@ main {
 .contenidoEnteroCarouselPrincipal .carousel-arrow .limiteIzquierdo img{
     display: none;
 }
+.contenidoEnteroCarouselPrincipal .carousel-arrow .limiteIzquierdo{
+    pointer-events: none;
+}
 .contenidoEnteroCarouselPrincipal .carousel-arrow.limiteIzquierdo{
     background: linear-gradient(to left, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0) 100%),
                 linear-gradient(to right, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 0%);
 }
 .contenidoEnteroCarouselPrincipal .carousel-arrow .limiteDerecho img{
     display: none;
+}
+.contenidoEnteroCarouselPrincipal .carousel-arrow .limiteDerecho{
+    pointer-events: none;
 }
 .contenidoEnteroCarouselPrincipal .carousel-arrow.limiteDerecho{
     background: linear-gradient(to right, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0) 100%),
@@ -1313,14 +1326,16 @@ main {
     gap: 10px;
     width: 100%;
     height: 100%;
-    position: relative;
-    
+    position: relative;    
 }
 
 /* modificaciones limites */
 
 .contenidoEnteroCarouselRecommended .carousel-arrow .limiteIzquierdo img{
     display: none;
+}
+.contenidoEnteroCarouselAdventure .carousel-arrow, .contenidoEnteroCarouselRecommended .carousel-arrow{
+    pointer-events: none;
 }
 .contenidoEnteroCarouselRecommended .carousel-arrow.limiteIzquierdo{
     background: linear-gradient(to left, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0) 100%),
@@ -1335,9 +1350,12 @@ main {
 }
 .contenidoEnteroCarouselRecommended .carousel-arrow .left-arrow {
     height: 20%;
+    width: auto;
+    padding: 9% 2% 9% 0%;
     left: 10px; /* Alinea la flecha izquierda */
     margin-left: 10px;
     cursor: pointer;
+    pointer-events: visible;
 }
 
 .contenidoEnteroCarouselRecommended .carousel-arrow .left-arrow img{
@@ -1348,9 +1366,12 @@ main {
 
 .contenidoEnteroCarouselRecommended .carousel-arrow .right-arrow {
     height: 20%;
-    right: 10px; /* Alinea la flecha derecha */
+    width: auto;
+    padding: 9% 0% 9% 2%;
+    right: 10px; /* Alinea la flecha izquierda */
     margin-right: 10px;
     cursor: pointer;
+    pointer-events: visible;
 }
 
 .contenidoEnteroCarouselRecommended .carousel-arrow .right-arrow img{
@@ -1373,7 +1394,6 @@ main {
     width: 100%;
     height: 100%;
     position: relative;
-
 }
 
 /* modificaciones limites */
@@ -1394,9 +1414,12 @@ main {
 }
 .contenidoEnteroCarouselAdventure .carousel-arrow .left-arrow {
     height: 20%;
+    width: auto;
+    padding: 9% 2% 9% 0%;
     left: 10px; /* Alinea la flecha izquierda */
     margin-left: 10px;
     cursor: pointer;
+    pointer-events: visible;
 }
 
 .contenidoEnteroCarouselAdventure .carousel-arrow .left-arrow img{
@@ -1407,9 +1430,12 @@ main {
 
 .contenidoEnteroCarouselAdventure .carousel-arrow .right-arrow {
     height: 20%;
-    right: 10px; /* Alinea la flecha derecha */
+    width: auto;
+    padding: 9% 0% 9% 2%;
+    right: 10px; /* Alinea la flecha izquierda */
     margin-right: 10px;
     cursor: pointer;
+    pointer-events: visible;
 }
 
 .contenidoEnteroCarouselAdventure .carousel-arrow .right-arrow img{
