@@ -10,9 +10,9 @@ var carritoButton = document.querySelector(".carrito");
 var carritoButtonMobile = document.querySelector(".mobile-carrito");
 var notificacionCarritoMobile = document.querySelector(".notificacion-usuario");
 var carritoMenu = document.getElementById("carritoMenu");
-const logo = document.querySelector(".logo");
+const logos = document.querySelectorAll(".logo");
 
-
+logos.forEach(function(logo) {
 logo.addEventListener("click", () => {
     window.location.href = "menuPrincipal.html";
 });
@@ -32,7 +32,7 @@ logo.addEventListener("mouseleave", () => {
     logo.classList.remove("activado");
     reflejo.classList.remove("activado");
 });
-
+});
 // Menu hamburguesa
 var burger = document.querySelector(".mobile-navbar-left");
 var sidebarMobile = document.querySelector(".sidebar-mobile");
