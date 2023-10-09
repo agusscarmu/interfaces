@@ -3200,7 +3200,23 @@ body > .overlay.visible {
     transform: rotateY(540deg) translateZ(11.25vh) translateY(8.127vh) rotateX(-11deg);
   }
   
-  
+  .secundary .carousel-item .price.biblioteca{
+    color: #c9abf5;
+  }
+  .contenedor-imagen-biblioteca{
+    width: 25px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2%;
+  }
+  .contenedor-imagen-biblioteca img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   .progress {
     background: rgba(255,255,255,0.1);
     justify-content: flex-start;
