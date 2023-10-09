@@ -874,7 +874,7 @@ body {
         height: 100%;
         padding-left: 50px;
         padding-right: 50px;
-        background: #6644A6;
+        background: #4B2F8B;
         color: #ccaafb;
         border-top-right-radius: 5px;
         border-bottom-right-radius: 5px;
@@ -887,13 +887,13 @@ body {
   }
 
   .navbar-center .botonBuscar.activado{
-    background: rgb(126, 88, 231); /* Cambia el color de fondo al hacer hover */
+    background: #845EC2; /* Cambia el color de fondo al hacer hover */
     box-shadow: 0px 0px 10px -2px rgba(175, 118, 255, 0.8); 
     color: white;
     cursor: pointer;
   }
   .navbar-center .botonBuscar.activado:hover {
-      background: #5d469d; /* Cambia el color de fondo al hacer hover */
+      background: var(--primario5, #A985DA); /* Cambia el color de fondo al hacer hover */
       cursor: pointer;
   }
   
