@@ -10,6 +10,12 @@ const reflejo = botonJugar.querySelector(".reflejo");
 const pantallaJuego = document.querySelector(".pantalla-juego");
 const pantallaPreJuego = document.querySelector(".pantalla-prejuego");
 const botonVolver = document.querySelector(".boton-volver");
+const botonCompartir = document.querySelector(".boton-compartir");
+const menuCompartir = document.querySelector(".menu-compartir");
+
+botonCompartir.addEventListener("click", function() {
+    menuCompartir.classList.toggle("activado");
+});
 
 botonVolver.addEventListener("click", function() {
     pantallaJuego.classList.remove("mostrar");

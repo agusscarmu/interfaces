@@ -37,6 +37,11 @@
         height: 100%;
     }
 
+    .menu-compartir{
+        width: 90%;
+        top: 29vh;
+    }
+
     .contenidoEnteroCarouselPrincipal .carousel-arrow {
         position: absolute;
         display: flex;
@@ -679,10 +684,6 @@
     }
 
     .nav-menu-juego .boton-volver{
-        width: 30%;
-    }
-
-    .nav-menu-juego .boton-compartir{
         width: 30%;
     }
 
@@ -1463,10 +1464,6 @@ body {
         width: 8%;
     }
 
-    .nav-menu-juego .boton-compartir{
-        width: 8%;
-    }
-
     .contenedor-juego{
         width: 70vw;
         height: 70vh;
@@ -1484,7 +1481,78 @@ body {
         right: auto;
         left: 80.5%;
     }
-    
+    .menu-compartir{
+        width: 20%;
+        top: 20vh;
+        left: auto;
+        right: 0;
+        margin-right: 5vw;
+    }
+}
+
+.boton-compartir img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+.menu-compartir{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: absolute;
+    background: #dbdbdb;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 3;
+    opacity: 0; /* Agrega la propiedad opacity para hacer el menú un poco transparente */
+    pointer-events: none;
+    transition: opacity .4s ease;
+}
+
+.menu-compartir.activado{
+    opacity: .95;
+    pointer-events: all;
+}
+
+.menu-compartir h2{
+    font-family: var(--fuente-principal);
+    font-size: 20px;
+    font-weight: 400;
+    width: 90%;
+    padding-bottom: 5%;
+    text-align: center;
+    color: #493569;
+    border-bottom: 1px solid rgba(141, 122, 179, 0.714);
+}
+
+.redes-sociales{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+}
+.contenedor-redes-compartir{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 50px;
+    height: 50px;
+}
+
+.contenedor-redes-compartir img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 
@@ -2470,17 +2538,16 @@ footer.footer-login {
     margin-right: 2vw;
     color: #FFF;
     display: flex;
-    height: 25%;
-    padding: 14px 15px;
+    height: 50%;
+    width: auto;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    background-color: #845EC2;
+    background-color: transparent;
     flex-shrink: 0;
     border-radius: 7px;
     border: 0px solid #000;
-    box-shadow: 0px -5px 10px 0px rgba(0, 0, 0, 0.25);
-    transition: background-color 0.3s, box-shadow 0.3s;
+    transition: transform 0.5s;
 }
 
 .nav-menu-juego .boton-compartir h4{
@@ -2492,10 +2559,8 @@ footer.footer-login {
 }
 
 .nav-menu-juego .boton-compartir:hover{
-    background-color: #9666dd;
-    box-shadow: #C4A3EC 0px -1px 10px -5px;
+    transform: scale(1.2);
     cursor: pointer;
-    transition: box-shadow .9s;
 }
 
 .contenedor-juego{
