@@ -223,6 +223,10 @@ document.addEventListener("DOMContentLoaded", function () {
       const total = document.createElement("li");
       total.classList.add("totalCarrito");
       total.textContent = `Total: $${totalPrecio}`;
+      const botonComprar = document.createElement("button");
+      botonComprar.classList.add("botonComprar");
+      botonComprar.textContent = "Ir a pagar";
+      contenedorTotalCarrito.appendChild(botonComprar);
       contenedorTotalCarrito.appendChild(total);
 
       // Si el carrito está vacío, mostrar un mensaje
@@ -231,7 +235,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const contenedorMensajeVacio = document.createElement("div");
           contenedorMensajeVacio.classList.add("contenedorMensajeVacio");
           carritoList.appendChild(contenedorMensajeVacio);
-
+          const separador = document.createElement("hr");
           const emptyCartMessage = document.createElement("li");
           emptyCartMessage.textContent = "El carrito está vacío";
           contenedorMensajeVacio.appendChild(emptyCartMessage);

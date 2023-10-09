@@ -1348,7 +1348,7 @@ body {
         height: auto;
         width: 400px;
         border-radius: 2%;
-        top: -50%; 
+        top: -100%; 
         right: 5%;
         background-color: #E8E8EB;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -2049,10 +2049,33 @@ body {
 .contenedorTotalCarrito{
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: space-between;
     gap: 10px;
     width: 100%;
     margin-top: 20px;
+}
+
+.botonComprar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 40%;
+    height: 50px;
+    border-radius: 5px;
+    border: none;
+    background-color: #331D70;
+    color: white;
+    font-size: 16px;
+    font-family: var(--fuente-principal);
+    font-weight: 400;
+    letter-spacing: 2.48px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.botonComprar:hover{
+    background-color: #9369d6;
 }
 
 .totalCarrito{
