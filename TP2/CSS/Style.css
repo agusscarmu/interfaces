@@ -884,6 +884,7 @@ body {
         align-items: center;
         gap: 10px;
         display: inline-flex;
+        cursor:not-allowed;
         transition: background-color 0.3s; /* Agrega una transición suave */
   }
 
