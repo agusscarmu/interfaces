@@ -8,8 +8,6 @@ function initializeCarousel(carouselSelector, cardSelector, auxTraslate1, auxTra
   const flechas = document.querySelector(arrowContent+" .carousel-arrow")
   const flechaIzquierda = document.querySelector(arrowContent + " .carousel-arrow .left-arrow");
   const flechaDerecha = document.querySelector(arrowContent + " .carousel-arrow .right-arrow");
-  const h3flechaAdeventure = document.querySelector(".adventure .categoria-carrusel h3");
-  const h3flechaRecommended = document.querySelector(".recommended .categoria-carrusel h3");
   let touchStartX = 0;
   let isDragging = false;
   const carouselPrincipal = document.querySelector(".carousel-main-container");
@@ -283,3 +281,26 @@ function esCarruselPrincipal(selector) {
   // Comprueba si el selector contiene la cadena ".carousel-main-container"
   return selector.includes(".carousel-main-container");
 }
+
+const carouselRecommended = document.querySelector(".contenidoEnteroCarouselRecommended");
+const carouselAdventure = document.querySelector(".contenidoEnteroCarouselAdventure");
+const h3flechaAdeventure = document.querySelector(".adventure .categoria-carrusel h3");
+const h3flechaRecommended = document.querySelector(".recommended .categoria-carrusel h3");
+
+carouselRecommended.addEventListener("scroll", function() {
+
+  if (carouselRecommended.scrollLeft + carouselRecommended.clientWidth === carouselRecommended.scrollWidth) {
+    h3flechaRecommended.classList.add("hidden");
+  }else{
+    h3flechaRecommended.classList.remove("hidden");
+  }
+});
+
+carouselAdventure.addEventListener("scroll", function() {
+
+  if (carouselAdventure.scrollLeft + carouselAdventure.clientWidth === carouselAdventure.scrollWidth) {
+    h3flechaAdeventure.classList.add("hidden");
+  }else{
+    h3flechaAdeventure.classList.remove("hidden");
+  }
+});
