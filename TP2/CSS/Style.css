@@ -22,6 +22,7 @@
         padding-top: 20vh;
         padding-bottom: 5%;
     }
+    
     .carousel-main-container {
         display: flex;
         transition: transform 0.3s ease;
@@ -224,7 +225,9 @@
         border-radius: 15px; /* Ajusta el valor según la cantidad de redondeo deseada */
         /* Otros estilos para el input */
     }
-    
+    .secundary .carousel-item .play-button{
+        display: none;
+    }
     
     .sidebar{
         display: none;
