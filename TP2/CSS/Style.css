@@ -2570,19 +2570,11 @@ footer.footer-login {
     border-radius: 7px;
     border: 0px solid #000;
     transition: transform 0.5s;
-}
-
-.nav-menu-juego .boton-compartir h4{
-    font-size: 16px;
-    font-family: var(--fuente-principal);
-    font-weight: 400;
-    letter-spacing: 2.48px;
-    word-wrap: break-word;
-}
-
-.nav-menu-juego .boton-compartir:hover{
-    transform: scale(1.2);
     cursor: pointer;
+}
+
+.nav-menu-juego .boton-compartir.activado{
+    transform: scale(1.2);
 }
 
 .contenedor-juego{

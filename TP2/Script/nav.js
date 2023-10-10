@@ -68,6 +68,7 @@ usuario.forEach(function(elemento) {
   });
 }
 );
+
 // Agregar un evento de clic al fondo semi-transparente para cerrar el menú lateral
 fondoSemiTransparente.addEventListener("click", function () {
     menuLateral.classList.remove("menu-activo");

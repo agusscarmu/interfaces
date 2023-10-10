@@ -17,6 +17,28 @@ botonCompartir.addEventListener("click", function() {
     menuCompartir.classList.toggle("activado");
 });
 
+botonCompartir.addEventListener("mouseover", function() {
+    if(window.innerWidth > 768) {
+    botonCompartir.classList.add("activado");
+    }
+}
+);
+
+botonCompartir.addEventListener("mouseleave", function() {
+    if(window.innerWidth > 768){
+    botonCompartir.classList.remove("activado");
+    }
+}
+);
+
+document.addEventListener("click", function(e) {
+    if(e.target !== botonCompartir && e.target !== menuCompartir && e.target !== botonCompartir.querySelector("img")) {
+        menuCompartir.classList.remove("activado");
+    }
+}
+);
+
+
 botonVolver.addEventListener("click", function() {
     pantallaJuego.classList.remove("mostrar");
     window.location.href = "menuPrincipal.html";
