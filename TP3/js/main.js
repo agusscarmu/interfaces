@@ -3,12 +3,12 @@ let context = canvas.getContext('2d')
 let canvasWidth = canvas.width
 let canvasHeight = canvas.height
 
-let cantEnLinea = 4
+let cantEnLinea = 2
 let totalFichas = (cantEnLinea+2)*(cantEnLinea+3)
 let fichas = []
 let pilaA = []
 let pilaB = []
-let tablero = new Tablero(context, cantEnLinea)
+let tablero = new Tablero(context, cantEnLinea, 'rgba(0, 0, 255, 1)')
 let currentPlayer = 1; // Variable para realizar un seguimiento del jugador actual (1 o 2)
 let fichaActual = null;
 let finished = false;
@@ -16,10 +16,10 @@ let finished = false;
 function play() {
     if(!finished){
         if(searchWinner(1)){
-            console.log("Gano el jugador 1");
+            setTimeout(function(){ mostrarMensajeGanador("Gano el jugador 1"); }, 1000);
             finished = true;
         }else if(searchWinner(2)){
-            console.log("Gano el jugador 2");
+            setTimeout(function(){ mostrarMensajeGanador("Gano el jugador 2"); }, 1000);
             finished = true;
         }
         if(fichas.length!=totalFichas){
@@ -38,6 +38,7 @@ function play() {
             finished = true;
         }
     }
+    drawAll();
 }
 function getPosXInicialFicha(){
     if(currentPlayer == 1){
@@ -113,10 +114,14 @@ function searchWinner(team){
         if(tablero.casillas[fila][columna].getTeam() == null){
             return false;
         }else if(cont == cantEnLinea){
+            tablero.casillas[fila][columna].setColorFicha(`rgba(0,255,0,255)`);
             return true;
         }else{
             if(fila+1 < tablero.filas && columna+1 < tablero.columnas
                 && tablero.casillas[fila][columna].getTeam() == team){
+                    if(winDiagonalDerechaAbajo(fila+1, columna+1, cont+1)){
+                        tablero.casillas[fila][columna].setColorFicha(`rgba(0,255,0,255)`);
+                    }
                     return winDiagonalDerechaAbajo(fila+1, columna+1, cont+1);
             }else{
                 return false;
@@ -127,10 +132,14 @@ function searchWinner(team){
         if(tablero.casillas[fila][columna].getTeam() == null){
             return false;
         }else if(cont == cantEnLinea){
+            tablero.casillas[fila][columna].setColorFicha(`rgba(0,255,0,255)`);
             return true;
         }else{
             if(fila-1 >= 0 && columna+1 < tablero.columnas
                 && tablero.casillas[fila][columna].getTeam() == team){
+                    if(winDiagonalDerechaArriba(fila-1, columna+1, cont+1)){
+                        tablero.casillas[fila][columna].setColorFicha(`rgba(0,255,0,255)`);
+                    }
                 return winDiagonalDerechaArriba(fila-1, columna+1, cont+1);
             }else{
                 return false;
@@ -181,10 +190,8 @@ function crearPila(){
     }
     drawAll();
 }
-setTimeout(function(){
-    crearPila();
-    play();
-}, 1000)
+crearPila();
+play();
 
 
 
@@ -242,13 +249,13 @@ canvas.addEventListener("mousemove", function (event) {
 
 canvas.addEventListener("mouseup", function () {
     if (isMousePressed)  {
-        isMousePressed = false;
         if(getEntradaApuntada()>=0
-         && tablero.entradaFichas[getEntradaApuntada()].drawable){
+        && tablero.entradaFichas[getEntradaApuntada()].drawable){
             animateFichaFall(); // Inicia la animación de caída
         }else{
             animateRetorno(); // Inicia la animación de retorno
         }
+        isMousePressed = false;
     }
 });
 
@@ -322,3 +329,36 @@ function filaDisponible(columna){
     }
     return -1;
 }
+// Función para mostrar un mensaje de victoria en el canvas con un borde
+function mostrarMensajeGanador(mensaje) {
+    // Tamaño y posición del rectángulo
+    const rectanguloWidth = canvas.width / 2;
+    const rectanguloHeight = canvas.height / 4;
+    const rectanguloX = (canvas.width - rectanguloWidth) / 2;
+    const rectanguloY = (canvas.height - rectanguloHeight) / 2;
+
+    context.fillStyle = "white"; // Color del fondo del mensaje
+    context.fillRect(rectanguloX, rectanguloY, rectanguloWidth, rectanguloHeight);
+
+    context.strokeStyle = "black"; // Color del borde
+    context.lineWidth = 2; // Ancho del borde
+    context.strokeRect(rectanguloX, rectanguloY, rectanguloWidth, rectanguloHeight);
+
+    context.fillStyle = "black"; // Color del texto del mensaje
+    context.font = "32px Arial";
+    context.textAlign = "center";
+    context.fillText(mensaje, canvas.width / 2, canvas.height / 2+12);
+}
+
+// function filter(color, factor) {
+//     const rgba = color.match(/\d+/g); // Extraer los componentes R, G, B y A
+//     if (rgba) {
+//         const r = rgba[0] * factor;
+//         const g = rgba[1] * factor;
+//         const b = rgba[2] * factor;
+//         const a = rgba[3];
+//         return `rgba(${r}, ${g}, ${b}, ${a})`;
+//     } else {
+//         return color; // Si el color no es válido, devolverlo sin cambios
+//     }
+// }

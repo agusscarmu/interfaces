@@ -1,5 +1,6 @@
 class Tablero {
-    constructor(context, cantFichas){
+    constructor(context, cantFichas, fill){
+        this.fill = fill;
         this.context = context;
         this.filas = cantFichas+2;
         this.columnas = cantFichas+3;
@@ -31,7 +32,7 @@ class Tablero {
             }
         }
         this.context.globalCompositeOperation = "source-out";
-        this.context.fillStyle = "blue";
+        this.context.fillStyle = this.fill;
         this.context.fillRect((canvasWidth-this.columnas*55)/2, this.getSuperior(), this.columnas*55, this.filas*55);
     }
 }

@@ -24,6 +24,23 @@ class Casilla extends Figure {
             this.context.stroke();
         }
     }
+    setColorFicha(color){
+        console.log("setColorFicha");
+        console.log("fill ficha: " + this.ficha.fill);
+
+        if(this.ficha){
+            this.ficha.fill = color;
+        }
+        console.log("2fill ficha: " + this.ficha.fill);
+    }
+    getColorFicha(){
+        if(this.ficha){
+            return this.ficha.fill;
+        }else{
+            return null;
+        }
+    }
+    
     getTeam(){
         if(this.ficha){
             return this.ficha.getTeam();
