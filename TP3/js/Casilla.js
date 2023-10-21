@@ -24,7 +24,13 @@ class Casilla extends Figure {
             this.context.stroke();
         }
     }
-    
+    getTeam(){
+        if(this.ficha){
+            return this.ficha.getTeam();
+        }else{
+            return null;
+        }
+    }
     setFicha(ficha){
         this.ficha = ficha;
     }

@@ -3,7 +3,7 @@ let context = canvas.getContext('2d')
 let canvasWidth = canvas.width
 let canvasHeight = canvas.height
 
-let cantEnLinea = 2
+let cantEnLinea = 4
 let totalFichas = (cantEnLinea+2)*(cantEnLinea+3)
 let fichas = []
 let pilaA = []
@@ -11,17 +11,136 @@ let pilaB = []
 let tablero = new Tablero(context, cantEnLinea)
 let currentPlayer = 1; // Variable para realizar un seguimiento del jugador actual (1 o 2)
 let fichaActual = null;
+let finished = false;
 
 function play() {
-    if(fichas.length!=totalFichas){
-        if (currentPlayer == 2) {
-            addFicha(canvasWidth-25, canvasHeight/2, 20,`rgba(255,0,0,255)`, 2);
-            pilaA.pop();
-        } else {
-            addFicha(25, canvasHeight/2, 20,`rgba(255,255,0,255)`, 1);
-            pilaB.pop();
+    if(!finished){
+        if(searchWinner(1)){
+            console.log("Gano el jugador 1");
+            finished = true;
+        }else if(searchWinner(2)){
+            console.log("Gano el jugador 2");
+            finished = true;
         }
-        drawAll();
+        if(fichas.length!=totalFichas){
+            if(!finished){
+                if (currentPlayer == 2) {
+                    addFicha(getPosXInicialFicha(), getPosYInicialFicha(), 20,`rgba(255,0,0,255)`, 2);
+                    pilaA.pop();
+                } else {
+                    addFicha(getPosXInicialFicha(), getPosYInicialFicha(), 20,`rgba(255,255,0,255)`, 1);
+                    pilaB.pop();
+                }
+                drawAll();
+            }
+        }else{
+            console.log("Empate");
+            finished = true;
+        }
+    }
+}
+function getPosXInicialFicha(){
+    if(currentPlayer == 1){
+        return 25;
+    }else{
+        return canvasWidth-30;
+    }
+}
+function getPosYInicialFicha(){
+    if(currentPlayer == 1){
+        return canvasHeight-20-pilaB.length*11;
+    }else{
+        return canvasHeight-20-pilaA.length*11;
+    }
+}
+
+function searchWinner(team){
+    let contador = 0;
+    let casilla = null;
+    function winVerical(){
+        for (let i = 0; i < tablero.columnas; i++) {
+            contador = 0;
+            for(let j = 0; j < tablero.filas; j++){
+                casilla = tablero.casillas[j][i];
+                if(casilla.getTeam()!=null){
+                    if(casilla.getTeam() == team){
+                        contador++;
+                        if(contador === cantEnLinea){
+                            return true;
+                        }
+                    }else{
+                        contador = 0;
+                    }
+                }else{
+                    contador = 0;
+                }
+            }
+        }
+        return false;
+    }
+    function winHorizontal(){
+        for (let i = 0; i < tablero.filas; i++) {
+            contador = 0;
+            for(let j = 0; j < tablero.columnas; j++){
+                casilla = tablero.casillas[i][j];
+                if(casilla.getTeam()!=null){
+                    if(casilla.getTeam() == team){
+                        contador++;
+                        if(contador == cantEnLinea){
+                            return true;
+                        }
+                    }else{
+                        contador = 0;
+                    }
+                }else{
+                    contador = 0;
+                }
+            }
+        }
+        return false;
+    }
+    function winDiagonal(){
+        for (let i = 0; i < tablero.filas; i++) {
+            for(let j = 0; j < tablero.columnas; j++){
+                if(winDiagonalDerechaAbajo(i, j, 1) || winDiagonalDerechaArriba(i, j, 1)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    function winDiagonalDerechaAbajo(fila, columna, cont){
+        if(tablero.casillas[fila][columna].getTeam() == null){
+            return false;
+        }else if(cont == cantEnLinea){
+            return true;
+        }else{
+            if(fila+1 < tablero.filas && columna+1 < tablero.columnas
+                && tablero.casillas[fila][columna].getTeam() == team){
+                    return winDiagonalDerechaAbajo(fila+1, columna+1, cont+1);
+            }else{
+                return false;
+            }
+        }
+    }
+    function winDiagonalDerechaArriba(fila, columna, cont){
+        if(tablero.casillas[fila][columna].getTeam() == null){
+            return false;
+        }else if(cont == cantEnLinea){
+            return true;
+        }else{
+            if(fila-1 >= 0 && columna+1 < tablero.columnas
+                && tablero.casillas[fila][columna].getTeam() == team){
+                return winDiagonalDerechaArriba(fila-1, columna+1, cont+1);
+            }else{
+                return false;
+            }
+        }
+    }
+    if(winHorizontal() || winVerical() || winDiagonal()){
+        return true;
+    }else{
+        return false;
     }
 }
 
@@ -82,11 +201,9 @@ let isMousePressed = false;
 canvas.addEventListener("mousedown", function (event) {
     const clickX = event.clientX - canvas.getBoundingClientRect().left;
     const clickY = event.clientY - canvas.getBoundingClientRect().top;
-    console.log("X: "+clickX+" | Y: "+clickY);
-
     fichaActual = fichas[fichas.length-1];
     // Verifica si el clic ocurrió dentro del radio de la ficha
-    if (Math.sqrt((fichaActual.posX - clickX) ** 2 + (fichaActual.posY - clickY) ** 2) <= fichaActual.radius) {
+    if (Math.sqrt((fichaActual.posX - clickX) ** 2 + (fichaActual.posY - clickY) ** 2) <= fichaActual.radius && !finished) {
         isMousePressed = true;
         // Verifica si es el turno del jugador actual (1 o 2)
         if (fichaActual.team == currentPlayer) {
@@ -123,15 +240,41 @@ canvas.addEventListener("mousemove", function (event) {
     }
 });
 
-canvas.addEventListener("mouseup", function (event) {
+canvas.addEventListener("mouseup", function () {
     if (isMousePressed)  {
         isMousePressed = false;
         if(getEntradaApuntada()>=0
          && tablero.entradaFichas[getEntradaApuntada()].drawable){
             animateFichaFall(); // Inicia la animación de caída
+        }else{
+            animateRetorno(); // Inicia la animación de retorno
         }
     }
 });
+
+function animateRetorno() {
+    const aux = fichaActual;
+    const targetX = getPosXInicialFicha();
+    const targetY = getPosYInicialFicha()-fichaActual.radius;
+    const gravity = 0.1; // Velocidad de la animación
+    let index = 0;
+    fichaActual = null;
+    function animate() {
+        drawAll();
+        if (index == 100) {
+            aux.posX = targetX;
+            aux.posY = targetY;
+            fichaActual = aux;
+            drawAll();
+        } else {
+            aux.posX += (targetX-aux.posX) * gravity;
+            aux.posY += (targetY-aux.posY) * gravity;
+            index++;
+            requestAnimationFrame(animate);
+        }
+    }
+    animate();
+}
 
 function animateFichaFall() {
     const targetY = tablero.getSuperior()+27.5+(55)*filaDisponible(getEntradaApuntada()); // Posición de destino (por ejemplo, el centro del canvas)

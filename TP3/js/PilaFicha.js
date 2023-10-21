@@ -15,7 +15,6 @@ class PilaFicha extends Figure {
         this.context.strokeRect(this.posX, this.posY, this.width, this.height); // Dibuja el borde del rectángulo
     }
     
-
     getWidth() {
         return this.width;
     }

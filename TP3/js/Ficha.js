@@ -16,6 +16,10 @@ class Ficha extends Figure {
         this.context.closePath();
     }
 
+    getTeam() {
+        return this.team;
+    }
+    
     getRadius() {
         return this.radius;
     }
