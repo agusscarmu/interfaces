@@ -9,7 +9,7 @@ function iniciarJuego(cantEnLinea) {
     let fichas = []
     let pilaA = []
     let pilaB = []
-    let tablero = new Tablero(context, cantEnLinea, 'rgba(0, 0, 255, 1)')
+    let tablero = new Tablero(context, cantEnLinea, 'rgba(0, 0, 255, 1)', backgroundImage)
     let currentPlayer = 1; // Variable para realizar un seguimiento del jugador actual (1 o 2)
     let fichaActual = null;
     let finished = false;
@@ -26,10 +26,10 @@ function iniciarJuego(cantEnLinea) {
             if(fichas.length!=totalFichas){
                 if(!finished){
                     if (currentPlayer == 2) {
-                        addFicha(getPosXInicialFicha(), getPosYInicialFicha(), 20,`rgba(255,0,0,255)`, 2);
+                        addFicha(getPosXInicialFicha(), getPosYInicialFicha(), 20,`rgba(255,0,0,255)`, 2, fichaTargaryen);
                         pilaA.pop();
                     } else {
-                        addFicha(getPosXInicialFicha(), getPosYInicialFicha(), 20,`rgba(255,255,0,255)`, 1);
+                        addFicha(getPosXInicialFicha(), getPosYInicialFicha(), 20,`rgba(255,255,0,255)`, 1, fichaBaratheon);
                         pilaB.pop();
                     }
                     drawAll();
@@ -154,8 +154,8 @@ function iniciarJuego(cantEnLinea) {
         }
     }
     
-    function addFicha(posX, posY, radius, color, team){
-        let ficha = new Ficha(posX, posY, radius, color, context, team);
+    function addFicha(posX, posY, radius, color, team, image){
+        let ficha = new Ficha(posX, posY, radius, color, context, team, image);
         fichas.push(ficha);
     }
     
@@ -176,6 +176,15 @@ function iniciarJuego(cantEnLinea) {
             pilaB[i].draw();
         }
         drawEntrada();
+        drawBackground();
+    }
+    function drawBackground(){
+        context.globalCompositeOperation = "destination-over";
+        context.drawImage(piedraFondo, ((canvasWidth-tablero.columnas*55)/2)-15, tablero.getSuperior(), tablero.columnas*55+30, tablero.filas*55);
+        context.fillStyle = "rgba(0,0,0,0.2)";
+        context.fillRect(0, 0, canvasWidth, canvasHeight);
+        context.drawImage(background2, 0, 0, canvasWidth, canvasHeight);
+        context.globalCompositeOperation = "source-over";
     }
     
     
@@ -359,13 +368,25 @@ backgroundImage.src = "./images/trono.jpg";
 // Cargar imágenes para los botones
 const botonEnLinea = new Image();
 botonEnLinea.src = "./images/boton1.png";
+// Cargar imágenes para el fondo del juego
+const background2 = new Image();
+background2.src = "./images/batalla.jpg";
+// Cargar imágenes fondo tablero
+const piedraFondo = new Image();
+piedraFondo.src = "./images/piedraFondo.jpg";
+// Cargar ficha targaryen
+const fichaTargaryen = new Image();
+fichaTargaryen.src = "./images/fichaTargaryen.png";
+// Cargar ficha baratheon
+const fichaBaratheon = new Image();
+fichaBaratheon.src = "./images/fichaBaratheon.png";
 
 function CargarImagenes() {    
     let contador = 0;
     // Función para mostrar las instrucciones y los botones en el canvas
     function mostrarInstrucciones() {
         contador++;
-        if(contador==2){
+        if(contador==6){
             context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
             // Título e instrucciones
             context.font = "40px 'MedievalSharp', serif";
@@ -410,5 +431,17 @@ function CargarImagenes() {
     botonEnLinea.onload = function () {
         mostrarInstrucciones();
     };
+    background2.onload = function () {
+        mostrarInstrucciones();
+    }
+    piedraFondo.onload = function () {
+        mostrarInstrucciones();
+    }
+    fichaTargaryen.onload = function () {
+        mostrarInstrucciones();
+    }
+    fichaBaratheon.onload = function () {
+        mostrarInstrucciones();
+    }
 }
 CargarImagenes();
