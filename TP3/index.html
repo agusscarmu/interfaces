@@ -1,24 +1,195 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-	<link href='https://fonts.googleapis.com/css?family=MedievalSharp' rel='stylesheet'>
-	<title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dungeon20</title>
+    <link rel="stylesheet" href="./CSS/Style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Merriweather:wght@300&display=swap" rel="stylesheet">
 </head>
-
 <body>
-	<div class="container">
-		<canvas class="canvas" id="canvas" width="800" height="600"></canvas>
-	</div>
+    <header class="desktop-header">
+        <nav class="navbar">
+            <div class="navbar-login">
+                <h1>Dungeon</h1>
+                <img src="./Resources/Unknown.png" alt="">
+            </div>
+        </nav>
+    </header>
+    <header class="mobile-header">
+        <nav class="mobile-navbar">
+            <div class="mobile-navbar-login">
+                <img src="./Resources/Unknown.png" alt="">
+            </div>
+        </nav>
+    </header>
+    <main class="login-registro">
+        <div class="contenido-login">
+            <div class="mensaje hidden">
+                <p>Registrado con exito</p>
+                <div class="imagen-mensaje">
+                    <img src="./Resources/Tic.png" alt="">
+                </div>
+            </div>
+            <form class="formulario registro">
+                <h2>Registro</h2>
+                <label class="warning">* Campo requerido</label>
+                <div class="nombre-apellido">
+                    <div>
+                        <h4>Nombre *</h4>
+                        <input type="text" name="nombre" required>
+                    </div>
+                    <div>
+                        <h4>Apellido *</h4>
+                        <input type="text" required>
+                    </div>
+                </div>
+                <div>
+                    <h4>Nickname</h4>
+                    <input type="text">
+                </div>
+                <div>
+                    <h4>Fecha de nacimiento *</h4>
+                    <input type="date" required>
+                </div>
+                <div>
+                    <h4>Mail *</h4>
+                    <input type="email" placeholder="ejemplo@dungeon20.com" required>
+                </div>
+                <div>
+                    <h4>Contraseña *</h4>
+                    <input type="password" required>
+                </div>
+                <div>
+                    <h4>Repetir contraseña *</h4>
+                    <input type="password" required>
+                </div>
+                <div class="botones">
+                    <label class="custom-checkbox">
+                        <input type="checkbox" name="terminos" required>
+                        <span class="checkmark"></span>
+                        Acepto los terminos y condiciones
+                    </label>
+                    <br>
+                    <div class="recaptcha">
+                        <img src="./Resources/reCAPTCHA.png" alt="Captcha">
+                    </div>              
+                    <button type="submit" class="button">Registrarse</button>
+                    <div id="tengo-cuenta">Ya tengo cuenta</div>
+                </div>
+            </form>
+            <form class="formulario login hidden">
+                <span class="loader escondido"></span>
+                <div class="msj exito escondido">
+                    <h3>Login exitoso</h3>
+                    <div class="circulo-estado" style="height: 40px; width: 40px;">
+                        <img src="./Resources/Tic.png" alt="">
+                    </div>
+                </div>
+                <div class="msj error escondido">
+                    <h3>Login incorrecto</h3>
+                    <p class="contexto-error"></p>
+                    <div class="circulo-estado" style="height: 40px; width: 40px;">
+                        <h3>X</h3>
+                    </div>
+                </div>
+                <div class="formulario login">
+                    <h2>Login</h2>
+                    <div>
+                        <h4>Mail o Nickname:</h4>
+                        <input id="nickname" type="text">
+                    </div>
+                    <div>
+                        <h4>Contraseña:</h4>
+                        <input id="pass" type="password">
+                    </div>
+                    <br>
+                    <div class="botones">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="mantener-sesion">
+                            <span class="checkmark"></span>
+                            Mantener sesión iniciada
+                        </label>
+                        <br>
+                        <button type="submit" class="button">Iniciar sesión</button>
+                        <h4 id="nocuenta">¿Aun no tienes cuenta?</h4>
+                        <div id="registrarse">Registrarse</div>
+                    </div>
+                </div>
+            </form>
+            
+        </div>
+    </main>
+    <footer class="footer-login">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3><a href="#">Sobre Dungeon20</a></h3>
+                <p>
+                    Dungeon20 es una página de juegos donde podrás disfrutar de juegos gratuitos y también tendrás la oportunidad de adquirir juegos de pago y jugarlos a través de la nube. <a href="#">Leer más</a>
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>dungeon20@games.com</p>
+                <!-- Iconos de redes sociales -->
+                <img src="./Resources/Rectangle 15.png" alt="Facebook">
+                <img src="./Resources/Rectangle 16.png" alt="X">
+                <img src="./Resources/Rectangle 17.png" alt="Instagram">
+            </div>
+            <div class="footer-section">
+                <h3>Políticas</h3>
+                <ul>
+                    <li><a href="#">Políticas de Privacidad</a></li>
+                    <li><a href="#">Aviso Legal</a></li>
+                    <li><a href="#">Términos de Uso</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Ayuda</h3>
+                <ul>
+                    <li><a href="#">Preguntas Frecuentes (FAQ)</a></li>
+                    <li><a href="#">Soporte Técnico</a></li>
+                    <li><a href="#">Contáctanos</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <div class="overlay" id="overlay" style="display: none;">
+        <div class="light" id="overlay-light" style="display: none;"></div>
+        <div class="content">
+          <div class="dice-content">
+            <div class="die">
+              <figure class="face face-1"></figure>
+              <figure class="face face-2"></figure>
+              <figure class="face face-3"></figure>
+              <figure class="face face-4"></figure>
+              <figure class="face face-5"></figure>
+              <figure class="face face-6"></figure>
+              <figure class="face face-7"></figure>
+              <figure class="face face-8"></figure>
+              <figure class="face face-9"></figure>
+              <figure class="face face-10"></figure>
+              <figure class="face face-11"></figure>
+              <figure class="face face-12"></figure>
+              <figure class="face face-13"></figure>
+              <figure class="face face-14"></figure>
+              <figure class="face face-15"></figure>
+              <figure class="face face-16"></figure>
+              <figure class="face face-17"></figure>
+              <figure class="face face-18"></figure>
+              <figure class="face face-19"></figure>
+              <figure class="face face-20"></figure>
+            </div>
+          </div>
+          <div class="progress">
+            <div class="progress-value"></div>
+          </div>
+        </div>
+      </div>
 
-
-	<script src="./js/Figure.js"></script>
-	<script src="./js/PilaFicha.js"></script>
-	<script src="./js/Ficha.js"></script>
-	<script src="./js/Tablero.js"></script>
-	<script src="./js/Casilla.js"></script>
-	<script src="./js/main.js"></script>
-
+    <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="./Script/login.js"></script>
 </body>
-
 </html>
