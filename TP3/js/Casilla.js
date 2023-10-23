@@ -1,6 +1,7 @@
 class Casilla extends Figure {
-    constructor(posX, posY, sideLength, context, color = 'rgba(0, 0, 255, 1)') {
+    constructor(posX, posY, sideLength, context, sizeFicha, color = 'rgba(0, 0, 255, 1)') {
         super(posX, posY, color, context);
+        this.sizeFicha = sizeFicha;
         this.sideLength = sideLength;
         this.ficha = null;
         this.drawable = true;
@@ -11,7 +12,6 @@ class Casilla extends Figure {
             // Dibuja un círculo en el centro
             const centerX = this.posX + this.sideLength / 2;
             const centerY = this.posY + this.sideLength / 2;
-            const radius = 20;
             if(this.ficha){
                 this.context.strokeStyle = this.ficha.getFill();
             }else{
@@ -19,7 +19,7 @@ class Casilla extends Figure {
             }
             this.context.lineWidth = 2; // Ancho del contorno
             this.context.beginPath();
-            this.context.arc(centerX, centerY, radius, 0, Math.PI * 2);
+            this.context.arc(centerX, centerY, this.sizeFicha, 0, Math.PI * 2);
             this.context.fill();
             this.context.stroke();
         }
@@ -36,7 +36,6 @@ class Casilla extends Figure {
             return null;
         }
     }
-
     getTeam(){
         if(this.ficha){
             return this.ficha.getTeam();
@@ -58,5 +57,11 @@ class Casilla extends Figure {
         } else {
             return color; // Si el color no es válido, devolverlo sin cambios
         }
+    }
+    getX(){
+        return this.posX;
+    }
+    getY(){
+        return this.posY;
     }
 }

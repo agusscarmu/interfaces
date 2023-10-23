@@ -4,12 +4,13 @@ let canvasWidth = canvas.width
 let canvasHeight = canvas.height
 
 
-function iniciarJuego(cantEnLinea) {
+function iniciarJuego(cantEnLinea, imagen1, imagen2) {
     let totalFichas = (cantEnLinea+2)*(cantEnLinea+3)
+    let sizeFicha = 120/cantEnLinea;
     let fichas = []
     let pilaA = []
     let pilaB = []
-    let tablero = new Tablero(context, cantEnLinea, 'rgba(0, 0, 255, 1)', backgroundImage)
+    let tablero = new Tablero(context, cantEnLinea, 'rgba(0, 0, 255, 1)', backgroundImage, sizeFicha)
     let currentPlayer = 1; // Variable para realizar un seguimiento del jugador actual (1 o 2)
     let fichaActual = null;
     let finished = false;
@@ -17,19 +18,19 @@ function iniciarJuego(cantEnLinea) {
     function play() {
         if(!finished){
             if(searchWinner(1)){
-                setTimeout(function(){ mostrarMensajeGanador("Gano el jugador 1"); }, 1000);
+                setTimeout(function(){ mostrarMensajeGanador("Gano el jugador 1"); }, 100);
                 finished = true;
             }else if(searchWinner(2)){
-                setTimeout(function(){ mostrarMensajeGanador("Gano el jugador 2"); }, 1000);
+                setTimeout(function(){ mostrarMensajeGanador("Gano el jugador 2"); }, 100);
                 finished = true;
             }
             if(fichas.length!=totalFichas){
                 if(!finished){
                     if (currentPlayer == 2) {
-                        addFicha(getPosXInicialFicha(), getPosYInicialFicha(), 20,`rgba(255,0,0,255)`, 2, fichaTargaryen);
+                        addFicha(getPosXInicialFicha(), getPosYInicialFicha(), sizeFicha,`rgba(255,0,0,255)`, 2, imagen2);
                         pilaA.pop();
                     } else {
-                        addFicha(getPosXInicialFicha(), getPosYInicialFicha(), 20,`rgba(255,255,0,255)`, 1, fichaBaratheon);
+                        addFicha(getPosXInicialFicha(), getPosYInicialFicha(), sizeFicha,`rgba(255,255,0,255)`, 1, imagen1);
                         pilaB.pop();
                     }
                     drawAll();
@@ -43,9 +44,9 @@ function iniciarJuego(cantEnLinea) {
     }
     function getPosXInicialFicha(){
         if(currentPlayer == 1){
-            return 25;
+            return sizeFicha+5;
         }else{
-            return canvasWidth-30;
+            return canvasWidth-sizeFicha-10;
         }
     }
     function getPosYInicialFicha(){
@@ -57,49 +58,67 @@ function iniciarJuego(cantEnLinea) {
     }
     
     function searchWinner(team){
-        let contador = 0;
-        let casilla = null;
         function winVerical(){
-            for (let i = 0; i < tablero.columnas; i++) {
-                contador = 0;
-                for(let j = 0; j < tablero.filas; j++){
-                    casilla = tablero.casillas[j][i];
-                    if(casilla.getTeam()!=null){
-                        if(casilla.getTeam() == team){
-                            contador++;
-                            if(contador === cantEnLinea){
-                                return true;
-                            }
-                        }else{
-                            contador = 0;
-                        }
-                    }else{
-                        contador = 0;
+            for (let i = 0; i < tablero.filas-cantEnLinea+1; i++) {
+                for(let j = 0; j < tablero.columnas; j++){
+                    if(winVerticalFila(i, j, 1)){
+                        return true;
                     }
                 }
             }
             return false;
         }
+        function winVerticalFila(fila, columna, cont){
+            if(tablero.casillas[fila][columna].getTeam() == null){
+                return false;
+            }else if(cont == cantEnLinea){
+                if(tablero.casillas[fila][columna].getTeam() == team){
+                    tablero.casillas[fila][columna].setColorFicha(`rgba(0,255,0,255)`);
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                if(tablero.casillas[fila][columna].getTeam() == team){
+                    if(winVerticalFila(fila+1, columna, cont+1)){
+                        tablero.casillas[fila][columna].setColorFicha(`rgba(0,255,0,255)`);
+                    }
+                    return winVerticalFila(fila+1, columna, cont+1);
+                }else{
+                    return false;
+                }
+            }
+        }
         function winHorizontal(){
             for (let i = 0; i < tablero.filas; i++) {
-                contador = 0;
-                for(let j = 0; j < tablero.columnas; j++){
-                    casilla = tablero.casillas[i][j];
-                    if(casilla.getTeam()!=null){
-                        if(casilla.getTeam() == team){
-                            contador++;
-                            if(contador == cantEnLinea){
-                                return true;
-                            }
-                        }else{
-                            contador = 0;
-                        }
-                    }else{
-                        contador = 0;
+                for(let j = 0; j < tablero.columnas-cantEnLinea+1; j++){
+                    if(winHorizontalFila(i, j, 1)){
+                        return true;
                     }
                 }
             }
             return false;
+        }
+        function winHorizontalFila(fila, columna, cont){
+            if(tablero.casillas[fila][columna].getTeam() == null){
+                return false;
+            }else if(cont == cantEnLinea){
+                if(tablero.casillas[fila][columna].getTeam() == team){
+                    tablero.casillas[fila][columna].setColorFicha(`rgba(0,255,0,255)`);
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                if(tablero.casillas[fila][columna].getTeam() == team){
+                    if(winHorizontalFila(fila, columna+1, cont+1)){
+                        tablero.casillas[fila][columna].setColorFicha(`rgba(0,255,0,255)`);
+                    }
+                    return winHorizontalFila(fila, columna+1, cont+1);
+                }else{
+                    return false;
+                }
+            }
         }
         function winDiagonal(){
             for (let i = 0; i < tablero.filas; i++) {
@@ -115,8 +134,12 @@ function iniciarJuego(cantEnLinea) {
             if(tablero.casillas[fila][columna].getTeam() == null){
                 return false;
             }else if(cont == cantEnLinea){
-                tablero.casillas[fila][columna].setColorFicha(`rgba(0,255,0,255)`);
-                return true;
+                if(tablero.casillas[fila][columna].getTeam() == team){
+                    tablero.casillas[fila][columna].setColorFicha(`rgba(0,255,0,255)`);
+                    return true;
+                }else{
+                    return false;
+                }
             }else{
                 if(fila+1 < tablero.filas && columna+1 < tablero.columnas
                     && tablero.casillas[fila][columna].getTeam() == team){
@@ -133,8 +156,12 @@ function iniciarJuego(cantEnLinea) {
             if(tablero.casillas[fila][columna].getTeam() == null){
                 return false;
             }else if(cont == cantEnLinea){
-                tablero.casillas[fila][columna].setColorFicha(`rgba(0,255,0,255)`);
-                return true;
+                if(tablero.casillas[fila][columna].getTeam() == team){
+                    tablero.casillas[fila][columna].setColorFicha(`rgba(0,255,0,255)`);
+                    return true;
+                }else{
+                    return false;
+                }
             }else{
                 if(fila-1 >= 0 && columna+1 < tablero.columnas
                     && tablero.casillas[fila][columna].getTeam() == team){
@@ -180,7 +207,7 @@ function iniciarJuego(cantEnLinea) {
     }
     function drawBackground(){
         context.globalCompositeOperation = "destination-over";
-        context.drawImage(piedraFondo, ((canvasWidth-tablero.columnas*55)/2)-15, tablero.getSuperior(), tablero.columnas*55+30, tablero.filas*55);
+        context.drawImage(piedraFondo, ((canvasWidth-tablero.columnas*sizeFicha*2.75)/2)-15, tablero.getSuperior(), tablero.columnas*sizeFicha*2.75+30, tablero.filas*sizeFicha*2.75);
         context.fillStyle = "rgba(0,0,0,0.2)";
         context.fillRect(0, 0, canvasWidth, canvasHeight);
         context.drawImage(background2, 0, 0, canvasWidth, canvasHeight);
@@ -191,25 +218,15 @@ function iniciarJuego(cantEnLinea) {
     
     function crearPila(){
         for (let i = 1; i < (totalFichas/2)+1; i++) {
-            fichaPila = new PilaFicha(canvasWidth-50, canvasHeight-10-(7*i),40,10,`rgba(255,0,0,255)`, context)
+            fichaPila = new PilaFicha(canvasWidth-sizeFicha*2-10, canvasHeight-10-(7*i),sizeFicha*2,15,`rgba(255,0,0,255)`, imagen2, context)
             pilaA.push(fichaPila)
         }
         for (let i = 1; i < (totalFichas/2)+1; i++) {
-            fichaPila = new PilaFicha(5, canvasHeight-10-(7*i),40,10,`rgba(255,255,0,255)`, context)
+            fichaPila = new PilaFicha(5, canvasHeight-10-(7*i),sizeFicha*2,15,`rgba(255,255,0,255)`, imagen1, context)
             pilaB.push(fichaPila)
         }
         drawAll();
     }
-    
-    
-    
-    
-    function clearCanvas() {
-        context.globalCompositeOperation = "source-out";
-        context.fillRect(0, 0, canvasWidth, canvasHeight);
-        context.globalCompositeOperation = "source-over";
-    }
-    
     
     
     let isMousePressed = false;
@@ -240,7 +257,7 @@ function iniciarJuego(cantEnLinea) {
             if(fichaActual.posY < tablero.getSuperior()){
                 for (let i = 0; i < tablero.entradaFichas.length; i++) {
                     if (tablero.entradaFichas[i].getPosX() < fichaActual.posX 
-                    && tablero.entradaFichas[i].getPosX()+55 > fichaActual.posX) {
+                    && tablero.entradaFichas[i].getPosX()+sizeFicha*2.75 > fichaActual.posX) {
                         return i;
                     }
                 }
@@ -292,8 +309,8 @@ function iniciarJuego(cantEnLinea) {
     }
     
     function animateFichaFall() {
-        const targetY = tablero.getSuperior()+27.5+(55)*filaDisponible(getEntradaApuntada()); // Posición de destino (por ejemplo, el centro del canvas)
-        fichaActual.posX = tablero.getLateral()+27.5+(55)*getEntradaApuntada();
+        const targetY = tablero.getSuperior()+sizeFicha*(2.75/2)+(sizeFicha*2.75)*filaDisponible(getEntradaApuntada()); // Posición de destino (por ejemplo, el centro del canvas)
+        fichaActual.posX = tablero.getLateral()+sizeFicha*(2.75/2)+(sizeFicha*2.75)*getEntradaApuntada();
         const gravity = 0.8; // Velocidad de la animación
         let index = -5;
         let rebote = 0;
@@ -340,22 +357,24 @@ function iniciarJuego(cantEnLinea) {
     // Función para mostrar un mensaje de victoria en el canvas con un borde
     function mostrarMensajeGanador(mensaje) {
         // Tamaño y posición del rectángulo
-        const rectanguloWidth = canvas.width / 2;
-        const rectanguloHeight = canvas.height / 4;
+        const rectanguloWidth = canvas.width * 0.6;
+        const rectanguloHeight = canvas.height * 0.7;
         const rectanguloX = (canvas.width - rectanguloWidth) / 2;
-        const rectanguloY = (canvas.height - rectanguloHeight) / 2;
+        const rectanguloY = -300;
         
-        context.fillStyle = "white"; // Color del fondo del mensaje
-        context.fillRect(rectanguloX, rectanguloY, rectanguloWidth, rectanguloHeight);
-        
-        context.strokeStyle = "black"; // Color del borde
-        context.lineWidth = 2; // Ancho del borde
-        context.strokeRect(rectanguloX, rectanguloY, rectanguloWidth, rectanguloHeight);
-        
-        context.fillStyle = "black"; // Color del texto del mensaje
-        context.font = "32px Arial";
+        // Dibujar el Letrero
+        context.drawImage(smoke,0,-260,canvas.width*1.5,canvas.height);
+        context.drawImage(letrero, rectanguloX, rectanguloY, rectanguloWidth, rectanguloHeight);
+        // Dibujar el texto del mensaje
+        context.font = "40px 'MedievalSharp', serif";
+        context.fillStyle = "lightyellow";
+        context.strokeStyle = "black";
+        context.lineWidth = 4;
         context.textAlign = "center";
-        context.fillText(mensaje, canvas.width / 2, canvas.height / 2+12);
+        let x = canvas.width / 2;
+        let y = 50;
+        context.strokeText(mensaje, x, y);
+        context.fillText(mensaje, x, y);
     }
     tablero.draw();
     crearPila();
@@ -380,51 +399,257 @@ fichaTargaryen.src = "./images/fichaTargaryen.png";
 // Cargar ficha baratheon
 const fichaBaratheon = new Image();
 fichaBaratheon.src = "./images/fichaBaratheon.png";
+// Cargar ficha stark
+const fichaStark = new Image();
+fichaStark.src = "./images/fichaStark.png";
+// Cargar ficha greyjoy
+const fichaGreyjoy = new Image();
+fichaGreyjoy.src = "./images/fichaGreyjoy.png";
+// Cargar letrero
+const letrero = new Image();
+letrero.src = "./images/Letrero.png";
+// Cargar smoke
+const smoke = new Image();
+smoke.src = "./images/smoke.png";
+
 
 function CargarImagenes() {    
     let contador = 0;
+    let listenerEnabled = true;
+    let listenerEnabledSelector = false;
+    let modoJuego = 0;
     // Función para mostrar las instrucciones y los botones en el canvas
     function mostrarInstrucciones() {
         contador++;
-        if(contador==6){
-            context.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
-            // Título e instrucciones
-            context.font = "40px 'MedievalSharp', serif";
-            context.fillStyle = "lightyellow";
-            context.strokeStyle = "black";
-            context.lineWidth = 4;
-            context.textAlign = "center";
-            let texto = "¡Bienvenido al juego!";
-            let x = canvas.width / 2;
-            let y = 120;
-            context.strokeText(texto, x, y);
-            context.fillText(texto, x, y);
-            texto = "Selecciona la cantidad de fichas en línea:";
-            y = 200;
-            context.font = "25px 'MedievalSharp', serif";
-            context.strokeText(texto, x, y);
-            context.fillText(texto, x, y);
+        if(contador==10){
+            mostrarMenu();
+        }
+    }   
+    function mostrarMenu() {
+        listenerEnabledSelector = false;
+        context.drawImage(backgroundImage, -15, 0, canvas.width+15, canvas.height);
+        // Título e instrucciones
+        context.font = "45px 'MedievalSharp', serif";
+        context.fillStyle = "lightyellow";
+        context.strokeStyle = "black";
+        context.lineWidth = 4;
+        context.textAlign = "center";
+        let texto = "¡Bienvenido al juego!";
+        let x = canvas.width / 2;
+        let y = 80;
+        context.strokeText(texto, x, y);
+        context.fillText(texto, x, y); 
 
-            // Dibuja los botones con imágenes
-            y = 250;
-            context.drawImage(botonEnLinea, 100, y, 200, 100);
-            context.drawImage(botonEnLinea, 300, y, 200, 100);
-            context.drawImage(botonEnLinea, 500, y, 200, 100);
+        context.font = "25px 'MedievalSharp', serif";
+        context.fillStyle = "lightyellow";
+        context.strokeStyle = "black";
+        context.lineWidth = 4;
+        context.textAlign = "center";
+        texto = "Selecciona la cantidad de fichas en línea:";
+        x = canvas.width / 2;
+        y = 200;
+        context.strokeText(texto, x, y);
+        context.fillText(texto, x, y);
+        // Dibuja los botones con imágenes
+        y = 240;
+        context.drawImage(botonEnLinea, 100, y, 200, 100);
+        context.drawImage(botonEnLinea, 300, y, 200, 100);
+        context.drawImage(botonEnLinea, 500, y, 200, 100);
+        texto = "4 en línea";
+        y = 299;
+        x = 200;
+        context.strokeText(texto, x, y);
+        context.fillText(texto, x, y);
+        texto = "5 en línea";
+        x = 400;
+        context.strokeText(texto, x, y);
+        context.fillText(texto, x, y);
+        texto = "6 en línea";
+        x = 600;
+        context.strokeText(texto, x, y);
+        context.fillText(texto, x, y);
 
-            // Event listeners para los botones
-            canvas.addEventListener("click", function (event) {
+
+        y=240;
+        // Event listeners para los botones
+        canvas.addEventListener("click", function (event) {
+            if(listenerEnabled){
                 const clickX = event.clientX - canvas.getBoundingClientRect().left;
                 const clickY = event.clientY - canvas.getBoundingClientRect().top;
                 if (clickX >= 100 && clickX <= 300 && clickY >= y && clickY <= y+100) {
-                    iniciarJuego(4); // Iniciar juego de 4 en línea
+                    console.log("4 en línea "+y)
+                    modoJuego = 4;
+                    mostrarSeleccionBandos(); // Iniciar juego de 4 en línea
                 } else if (clickX >= 300 && clickX <= 500 && clickY >= y && clickY <= y+100) {
-                    iniciarJuego(5); // Iniciar juego de 5 en línea
+                    modoJuego = 5;
+                    mostrarSeleccionBandos(); // Iniciar juego de 5 en línea
                 } else if (clickX >= 500 && clickX <= 700 && clickY >= y && clickY <= y+100) {
-                    iniciarJuego(6); // Iniciar juego de 6 en línea
+                    modoJuego = 6;
+                    mostrarSeleccionBandos(); // Iniciar juego de 6 en línea
                 }
-            });
+            }
+        });
+    }
+    let ficha1 = null;
+    let ficha2 = null;
+    bando1 = []; 
+    bando2 = []; 
+    function mostrarSeleccionBandos() {
+        listenerEnabled = false;
+        listenerEnabledSelector = true;
+        ficha1 = null;
+        ficha2 = null;
+        bando1 = [];
+        bando2 = [];
+        // Arreglo de bandos
+        console.log("Cargando bandos");
+        // Dibuja para bando 1
+        let y = 250;
+        let size = 80;
+        let radius = size/2;
+        let color = `rgba(0,0,0,255)`;
+        let image = fichaTargaryen;
+        let f1 = new Ficha(150, y, radius, color, context, 1, image);
+        bando1.push(f1);
+        image = fichaBaratheon;
+        let f2 = new Ficha(250, y, radius, color, context, 1, image);
+        bando1.push(f2);
+        image = fichaStark;
+        y += 100;
+        let f3 = new Ficha(150, y, radius, color, context, 1, image);
+        bando1.push(f3);
+        image = fichaGreyjoy;
+        let f4 = new Ficha(250, y, radius, color, context, 1, image);
+        bando1.push(f4);
+        // Dibuja para bando 2
+        y -= 100;
+        image = fichaTargaryen;
+        let f5 = new Ficha(canvasWidth-250, y, radius, color, context, 1, image);
+        bando2.push(f5);
+        image = fichaBaratheon;
+        let f6 = new Ficha(canvasWidth-150, y, radius, color, context, 1, image);
+        bando2.push(f6);
+        image = fichaStark;
+        y += 100;
+        let f7 = new Ficha(canvasWidth-250, y, radius, color, context, 1, image);
+        bando2.push(f7);
+        image = fichaGreyjoy;
+        let f8 = new Ficha(canvasWidth-150, y, radius, color, context, 1, image);
+        bando2.push(f8);
+        mostrarBandos();
+    }
+    function mostrarBandos() {
+        clearCanvas();
+        context.drawImage(backgroundImage, -15, 0, canvas.width+15, canvas.height);
+        // Título e instrucciones
+        context.font = "45px 'MedievalSharp', serif";
+        context.fillStyle = "lightyellow";
+        let x = canvas.width / 2;
+        let y = 80;
+        context.strokeStyle = "black";
+        context.lineWidth = 4;
+        context.textAlign = "center";
+        let texto = "¡Bienvenido al juego!";
+        context.strokeText(texto, x, y);
+        context.fillText(texto, x, y); 
+
+        context.font = "25px 'MedievalSharp', serif";
+        texto = "Selecciona el bando:";
+        y = 170;
+        context.strokeText(texto, x, y);
+        context.fillText(texto, x, y);
+        
+        texto = "VS";
+        y = 300;
+        context.strokeText(texto, x, y);
+        context.fillText(texto, x, y);
+
+        
+        texto = "volver";
+        x = 60;
+        y = canvasHeight - 30;
+        context.strokeText(texto, x, y);
+        context.fillText(texto, x, y);
+
+        // Dibuja los botones con imágenes
+        bando1.forEach(function (ficha) {
+            ficha.draw();
+        });
+        bando2.forEach(function (ficha) {
+            ficha.draw();
+        });
+
+        // Checkea si existe ficha1 y ficha2
+        if(ficha1 != null && ficha2 != null){
+            context.drawImage(botonEnLinea, 300, 400, 200, 100);
+            context.font = "25px 'MedievalSharp', serif";
+            context.fillStyle = "lightyellow";
+            context.strokeStyle = "black";
+            texto = "Iniciar juego";
+            x = 400;
+            y = 460;
+            context.strokeText(texto, x, y);
+            context.fillText(texto, x, y);
         }
-    }   
+    }
+    canvas.addEventListener("click", function (event) {
+        if(listenerEnabledSelector){
+            const clickX = event.clientX - canvas.getBoundingClientRect().left;
+            const clickY = event.clientY - canvas.getBoundingClientRect().top;
+            if (clickX <= 150 && clickY >= canvasHeight - 100) {
+                // Volver
+                listenerEnabledSelector = false;
+                listenerEnabled = true;
+                mostrarMenu();
+            }else if (clickX >= 300 && clickX <= 500 && clickY >= 400 && clickY <= 500) {
+                if(ficha1 != null && ficha2 != null){
+                    // Iniciar juego
+                    listenerEnabledSelector = false;
+                    iniciarJuego(modoJuego, ficha1.image, ficha2.image);
+                }
+            }else{
+                for (let i = 0; i < bando1.length; i++) {
+                    const ficha = bando1[i];
+                    if (ficha.draweable && Math.sqrt((ficha.posX - clickX) ** 2 + (ficha.posY - clickY) ** 2) <= ficha.radius) {
+                        if(ficha2 != null && ficha.image == ficha2.image){
+                            
+                        }else{
+                            for (let j = 0; j < bando1.length; j++) {
+                                if (j != i) {
+                                    bando1[j].fill = "rgba(0,0,0,255)";
+                                    bando2[j].draweable = true;
+                                }else{
+                                    bando1[j].fill = "rgba(255,255,0,255)";
+                                    ficha1 = bando1[j];
+                                    bando2[j].draweable = false;
+                                }      
+                            }
+                        }
+                    }
+                }
+                for (let i = 0; i < bando2.length; i++) {
+                    const ficha = bando2[i];
+                    if (ficha.draweable && Math.sqrt((ficha.posX - clickX) ** 2 + (ficha.posY - clickY) ** 2) <= ficha.radius) {
+                        if(ficha1 != null && ficha.image == ficha1.image){
+                            
+                        }else{
+                            for (let j = 0; j < bando2.length; j++) {
+                                if (j != i) {
+                                    bando2[j].fill = "rgba(0,0,0,255)";
+                                    bando1[j].draweable = true;
+                                }else{
+                                    bando2[j].fill = "rgba(255,0,0,255)";
+                                    ficha2 = bando2[j];
+                                    bando1[j].draweable = false;
+                                }               
+                            }
+                        }    
+                    }
+                }
+                mostrarBandos();
+            }
+        }
+    });
     backgroundImage.onload = function () {
         mostrarInstrucciones();
     };
@@ -443,5 +668,22 @@ function CargarImagenes() {
     fichaBaratheon.onload = function () {
         mostrarInstrucciones();
     }
+    letrero.onload = function () {
+        mostrarInstrucciones();
+    }
+    smoke.onload = function () {
+        mostrarInstrucciones();
+    }
+    fichaStark.onload = function () {
+        mostrarInstrucciones();
+    }
+    fichaGreyjoy.onload = function () {
+        mostrarInstrucciones();
+    }
+}
+function clearCanvas() {
+    context.globalCompositeOperation = "source-out";
+    context.fillRect(0, 0, canvasWidth, canvasHeight);
+    context.globalCompositeOperation = "source-over";
 }
 CargarImagenes();

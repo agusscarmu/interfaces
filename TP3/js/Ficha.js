@@ -1,33 +1,64 @@
 class Ficha extends Figure {
-    constructor(posX, posY, radius, fill, context, team, image) {
+    constructor(posX, posY, radius, fill, context, team, image, draweable = true) {
         super(posX, posY, fill, context);
         this.team = team;
         this.radius = radius;
         this.image = image; // Agregar la imagen
+        this.draweable = draweable;
     }
 
     draw() {
-        this.context.fillStyle = this.getGradient();
-        this.context.beginPath();
-        this.context.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI);
-        this.context.strokeStyle = this.borderColor;
-        this.context.lineWidth = 1;
-        this.context.fill();
-        this.context.stroke();
-        this.context.closePath();
+        if(context.globalCompositeOperation == "source-over"){
+            if(this.draweable){
+                this.context.fillStyle = this.getGradient();
+            }else{
+                this.context.fillStyle = this.fill;
+            }
+            this.context.beginPath();
+            this.context.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI);
+            this.context.strokeStyle = this.borderColor;
+            this.context.lineWidth = 1;
+            this.context.fill();
+            this.context.stroke();
+            this.context.closePath();
+            this.drawGlowingCircle(this.posX, this.posY, this.radius, this.fill, this.getGradient(), this.radius, 5);
 
-        if (this.image) {
-            // Dibuja la imagen en el centro de la ficha
-            const imageX = this.posX - this.radius; // Calcula la posición X de la imagen
-            const imageY = this.posY - this.radius; // Calcula la posición Y de la imagen
-            this.context.drawImage(this.image, imageX, imageY, this.radius*2, this.radius*2);
+            if (this.image) {
+                // Dibuja la imagen en el centro de la ficha
+                const imageX = this.posX - this.radius + this.radius*0.1; // Calcula la posición X de la imagen
+                const imageY = this.posY - this.radius + this.radius*0.1; // Calcula la posición Y de la imagen
+                this.context.drawImage(this.image, imageX, imageY, this.radius*1.8, this.radius*1.8);
+            }
+        }else{
+            if (this.image) {
+                // Dibuja la imagen en el centro de la ficha
+                const imageX = this.posX - this.radius; // Calcula la posición X de la imagen
+                const imageY = this.posY - this.radius; // Calcula la posición Y de la imagen
+                this.context.drawImage(this.image, imageX, imageY, this.radius*1.8, this.radius*1.8);
+            }
+            this.context.fillStyle = this.getGradient();
+            this.context.beginPath();
+            this.context.arc(this.posX, this.posY, this.radius, 0, 2 * Math.PI);
+            this.context.strokeStyle = this.borderColor;
+            this.context.lineWidth = 1;
+            this.context.fill();
+            this.context.stroke();
+            this.context.closePath();
+            this.drawGlowingCircle(this.posX, this.posY, this.radius, this.fill, this.fill, this.radius, 5);
         }
     }
 
+    getFill() {
+        return this.fill;
+    }
     getTeam() {
         return this.team;
     }
-
+    
+    getRadius() {
+        return this.radius;
+    }
+    
     getGradient() {
         let mezclado = this.mezclarColores(
             this.extraerComponentesRGBA(this.fill), [255, 255, 255, 1], 0.75);
@@ -41,9 +72,6 @@ class Ficha extends Figure {
         return gradient;
     }
     
-    getRadius() {
-        return this.radius;
-    }
     mezclarColores(color1, color2, proporcion) {
         // Extraer los componentes de color RGBA de cada color
         const r1 = color1[0];
@@ -83,5 +111,33 @@ class Ficha extends Figure {
     }
     
     
+    drawGlowingCircle(x, y, radius, glowColor, borderColor, glowIntensity, numSteps) {
+        // Define el radio del círculo interior
+        const innerRadius = radius - glowIntensity;
     
+        for (let i = 0; i < numSteps; i++) {
+            const currentBlur = glowIntensity / numSteps * (i + 1);
+    
+            // Configura el sombreado (brillo) alrededor del círculo
+            context.shadowBlur = currentBlur; // Aumenta la intensidad del brillo
+            context.shadowColor = glowColor; // Color del brillo
+    
+            // Dibuja el círculo con borde
+            context.beginPath();
+            context.arc(x, y, radius, 0, 2 * Math.PI);
+            context.strokeStyle = borderColor; // Color del borde
+            context.lineWidth = 2; // Ancho del borde (ajusta según tu preferencia)
+            context.stroke();
+    
+            // Limpia la configuración de sombra para que no afecte a otros elementos
+            context.shadowBlur = 0;
+            context.shadowColor = 'transparent'; // Puedes cambiarlo al color de fondo del lienzo
+    
+            // Dibuja el círculo interior
+            context.fillStyle = 'transparent'; // Relleno transparente
+            context.arc(x, y, innerRadius, 0, 2 * Math.PI);
+            context.fill();
+            context.closePath();
+        }
+    }
 }
