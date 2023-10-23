@@ -383,34 +383,34 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
 
 // Cargar una imagen de fondo
 const backgroundImage = new Image();
-backgroundImage.src = "./images/trono.jpg";
+backgroundImage.src = "./Juego/images/trono.jpg";
 // Cargar imágenes para los botones
 const botonEnLinea = new Image();
-botonEnLinea.src = "./images/boton1.png";
+botonEnLinea.src = "./Juego/images/boton1.png";
 // Cargar imágenes para el fondo del juego
 const background2 = new Image();
-background2.src = "./images/batalla.jpg";
+background2.src = "./Juego/images/batalla.jpg";
 // Cargar imágenes fondo tablero
 const piedraFondo = new Image();
-piedraFondo.src = "./images/piedraFondo.jpg";
+piedraFondo.src = "./Juego/images/piedraFondo.jpg";
 // Cargar ficha targaryen
 const fichaTargaryen = new Image();
-fichaTargaryen.src = "./images/fichaTargaryen.png";
+fichaTargaryen.src = "./Juego/images/fichaTargaryen.png";
 // Cargar ficha baratheon
 const fichaBaratheon = new Image();
-fichaBaratheon.src = "./images/fichaBaratheon.png";
+fichaBaratheon.src = "./Juego/images/fichaBaratheon.png";
 // Cargar ficha stark
 const fichaStark = new Image();
-fichaStark.src = "./images/fichaStark.png";
+fichaStark.src = "./Juego/images/fichaStark.png";
 // Cargar ficha greyjoy
 const fichaGreyjoy = new Image();
-fichaGreyjoy.src = "./images/fichaGreyjoy.png";
+fichaGreyjoy.src = "./Juego/images/fichaGreyjoy.png";
 // Cargar letrero
 const letrero = new Image();
-letrero.src = "./images/Letrero.png";
+letrero.src = "./Juego/images/Letrero.png";
 // Cargar smoke
 const smoke = new Image();
-smoke.src = "./images/smoke.png";
+smoke.src = "./Juego/images/smoke.png";
 
 
 function CargarImagenes() {    
