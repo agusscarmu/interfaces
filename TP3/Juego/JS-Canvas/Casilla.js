@@ -13,7 +13,7 @@ class Casilla extends Figure {
             const centerX = this.posX + this.sideLength / 2;
             const centerY = this.posY + this.sideLength / 2;
             if(this.ficha){
-                this.context.strokeStyle = this.ficha.getFill();
+                this.context.strokeStyle = this.ficha.draw();
             }else{
                 this.context.fillStyle = this.darkness(this.fill, 0.5);
             }

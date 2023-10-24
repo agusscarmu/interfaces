@@ -7,12 +7,11 @@ let canvasHeight = canvas.height
 function iniciarJuego(cantEnLinea, imagen1, imagen2) {
     let totalFichas = (cantEnLinea+2)*(cantEnLinea+3)
     let sizeFicha = 120/cantEnLinea;
-    let fichas = []
     let pilaA = []
     let pilaB = []
     let tablero = new Tablero(context, cantEnLinea, 'rgba(0, 0, 255, 1)', backgroundImage, sizeFicha)
     let currentPlayer = 1; // Variable para realizar un seguimiento del jugador actual (1 o 2)
-    let fichaActual = null;
+    let fichaActual =  new Ficha(getPosXInicialFicha(), getPosYInicialFicha(), sizeFicha,`rgba(255,0,0,255)`, context, 2, imagen2);
     let finished = false;
     
     function play() {
@@ -24,7 +23,7 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
                 setTimeout(function(){ mostrarMensajeGanador("Gano el jugador 2"); }, 100);
                 finished = true;
             }
-            if(fichas.length!=totalFichas){
+            if(pilaA.length+pilaB.length>0){
                 if(!finished){
                     if (currentPlayer == 2) {
                         addFicha(getPosXInicialFicha(), getPosYInicialFicha(), sizeFicha,`rgba(255,0,0,255)`, 2, imagen2);
@@ -32,6 +31,11 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
                     } else {
                         addFicha(getPosXInicialFicha(), getPosYInicialFicha(), sizeFicha,`rgba(255,255,0,255)`, 1, imagen1);
                         pilaB.pop();
+                    }
+                    // Recorro las entradas del tablero
+                    for (let i = 0; i < tablero.entradaFichas.length; i++) {
+                        // Si la entrada es dibujable
+                        tablero.entradaFichas[i].ficha = fichaActual;
                     }
                     drawAll();
                 }
@@ -183,7 +187,7 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
     
     function addFicha(posX, posY, radius, color, team, image){
         let ficha = new Ficha(posX, posY, radius, color, context, team, image);
-        fichas.push(ficha);
+        fichaActual = ficha;
     }
     
     function drawAll(gCO = "source-over") {
@@ -191,9 +195,10 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
         tablero.draw();
         context.globalCompositeOperation = gCO;
     
-        for (let i = 0; i < fichas.length; i++) {
-            fichas[i].draw();
-        }
+        // for (let i = 0; i < fichas.length; i++) {
+        //     fichas[i].draw();
+        // }
+        fichaActual.draw();
     
         context.globalCompositeOperation = "source-over";
         for (let i = 0; i < pilaA.length; i++) {
@@ -233,7 +238,6 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
     canvas.addEventListener("mousedown", function (event) {
         const clickX = event.clientX - canvas.getBoundingClientRect().left;
         const clickY = event.clientY - canvas.getBoundingClientRect().top;
-        fichaActual = fichas[fichas.length-1];
         // Verifica si el clic ocurrió dentro del radio de la ficha
         if (Math.sqrt((fichaActual.posX - clickX) ** 2 + (fichaActual.posY - clickY) ** 2) <= fichaActual.radius && !finished) {
             isMousePressed = true;
@@ -285,32 +289,31 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
     });
     
     function animateRetorno() {
-        const aux = fichaActual;
         const targetX = getPosXInicialFicha();
         const targetY = getPosYInicialFicha()-fichaActual.radius;
         const gravity = 0.1; // Velocidad de la animación
         let index = 0;
-        fichaActual = null;
         function animate() {
             drawAll();
             if (index == 100) {
-                aux.posX = targetX;
-                aux.posY = targetY;
-                fichaActual = aux;
+                fichaActual.posX = targetX;
+                fichaActual.posY = targetY;
                 drawAll();
             } else {
-                aux.posX += (targetX-aux.posX) * gravity;
-                aux.posY += (targetY-aux.posY) * gravity;
+                fichaActual.posX += (targetX-fichaActual.posX) * gravity;
+                fichaActual.posY += (targetY-fichaActual.posY) * gravity;
                 index++;
                 requestAnimationFrame(animate);
             }
         }
         animate();
     }
-    
+
     function animateFichaFall() {
-        const targetY = tablero.getSuperior()+sizeFicha*(2.75/2)+(sizeFicha*2.75)*filaDisponible(getEntradaApuntada()); // Posición de destino (por ejemplo, el centro del canvas)
-        fichaActual.posX = tablero.getLateral()+sizeFicha*(2.75/2)+(sizeFicha*2.75)*getEntradaApuntada();
+        const entradaApuntada = getEntradaApuntada();
+        const fDisponible = filaDisponible(entradaApuntada); // Fila disponible para la ficha
+        const targetY = tablero.getSuperior()+sizeFicha*(2.75/2)+(sizeFicha*2.75)*fDisponible; // Posición de destino (por ejemplo, el centro del canvas)
+        fichaActual.posX = tablero.getLateral()+sizeFicha*(2.75/2)+(sizeFicha*2.75)*entradaApuntada;
         const gravity = 0.8; // Velocidad de la animación
         let index = -5;
         let rebote = 0;
@@ -330,6 +333,7 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
                 }
             }else{
                 // La ficha ha llegado a su destino
+                tablero.casillas[fDisponible][entradaApuntada].setFicha(fichaActual);
                 currentPlayer = currentPlayer === 1 ? 2 : 1; // Cambia el turno
                 play(); // Inicia el turno del siguiente jugador
             }
@@ -343,7 +347,7 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
         for (let i = tablero.filas-1; i >= 0; i--) {
             const c = tablero.casillas[i][columna];
             if(c.ficha == null){
-                c.setFicha(fichaActual);
+                // c.setFicha(fichaActual);
                 if(fila == 0){
                     tablero.entradaFichas[columna].drawable = false;
                 }
@@ -377,8 +381,11 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
         context.fillText(mensaje, x, y);
     }
     tablero.draw();
+    console.log("tablero dibujado");
     crearPila();
+    console.log("pila creada");
     play();
+    console.log("play iniciado");
 }
 
 // Cargar una imagen de fondo
