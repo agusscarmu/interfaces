@@ -40,7 +40,7 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
                     drawAll();
                 }
             }else{
-                console.log("Empate");
+                setTimeout(function(){ mostrarMensajeGanador("EMPATE"); }, 100);
                 finished = true;
             }
         }
