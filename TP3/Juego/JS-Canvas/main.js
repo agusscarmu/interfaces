@@ -195,10 +195,9 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
         tablero.draw();
         context.globalCompositeOperation = gCO;
     
-        // for (let i = 0; i < fichas.length; i++) {
-        //     fichas[i].draw();
-        // }
-        fichaActual.draw();
+        if(fichaActual != null){
+            fichaActual.draw(); 
+        }
     
         context.globalCompositeOperation = "source-over";
         for (let i = 0; i < pilaA.length; i++) {
@@ -235,7 +234,9 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
     
     
     let isMousePressed = false;
+    let inAnimation = false;
     canvas.addEventListener("mousedown", function (event) {
+        if(!inAnimation){
         const clickX = event.clientX - canvas.getBoundingClientRect().left;
         const clickY = event.clientY - canvas.getBoundingClientRect().top;
         // Verifica si el clic ocurrió dentro del radio de la ficha
@@ -245,6 +246,7 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
             if (fichaActual.team == currentPlayer) {
                 drawAll();
             }
+        }
         }
     });
     
@@ -269,7 +271,7 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
         }
     }
     canvas.addEventListener("mousemove", function (event) {
-        if (isMousePressed) {
+        if (isMousePressed && !inAnimation) {
             fichaActual.posX = event.clientX - canvas.getBoundingClientRect().left;
             fichaActual.posY = event.clientY - canvas.getBoundingClientRect().top;
             drawAll();
@@ -277,7 +279,7 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
     });
     
     canvas.addEventListener("mouseup", function () {
-        if (isMousePressed)  {
+        if (isMousePressed && !inAnimation)  {
             if(getEntradaApuntada()>=0
             && tablero.entradaFichas[getEntradaApuntada()].drawable){
                 animateFichaFall(); // Inicia la animación de caída
@@ -299,6 +301,7 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
                 fichaActual.posX = targetX;
                 fichaActual.posY = targetY;
                 drawAll();
+                inAnimation = false;
             } else {
                 fichaActual.posX += (targetX-fichaActual.posX) * gravity;
                 fichaActual.posY += (targetY-fichaActual.posY) * gravity;
@@ -306,6 +309,7 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
                 requestAnimationFrame(animate);
             }
         }
+        inAnimation = true;
         animate();
     }
 
@@ -333,11 +337,13 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
                 }
             }else{
                 // La ficha ha llegado a su destino
+                inAnimation = false;
                 tablero.casillas[fDisponible][entradaApuntada].setFicha(fichaActual);
                 currentPlayer = currentPlayer === 1 ? 2 : 1; // Cambia el turno
                 play(); // Inicia el turno del siguiente jugador
             }
         }
+        inAnimation = true;
         animate();
         context.globalCompositeOperation = "source-over";
     }
