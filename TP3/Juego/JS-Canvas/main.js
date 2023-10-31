@@ -13,6 +13,81 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
     let currentPlayer = 1; // Variable para realizar un seguimiento del jugador actual (1 o 2)
     let fichaActual =  new Ficha(getPosXInicialFicha(), getPosYInicialFicha(), sizeFicha,`rgba(255,0,0,255)`, context, 2, imagen2);
     let finished = false;
+    let tiempoMaximo = 300; // Tiempo en segundos
+    let tiempoRestante = tiempoMaximo; // Tiempo en segundos
+
+    function actualizarTemporizador() {
+        if (tiempoRestante <= 0) {
+            // Si el tiempo se acaba, termina el juego
+            finished = true;
+            mostrarMensajeGanador('Se acabó el tiempo');
+        }
+        const mensaje = `${tiempoRestante}`;
+        context.font = "30px 'MedievalSharp', serif";
+        if(tiempoRestante <= (tiempoMaximo/4)){
+            actualizarColor();
+        }else{
+            context.fillStyle = `rgb(255,255,224)`;
+        }
+        context.strokeStyle = "black";
+        context.lineWidth = 4;
+        context.textAlign = "center";
+        const x = canvas.width / 2;
+        const y = 50;
+        context.strokeText(mensaje, x, y);
+        context.fillText(mensaje, x, y);
+    }
+    function actualizarColor() {
+        // Calcula una escala de color basada en el tiempo restante
+        const escalaColor = Math.max(0, tiempoRestante / (tiempoMaximo/4)); // Asegúrate de que la escala esté en el rango [0, 1]
+    
+        // Interpola entre "lightyellow" y "red" en función de la escala
+        const r = 255;
+        const g = Math.floor(255 * escalaColor);
+        const b = Math.floor(224 * escalaColor);
+    
+        // Establece el nuevo fillStyle
+        context.fillStyle = `rgb(${r},${g},${b}`;
+    }
+    
+    
+    function iniciarConteo() {    
+        const intervalId = setInterval(function () {
+            tiempoRestante--;
+            if (tiempoRestante <= 0) {
+                actualizarTemporizador();
+                clearInterval(intervalId); // Detén el intervalo cuando llegues a 0 o menos
+                mostrarMensajeGanador('Se acabó el tiempo');
+            }else{
+                drawAll();
+                actualizarTemporizador();
+            }
+            console.log(`Tiempo restante: ${tiempoRestante}s`);
+        }, 10);
+    }
+    iniciarConteo();
+    
+    function drawAll(gCO = "source-over") {
+        clearCanvas();
+        tablero.draw();
+        context.globalCompositeOperation = gCO;
+    
+        if(fichaActual != null){
+            fichaActual.draw(); 
+        }
+    
+        context.globalCompositeOperation = "source-over";
+        for (let i = 0; i < pilaA.length; i++) {
+            pilaA[i].draw();
+        }
+        for (let i = 0; i < pilaB.length; i++) {
+            pilaB[i].draw();
+        }
+        drawEntrada();
+        drawBackground();
+        actualizarTemporizador();
+
+    }
     
     function play() {
         if(!finished){
@@ -190,25 +265,6 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
         fichaActual = ficha;
     }
     
-    function drawAll(gCO = "source-over") {
-        clearCanvas();
-        tablero.draw();
-        context.globalCompositeOperation = gCO;
-    
-        if(fichaActual != null){
-            fichaActual.draw(); 
-        }
-    
-        context.globalCompositeOperation = "source-over";
-        for (let i = 0; i < pilaA.length; i++) {
-            pilaA[i].draw();
-        }
-        for (let i = 0; i < pilaB.length; i++) {
-            pilaB[i].draw();
-        }
-        drawEntrada();
-        drawBackground();
-    }
     function drawBackground(){
         context.globalCompositeOperation = "destination-over";
         context.drawImage(piedraFondo, ((canvasWidth-tablero.columnas*sizeFicha*2.75)/2)-15, tablero.getSuperior(), tablero.columnas*sizeFicha*2.75+30, tablero.filas*sizeFicha*2.75);
