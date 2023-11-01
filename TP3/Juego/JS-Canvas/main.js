@@ -17,25 +17,27 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
     let tiempoRestante = tiempoMaximo; // Tiempo en segundos
 
     function actualizarTemporizador() {
-        if (tiempoRestante <= 0) {
-            // Si el tiempo se acaba, termina el juego
-            finished = true;
-            mostrarMensajeGanador('Se acabó el tiempo');
+        if(!finished){
+            if (tiempoRestante <= 0) {
+                // Si el tiempo se acaba, termina el juego
+                finished = true;
+                mostrarMensajeGanador('Se acabó el tiempo');
+            }
+            const mensaje = `${tiempoRestante}`;
+            context.font = "30px 'MedievalSharp', serif";
+            if(tiempoRestante <= (tiempoMaximo/4)){
+                actualizarColor();
+            }else{
+                context.fillStyle = `rgb(255,255,224)`;
+            }
+            context.strokeStyle = "black";
+            context.lineWidth = 4;
+            context.textAlign = "center";
+            const x = canvas.width / 2;
+            const y = 50;
+            context.strokeText(mensaje, x, y);
+            context.fillText(mensaje, x, y);
         }
-        const mensaje = `${tiempoRestante}`;
-        context.font = "30px 'MedievalSharp', serif";
-        if(tiempoRestante <= (tiempoMaximo/4)){
-            actualizarColor();
-        }else{
-            context.fillStyle = `rgb(255,255,224)`;
-        }
-        context.strokeStyle = "black";
-        context.lineWidth = 4;
-        context.textAlign = "center";
-        const x = canvas.width / 2;
-        const y = 50;
-        context.strokeText(mensaje, x, y);
-        context.fillText(mensaje, x, y);
     }
     function actualizarColor() {
         // Calcula una escala de color basada en el tiempo restante
@@ -53,17 +55,21 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
     
     function iniciarConteo() {    
         const intervalId = setInterval(function () {
-            tiempoRestante--;
-            if (tiempoRestante <= 0) {
-                actualizarTemporizador();
-                clearInterval(intervalId); // Detén el intervalo cuando llegues a 0 o menos
-                mostrarMensajeGanador('Se acabó el tiempo');
+            if(finished){
+                clearInterval(intervalId);
             }else{
-                drawAll();
-                actualizarTemporizador();
+                tiempoRestante--;
+                if (tiempoRestante <= 0) {
+                    actualizarTemporizador();
+                    clearInterval(intervalId); // Detén el intervalo cuando llegues a 0 o menos
+                    mostrarMensajeGanador('Se acabó el tiempo');
+                }else{
+                    drawAll();
+                    actualizarTemporizador();
+                }
+                console.log(`Tiempo restante: ${tiempoRestante}s`);
             }
-            console.log(`Tiempo restante: ${tiempoRestante}s`);
-        }, 10);
+        }, 1000);
     }
     iniciarConteo();
     
@@ -92,11 +98,11 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
     function play() {
         if(!finished){
             if(searchWinner(1)){
+                finished = true;
                 setTimeout(function(){ mostrarMensajeGanador("Gano el jugador 1"); }, 100);
-                finished = true;
             }else if(searchWinner(2)){
-                setTimeout(function(){ mostrarMensajeGanador("Gano el jugador 2"); }, 100);
                 finished = true;
+                setTimeout(function(){ mostrarMensajeGanador("Gano el jugador 2"); }, 100);
             }
             if(pilaA.length+pilaB.length>0){
                 if(!finished){
