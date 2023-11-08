@@ -7,24 +7,104 @@ let canvasHeight = canvas.height
 function iniciarJuego(cantEnLinea, imagen1, imagen2) {
     let totalFichas = (cantEnLinea+2)*(cantEnLinea+3)
     let sizeFicha = 120/cantEnLinea;
-    let fichas = []
     let pilaA = []
     let pilaB = []
     let tablero = new Tablero(context, cantEnLinea, 'rgba(0, 0, 255, 1)', backgroundImage, sizeFicha)
     let currentPlayer = 1; // Variable para realizar un seguimiento del jugador actual (1 o 2)
-    let fichaActual = null;
+    let fichaActual =  new Ficha(getPosXInicialFicha(), getPosYInicialFicha(), sizeFicha,`rgba(255,0,0,255)`, context, 2, imagen2);
     let finished = false;
+    let tiempoMaximo = 300; // Tiempo en segundos
+    let tiempoRestante = tiempoMaximo; // Tiempo en segundos
+
+    function actualizarTemporizador() {
+        if(!finished){
+            if (tiempoRestante <= 0) {
+                // Si el tiempo se acaba, termina el juego
+                finished = true;
+                mostrarMensajeGanador('Se acabó el tiempo');
+            }
+            const mensaje = `${tiempoRestante}`;
+            context.font = "30px 'MedievalSharp', serif";
+            if(tiempoRestante <= (tiempoMaximo/4)){
+                actualizarColor();
+            }else{
+                context.fillStyle = `rgb(255,255,224)`;
+            }
+            context.strokeStyle = "black";
+            context.lineWidth = 4;
+            context.textAlign = "center";
+            const x = canvas.width / 2;
+            const y = 50;
+            context.strokeText(mensaje, x, y);
+            context.fillText(mensaje, x, y);
+        }
+    }
+    function actualizarColor() {
+        // Calcula una escala de color basada en el tiempo restante
+        const escalaColor = Math.max(0, tiempoRestante / (tiempoMaximo/4)); // Asegúrate de que la escala esté en el rango [0, 1]
+    
+        // Interpola entre "lightyellow" y "red" en función de la escala
+        const r = 255;
+        const g = Math.floor(255 * escalaColor);
+        const b = Math.floor(224 * escalaColor);
+    
+        // Establece el nuevo fillStyle
+        context.fillStyle = `rgb(${r},${g},${b}`;
+    }
+    
+    
+    function iniciarConteo() {    
+        const intervalId = setInterval(function () {
+            if(finished){
+                clearInterval(intervalId);
+            }else{
+                tiempoRestante--;
+                if (tiempoRestante <= 0) {
+                    actualizarTemporizador();
+                    clearInterval(intervalId); // Detén el intervalo cuando llegues a 0 o menos
+                    mostrarMensajeGanador('Se acabó el tiempo');
+                }else{
+                    drawAll();
+                    actualizarTemporizador();
+                }
+                console.log(`Tiempo restante: ${tiempoRestante}s`);
+            }
+        }, 1000);
+    }
+    iniciarConteo();
+    
+    function drawAll(gCO = "source-over") {
+        clearCanvas();
+        tablero.draw();
+        context.globalCompositeOperation = gCO;
+    
+        if(fichaActual != null){
+            fichaActual.draw(); 
+        }
+    
+        context.globalCompositeOperation = "source-over";
+        for (let i = 0; i < pilaA.length; i++) {
+            pilaA[i].draw();
+        }
+        for (let i = 0; i < pilaB.length; i++) {
+            pilaB[i].draw();
+        }
+        drawEntrada();
+        drawBackground();
+        actualizarTemporizador();
+
+    }
     
     function play() {
         if(!finished){
             if(searchWinner(1)){
+                finished = true;
                 setTimeout(function(){ mostrarMensajeGanador("Gano el jugador 1"); }, 100);
-                finished = true;
             }else if(searchWinner(2)){
-                setTimeout(function(){ mostrarMensajeGanador("Gano el jugador 2"); }, 100);
                 finished = true;
+                setTimeout(function(){ mostrarMensajeGanador("Gano el jugador 2"); }, 100);
             }
-            if(fichas.length!=totalFichas){
+            if(pilaA.length+pilaB.length>0){
                 if(!finished){
                     if (currentPlayer == 2) {
                         addFicha(getPosXInicialFicha(), getPosYInicialFicha(), sizeFicha,`rgba(255,0,0,255)`, 2, imagen2);
@@ -33,10 +113,15 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
                         addFicha(getPosXInicialFicha(), getPosYInicialFicha(), sizeFicha,`rgba(255,255,0,255)`, 1, imagen1);
                         pilaB.pop();
                     }
+                    // Recorro las entradas del tablero
+                    for (let i = 0; i < tablero.entradaFichas.length; i++) {
+                        // Si la entrada es dibujable
+                        tablero.entradaFichas[i].ficha = fichaActual;
+                    }
                     drawAll();
                 }
             }else{
-                console.log("Empate");
+                setTimeout(function(){ mostrarMensajeGanador("EMPATE"); }, 100);
                 finished = true;
             }
         }
@@ -183,28 +268,9 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
     
     function addFicha(posX, posY, radius, color, team, image){
         let ficha = new Ficha(posX, posY, radius, color, context, team, image);
-        fichas.push(ficha);
+        fichaActual = ficha;
     }
     
-    function drawAll(gCO = "source-over") {
-        clearCanvas();
-        tablero.draw();
-        context.globalCompositeOperation = gCO;
-    
-        for (let i = 0; i < fichas.length; i++) {
-            fichas[i].draw();
-        }
-    
-        context.globalCompositeOperation = "source-over";
-        for (let i = 0; i < pilaA.length; i++) {
-            pilaA[i].draw();
-        }
-        for (let i = 0; i < pilaB.length; i++) {
-            pilaB[i].draw();
-        }
-        drawEntrada();
-        drawBackground();
-    }
     function drawBackground(){
         context.globalCompositeOperation = "destination-over";
         context.drawImage(piedraFondo, ((canvasWidth-tablero.columnas*sizeFicha*2.75)/2)-15, tablero.getSuperior(), tablero.columnas*sizeFicha*2.75+30, tablero.filas*sizeFicha*2.75);
@@ -230,10 +296,11 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
     
     
     let isMousePressed = false;
+    let inAnimation = false;
     canvas.addEventListener("mousedown", function (event) {
+        if(!inAnimation){
         const clickX = event.clientX - canvas.getBoundingClientRect().left;
         const clickY = event.clientY - canvas.getBoundingClientRect().top;
-        fichaActual = fichas[fichas.length-1];
         // Verifica si el clic ocurrió dentro del radio de la ficha
         if (Math.sqrt((fichaActual.posX - clickX) ** 2 + (fichaActual.posY - clickY) ** 2) <= fichaActual.radius && !finished) {
             isMousePressed = true;
@@ -241,6 +308,7 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
             if (fichaActual.team == currentPlayer) {
                 drawAll();
             }
+        }
         }
     });
     
@@ -265,7 +333,7 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
         }
     }
     canvas.addEventListener("mousemove", function (event) {
-        if (isMousePressed) {
+        if (isMousePressed && !inAnimation) {
             fichaActual.posX = event.clientX - canvas.getBoundingClientRect().left;
             fichaActual.posY = event.clientY - canvas.getBoundingClientRect().top;
             drawAll();
@@ -273,7 +341,7 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
     });
     
     canvas.addEventListener("mouseup", function () {
-        if (isMousePressed)  {
+        if (isMousePressed && !inAnimation)  {
             if(getEntradaApuntada()>=0
             && tablero.entradaFichas[getEntradaApuntada()].drawable){
                 animateFichaFall(); // Inicia la animación de caída
@@ -285,32 +353,33 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
     });
     
     function animateRetorno() {
-        const aux = fichaActual;
         const targetX = getPosXInicialFicha();
         const targetY = getPosYInicialFicha()-fichaActual.radius;
         const gravity = 0.1; // Velocidad de la animación
         let index = 0;
-        fichaActual = null;
         function animate() {
             drawAll();
             if (index == 100) {
-                aux.posX = targetX;
-                aux.posY = targetY;
-                fichaActual = aux;
+                fichaActual.posX = targetX;
+                fichaActual.posY = targetY;
                 drawAll();
+                inAnimation = false;
             } else {
-                aux.posX += (targetX-aux.posX) * gravity;
-                aux.posY += (targetY-aux.posY) * gravity;
+                fichaActual.posX += (targetX-fichaActual.posX) * gravity;
+                fichaActual.posY += (targetY-fichaActual.posY) * gravity;
                 index++;
                 requestAnimationFrame(animate);
             }
         }
+        inAnimation = true;
         animate();
     }
-    
+
     function animateFichaFall() {
-        const targetY = tablero.getSuperior()+sizeFicha*(2.75/2)+(sizeFicha*2.75)*filaDisponible(getEntradaApuntada()); // Posición de destino (por ejemplo, el centro del canvas)
-        fichaActual.posX = tablero.getLateral()+sizeFicha*(2.75/2)+(sizeFicha*2.75)*getEntradaApuntada();
+        const entradaApuntada = getEntradaApuntada();
+        const fDisponible = filaDisponible(entradaApuntada); // Fila disponible para la ficha
+        const targetY = tablero.getSuperior()+sizeFicha*(2.75/2)+(sizeFicha*2.75)*fDisponible; // Posición de destino (por ejemplo, el centro del canvas)
+        fichaActual.posX = tablero.getLateral()+sizeFicha*(2.75/2)+(sizeFicha*2.75)*entradaApuntada;
         const gravity = 0.8; // Velocidad de la animación
         let index = -5;
         let rebote = 0;
@@ -330,10 +399,13 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
                 }
             }else{
                 // La ficha ha llegado a su destino
+                inAnimation = false;
+                tablero.casillas[fDisponible][entradaApuntada].setFicha(fichaActual);
                 currentPlayer = currentPlayer === 1 ? 2 : 1; // Cambia el turno
                 play(); // Inicia el turno del siguiente jugador
             }
         }
+        inAnimation = true;
         animate();
         context.globalCompositeOperation = "source-over";
     }
@@ -343,7 +415,7 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
         for (let i = tablero.filas-1; i >= 0; i--) {
             const c = tablero.casillas[i][columna];
             if(c.ficha == null){
-                c.setFicha(fichaActual);
+                // c.setFicha(fichaActual);
                 if(fila == 0){
                     tablero.entradaFichas[columna].drawable = false;
                 }
@@ -377,40 +449,43 @@ function iniciarJuego(cantEnLinea, imagen1, imagen2) {
         context.fillText(mensaje, x, y);
     }
     tablero.draw();
+    console.log("tablero dibujado");
     crearPila();
+    console.log("pila creada");
     play();
+    console.log("play iniciado");
 }
 
 // Cargar una imagen de fondo
 const backgroundImage = new Image();
-backgroundImage.src = "./images/trono.jpg";
+backgroundImage.src = "./Juego/images/trono.jpg";
 // Cargar imágenes para los botones
 const botonEnLinea = new Image();
-botonEnLinea.src = "./images/boton1.png";
+botonEnLinea.src = "./Juego/images/boton1.png";
 // Cargar imágenes para el fondo del juego
 const background2 = new Image();
-background2.src = "./images/batalla.jpg";
+background2.src = "./Juego/images/batalla.jpg";
 // Cargar imágenes fondo tablero
 const piedraFondo = new Image();
-piedraFondo.src = "./images/piedraFondo.jpg";
+piedraFondo.src = "./Juego/images/piedraFondo.jpg";
 // Cargar ficha targaryen
 const fichaTargaryen = new Image();
-fichaTargaryen.src = "./images/fichaTargaryen.png";
+fichaTargaryen.src = "./Juego/images/fichaTargaryen.png";
 // Cargar ficha baratheon
 const fichaBaratheon = new Image();
-fichaBaratheon.src = "./images/fichaBaratheon.png";
+fichaBaratheon.src = "./Juego/images/fichaBaratheon.png";
 // Cargar ficha stark
 const fichaStark = new Image();
-fichaStark.src = "./images/fichaStark.png";
+fichaStark.src = "./Juego/images/fichaStark.png";
 // Cargar ficha greyjoy
 const fichaGreyjoy = new Image();
-fichaGreyjoy.src = "./images/fichaGreyjoy.png";
+fichaGreyjoy.src = "./Juego/images/fichaGreyjoy.png";
 // Cargar letrero
 const letrero = new Image();
-letrero.src = "./images/Letrero.png";
+letrero.src = "./Juego/images/Letrero.png";
 // Cargar smoke
 const smoke = new Image();
-smoke.src = "./images/smoke.png";
+smoke.src = "./Juego/images/smoke.png";
 
 
 function CargarImagenes() {    

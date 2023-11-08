@@ -41,12 +41,7 @@ class Tablero {
         for (let i = 0; i < this.filas; i++) {
             for (let j = 0; j < this.columnas; j++) {
                 if(this.casillas[i][j].getTeam()!=null){
-                    this.drawGlowingCircle(this.casillas[i][j].getX()+this.sizeFicha*1.375,
-                    this.casillas[i][j].getY()+this.sizeFicha*1.375,
-                    this.sizeFicha,
-                    this.casillas[i][j].getColorFicha(),
-                    this.casillas[i][j].getColorFicha(),
-                    this.sizeFicha, 5);
+                    this.casillas[i][j].draw();
                 }
             }
         }
@@ -85,7 +80,9 @@ class Tablero {
     draw() {
         for (let i = 0; i < this.filas; i++) {
             for (let j = 0; j < this.columnas; j++) {
-                this.casillas[i][j].draw();
+                if(this.casillas[i][j].getTeam()==null){
+                    this.casillas[i][j].draw();
+                }
             }
         }
         this.context.globalCompositeOperation = "source-out";
