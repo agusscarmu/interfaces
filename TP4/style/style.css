@@ -1,0 +1,454 @@
+body{
+    max-width: 1280px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('ruta/donde/esta/almacenada/lato-regular.ttf') format('truetype');
+    /* Agrega aquí otros formatos de fuente si tienes, como woff, woff2, etc. */
+    /* Ejemplo para la fuente regular, ajusta según las variantes de Lato que tengas */
+}
+
+.nav-bar{
+    background: linear-gradient(180deg, #5499F8 0%, #5499F8 87.91%, rgba(84, 153, 248, 0.00) 100%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    height: 15vh;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.nav-bar .logo{
+    width: 10%;
+    height: 40%px;
+}
+
+/* .nav-bar .logo.hidden{
+    display: none;
+} */
+
+.hidden{
+    opacity: 0;
+    transition: all 1s;
+}
+
+.show{
+    opacity: 1;
+}
+
+.nav-bar .logo img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.nav-bar .menu-toggle{
+    display: flex;
+    justify-content: flex-start;
+    width: 15%;
+}
+
+.nav-bar .comprar-button{
+    text-align: center;
+    width: 10%;
+    height: 20px;
+    flex-shrink: 0;
+    border-radius: 111px;
+    border: 8px solid var(--2982-ff, #2982FF);
+    background: #FFE901;
+    padding: 10px 20px;
+    box-shadow: 4px 5px 0px 0px #02187E;
+    font-family: 'Lato', sans-serif;
+    color: #02187E;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 94.5%; /* 18.9px */
+    letter-spacing: 2.2px;
+
+}
+section.first-section{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 5%;
+    width: 1280px;
+    height: 85vh;
+    top: 4vh;
+    margin: 0;
+    position: relative;
+    z-index: 0;
+    padding: 0;
+}
+
+
+.first-section .sky{
+    top: -10%;
+    position: absolute;
+    width: 1280px;
+    object-fit: cover;
+}
+
+
+.first-section .edificios {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    bottom: 0;
+    padding: 0;
+    z-index: 1;
+}
+
+.first-section .edificio-centro{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    bottom: 0;
+    padding: 0;
+    z-index: 0;
+}
+
+.first-section .edificio-centro img{
+    width: 100%;
+    max-width: 543.5px;
+    object-fit: cover;
+
+}
+
+.first-section .edificios img{
+    width: 100%; /* Para que las imágenes ocupen el ancho completo del contenedor */
+    max-width: 426.6px; /* Ajusta según sea necesario para tu diseño */
+    margin: 0; /* Agrega un margen entre las imágenes */
+}
+
+.first-section .main-logo{
+    position: absolute;
+    width: 590px;
+    height: 301px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: -10%;
+}
+
+.first-section .main-logo img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.first-section .spiders{
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+}
+
+.first-section .spiders .gwen{
+    position: absolute;
+    left: 80px;
+    top: 280px;
+    width: 360px;
+    height: 444px;
+}
+
+.first-section .spiders .peter{
+    position: absolute;
+    top: 320px;
+    left: 380px;
+    width: 465px;
+    height: 465px;
+}
+
+.first-section .spiders .miles{
+    position: absolute;
+    right: 200px;
+    top: 220px;
+    width: 393px;
+    height: 393px;
+}
+
+.webs{
+    z-index: 4;
+}
+
+.web-peter{
+    position: absolute;
+    top: 310px;
+    left: 0;
+    width: 550px;
+    height: 627px;
+    z-index: 1;
+}
+
+.web-miles{
+    position: absolute;
+    top: 250px;
+    right: 0;
+    left: auto;
+    width: 25%;
+    z-index: 1;
+}
+/* .first-section .spiders .gwen:hover, .first-section .spiders .peter:hover, .first-section .spiders .miles:hover{
+    transform: scale(1.1);
+    transition: 0.9s;
+} */
+
+
+/* SECOND SECTION */
+
+.second-section{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    top: 91%;
+    z-index: 1;
+}
+
+.text-zone{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    color: #FFF;
+    position: absolute;
+    width: 50%;
+    top: 120%;
+    left: 10%;
+    text-align: initial;
+    z-index: 2;
+}
+.text-zone p{
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.text-zone h1{
+    font-family: 'Lato', sans-serif;
+    font-size: 60px;
+    line-height: 60px;
+    text-align: initial;
+    margin: 0;
+    padding: 0;
+}
+
+.duende-verde{
+    position: absolute;
+    top: 108%;
+    height: 921px;
+    width: 553px;
+    right: 0;
+    z-index: 2;
+}
+
+.duende-verde img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+.gameplay{
+    position: absolute;
+    top: 165%;
+    width: 60%;
+    left: 10%;
+    z-index: 1;
+}
+
+.gameplay img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* THIRD SECTION */
+
+section.third-section{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 200%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.third-section .cards{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+}
+
+.third-section .cards .gameplay-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 300px;
+    height: 50%;
+}
+
+.third-section .cards .gameplay-card p{
+    color: #000;
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.gameplay-card img{
+    width: 330px;
+    height: 300px;
+    object-fit: cover;
+}
+
+/* FOURTH SECTION */
+
+.fourth-section{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 315%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    background: #000;
+    
+}
+
+.fourth-section .gwen-section{
+    width: 1280px;
+    height: 566px;
+    position: absolute;
+    top: -100px;
+}
+
+.fourth-section .gwen-section .cards-gwen{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.fourth-section .gwen-section .cards-gwen .card-gwen1{
+    width: auto;
+    height: 456.509px;
+    position: absolute;
+    padding: 0;
+    top: -740px;
+    left: 45px;
+}
+
+.fourth-section .gwen-section .cards-gwen .card-gwen2{
+    width: auto;
+    height: 525.787px;
+    position: absolute;
+    top: -590px;
+    left: 40px;
+}
+.fourth-section .gwen-section .cards-gwen .card-gwen3{
+    width: auto;
+    height: 626.509px;
+    position: absolute;
+    top: -420px;
+    left: 50px;
+}
+
+/* Company section */
+
+.company-section{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+}
+
+.company-section h2 {
+    color: #FFF;
+    font-family: 'Lato', sans-serif;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%; /* Ajusta el valor según sea necesario para aumentar el espacio entre líneas */
+    position: absolute;
+    max-width: 660px;
+    left: 100px;
+    top: 600px;
+}
+
+
+
+.company-section .postal-company{
+    margin-top: 900px;
+    width: 1077.059px;
+    height: 527.626px;
+    
+}
+
+.company-section .postal-company .trees{
+    position: absolute;
+    top: 900px;
+}
+
+.company-section .postal-company .elastic{
+    position: absolute;
+    top: 805px;
+    left: 130px;
+}
+
+.company-section .postal-company .bpanter{
+    position: absolute;
+    width: auto;
+    height: 552.462px;
+    top: 685px;
+    left: 580px;
+}
+
+.company-section .postal-company .hulk{
+    position: absolute;
+    top: 71%;
+    right: 50px;
+}
+
+.company-section .postal-company .grass{
+    position: absolute;
+    top: 900px;
+}
+
