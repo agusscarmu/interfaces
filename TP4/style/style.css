@@ -81,7 +81,7 @@ section.first-section{
     padding: 0 5%;
     width: 1280px;
     height: 85vh;
-    top: 4vh;
+    top: 50px;
     margin: 0;
     position: relative;
     z-index: 0;
@@ -90,7 +90,7 @@ section.first-section{
 
 
 .first-section .sky{
-    top: -10%;
+    top: -80px;
     position: absolute;
     width: 1280px;
     object-fit: cover;
@@ -106,6 +106,7 @@ section.first-section{
     bottom: 0;
     padding: 0;
     z-index: 1;
+    top: 750px;
 }
 
 .first-section .edificio-centro{
@@ -117,6 +118,7 @@ section.first-section{
     bottom: 0;
     padding: 0;
     z-index: 0;
+    top: 750px;
 }
 
 .first-section .edificio-centro img{
@@ -139,7 +141,7 @@ section.first-section{
     display: flex;
     justify-content: center;
     align-items: center;
-    top: -10%;
+    top: -80px;
 }
 
 .first-section .main-logo img{
@@ -218,7 +220,7 @@ section.first-section{
     align-items: center;
     position: absolute;
     width: 100%;
-    top: 91%;
+    top: 680px;
     z-index: 1;
 }
 
@@ -230,7 +232,7 @@ section.first-section{
     color: #FFF;
     position: absolute;
     width: 50%;
-    top: 120%;
+    top: 890px;
     left: 10%;
     text-align: initial;
     z-index: 2;
@@ -252,7 +254,7 @@ section.first-section{
 
 .duende-verde{
     position: absolute;
-    top: 108%;
+    top: 800px;
     height: 921px;
     width: 553px;
     right: 0;
@@ -268,7 +270,7 @@ section.first-section{
 
 .gameplay{
     position: absolute;
-    top: 165%;
+    top: 1220px;
     width: 60%;
     left: 8%;
     z-index: 1;
@@ -288,7 +290,7 @@ section.third-section{
     flex-direction: column;
     align-items: center;
     position: absolute;
-    top: 200%;
+    top: 1750px;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -335,7 +337,7 @@ section.third-section{
     flex-direction: column;
     align-items: center;
     position: absolute;
-    top: 315%;
+    top: 2750px;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -470,7 +472,7 @@ section.third-section{
 }
 .fifth-section{
     position: absolute;
-    top: 120%;
+    top: 1700px;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -492,7 +494,7 @@ section.third-section{
     line-height: 94.5%; 
     margin: 0;
     padding: 0;
-    margin-bottom: -6%;
+    margin-bottom: -80px;
 }
 
 .fifth-section .article{
@@ -504,7 +506,7 @@ section.third-section{
 }
 
 .fifth-section .article .text-container{
-    top: 0;
+    top: 0px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -536,7 +538,7 @@ section.third-section{
 
 .fourth-section .sixth-section{
     position: absolute;
-    top: 230%;
+    top: 3300px;
     background: #000;
     width: 100%;
     height: 650px;
@@ -589,7 +591,7 @@ section.third-section{
 
 .seventh-section{
     position: absolute;
-    top: 275%;
+    top: 3926px;
     width: 100%;
     height: 650px;
     z-index: 0;
@@ -602,7 +604,7 @@ section.third-section{
 
 .seventh-section.custom{
     position: absolute;
-    top: 275%;
+    top: 3926px;
     width: 100%;
     height: 650px;
     z-index: 6;
@@ -620,7 +622,7 @@ section.third-section{
 
 .seventh-section .svg-white2{
     position: absolute;
-    top: -170px;
+
     z-index: 7;
     /* transform: scaleY(-1); */
 }
@@ -631,7 +633,7 @@ section.third-section{
     position: absolute;
     width: 268px;
     height: 416.5px;
-    top: 275%;
+    top: 3920px;
     left: 180px;
     z-index: 8;
 }
@@ -640,7 +642,7 @@ section.third-section{
     position: absolute;
     width: 416.5px;
     height: 457.5px;
-    top: 276%;
+    top: 3940px;
     left: 400px;
     z-index: 8;
 }
@@ -649,7 +651,7 @@ section.third-section{
     position: absolute;
     width: 313.5px;
     height: 398.5px;
-    top: 275%;
+    top: 3920px;
     right: 180px;
     z-index: 8;
 }
@@ -677,13 +679,13 @@ section.third-section{
 
 .seventh-section .bordersup-svg{
     position: absolute;
-    top: -170px;
+    top: -173px;
     z-index: 2;
 }
 
 .seventh-section .borderinf-svg{
     position: absolute;
-    top: 523px;
+    top: 526px;
     z-index: 2;
 }
 
@@ -692,7 +694,7 @@ section.third-section{
 
 .eighth-section{
     position: absolute;
-    top: 899%;
+    top: 7870px;
     width: 100%;
     height: 650px;
     z-index: 1;
@@ -720,7 +722,7 @@ section.third-section{
     display: flex;
     justify-content: center;
     align-items: center;
-    top: -85%;
+    top: -530px;
     padding: 0;
     z-index: 2;
     display: flex;
