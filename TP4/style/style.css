@@ -1,9 +1,9 @@
 body{
-    max-width: 1280px;
-    width: 100%;
+    width: 1280px;
     margin: 0;
     padding: 0;
 }
+
 
 @font-face {
     font-family: 'Lato';
@@ -99,7 +99,7 @@ section.first-section{
 
 .first-section .edificios {
     position: absolute;
-    width: 100%;
+    width: 1280px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -340,7 +340,7 @@ section.third-section{
     top: 2750px;
     margin: 0;
     padding: 0;
-    width: 100%;
+    width: 1280px;
     height: auto;
     background: #000;
 }
@@ -846,7 +846,7 @@ section.third-section{
 
 .footer{
     position: absolute;
-    width: 100%;
+    width: 1280px;
     height: 598px;
     display: flex;
     flex-direction: column;
