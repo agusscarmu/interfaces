@@ -11,7 +11,10 @@ body {
   --spiderweb-top: 200px;
 
   --venom-left: 400px;
-  --venom-top: 400px;
+  --venom-top: 390px;
+
+  --miles-left: 250px;
+  --miles-top: 400px;
 }
 
 /* SPIDERMAN */
@@ -79,7 +82,7 @@ body {
   animation: transform 0.6s steps(1) forwards, prepare 2s steps(1) 0.6s infinite;
 }
 #eddie.venom {
-  animation: prepare 2s steps(1) 0.1s infinite;
+  animation: prepare_venom 2s steps(1) 0.1s infinite;
 }
 @keyframes transform {
   0% {
@@ -97,7 +100,7 @@ body {
   100% {
     background-position: -1252px -90px;}
 }
-@keyframes prepare {
+@keyframes prepare_venom {
   0% {
     width: 65px;
     background-position: -1772px -254px;}
@@ -124,9 +127,12 @@ body {
     background-position: -1161px -254px;}
 }
 #eddie.venom.attack {
-  animation: attackVenom 0.6s steps(1) forwards;
+  animation: attack_venom 0.6s steps(1) forwards;
 }
-@keyframes attackVenom {
+#eddie.venom.hitted {
+  animation: hitted_venom 0.6s steps(1) forwards;
+}
+@keyframes attack_venom {
   0% {
     width: 65px;
     background-position: -629px -114px;}
@@ -145,4 +151,69 @@ body {
   100%{
     width:100px;
     background-position: -124px -114px;}
+}
+@keyframes hitted_venom {
+  0% {
+    width: 50px;
+    background-position: -586px -279px;}
+  33% {
+    width: 63px;
+    left: calc(var(--venom-left) - 13px);
+    background-position: -203px -204px;}
+  66%  {
+    width: 50px;
+    left: calc(var(--venom-left) + 13px);
+    background-position: -639px -279px;}
+}
+/* MILES */
+#miles {
+  scale: 2;
+  width: 37px;
+  height: 42px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: var(--miles-left);
+  top: var(--miles-top);
+  background: url(miles_spritesheet.png);
+  background-position: -22px -175px;
+  /*478 x 44*/
+  animation: prepare_miles 0.8s steps(2) infinite;
+}
+@keyframes prepare_miles {
+  0% {
+    background-position: -162px -244px;}
+  100% {
+    background-position: -235px -244px;}
+}
+#miles.attack {
+  animation: attack_miles 0.6s steps(1) forwards;
+}
+#miles.hitted {
+  animation: hitted_miles 0.6s steps(1) forwards;
+}
+@keyframes hitted_miles {
+  0% {
+    background-position: -154px -319px;}
+  20%  {
+    background-position: -365px -319px;}
+  45% {
+    left: calc(var(--miles-left) - 10px);
+  background-position: -237px -319px;}
+  80% {
+    left: calc(var(--miles-left) + 10px);
+  background-position: -287px -319px;}
+  100%{
+    background-position: -365px -319px;}
+}
+@keyframes attack_miles {
+  0% {
+    background-position: -27px -244px;}
+  33% {
+    background-position: -72px -244px;}
+  56%  {
+    width: 43px;
+    background-position: -113px -244px;}
+  100%  {
+    width: 43px;
+    background-position: -113px -244px;}
 }

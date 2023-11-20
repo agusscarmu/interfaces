@@ -1,6 +1,8 @@
 let isVenom = false;
 let inAttack = false;
 var eddie = document.getElementById('eddie');
+var miles = document.getElementById('miles');
+
 eddie.addEventListener('mouseover', function(){
     if(!isVenom){
         eddie.classList.add('transform');
@@ -16,15 +18,22 @@ eddie.addEventListener('mouseover', function(){
 
 eddie.addEventListener('mouseover', function() {
     if(!inAttack && isVenom){
-        attackVenom(eddie);
+        attack(eddie, miles);
+    }
+});
+miles.addEventListener('mouseover', function() {
+    if(!inAttack && isVenom){
+        attack(miles, eddie);
     }
 });
 
-function attackVenom(elemento) {
-    elemento.classList.add('attack');
+function attack(elemento1, elemento2) {
+    elemento1.classList.add('attack');
+    elemento2.classList.add('hitted');
     inAttack = true;
     setTimeout(function() {
-        elemento.classList.remove('attack');
+        elemento1.classList.remove('attack');
+        elemento2.classList.remove('hitted');
         inAttack = false
     }, 700);
 }
