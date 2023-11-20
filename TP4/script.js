@@ -89,3 +89,11 @@ document.addEventListener("DOMContentLoaded", function() {
       backGroundWhite.classList.remove("over");
   }
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+  // Simula una carga de 5 segundos antes de mostrar el contenido
+  setTimeout(function() {
+      document.querySelector('.loader-container').style.display = 'none';
+      document.querySelector('.content').classList.remove('hidden');
+  }, 5000);
+});
