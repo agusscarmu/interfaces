@@ -6,7 +6,11 @@
 document.addEventListener("DOMContentLoaded", function() {
   var sky = document.querySelector(".first-section .sky");
   var edif = document.querySelector(".edificios");
-  var edifCenter = document.querySelector(".edificio-centro");
+  var edif1 = document.querySelector(".edificio1");
+  var edif2 = document.querySelector(".edificio2");
+
+
+  var edifCenter = document.querySelector(".edificio3");
 
   var logo = document.querySelector(".first-section .main-logo");
   const velocityLogo = 2.2;
@@ -40,11 +44,13 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log(lastScrolled + "last")
     // Edificios
     if(scrolled > 200){
-      edif.style.transform = "scale(" + ((scrolled-200)* 0.0005 + 1) + ") translateY(" + (-(lastScrolled * 1.00 + 1)) + "px)";
+    //   edif.style.transform = "scale(" + ((scrolled-200)* 0.0005 + 1) + ") translateY(" + (-(lastScrolled * 1.00 + 1)) + "px)";
       edifCenter.style.transform = "scale(" + (scrolled * 0.0002 + 1) + ") translateY(" + (lastScrolled * 0.0005 + 1) + "px)";
+      edif2.style.width = (388-(scrolled*0.0002*1280/2))+"px";
+      edif1.style.width = (388-(scrolled*0.0002*1280/2))+"px";
     }else{
       edif.style.transform = "translateY(" + (-(scrolled * 1.00 + 1)) + "px)";
-      edifCenter.style.transform = "scale(" + (scrolled * 0.0002 + 1) + ") translateY(" + (scrolled * 0.0005 + 1) + "px)";
+      edifCenter.style.width = "scale(" + (scrolled * 0.0002 + 1) + ") translateY(" + (scrolled * 0.0005 + 1) + "px)";
       lastScrolled = scrolled;
     }
     // Logo
