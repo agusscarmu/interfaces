@@ -196,7 +196,7 @@ document.addEventListener("DOMContentLoaded", function() {
       document.querySelector('.loader-container').style.display = 'none';
       document.querySelector('.content').classList.remove('hidden');
       document.querySelector('.bkg-content').classList.remove('hidden');
-  }, 100);
+  }, 5000);
 });
 
 // SPRITE SHEETS
