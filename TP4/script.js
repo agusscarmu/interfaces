@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Edificios
     if(scrolled > 200){
     //   edif.style.transform = "scale(" + ((scrolled-200)* 0.0005 + 1) + ") translateY(" + (-(lastScrolled * 1.00 + 1)) + "px)";
-        edifCenter.style.transform = "scale(" + (scrolled * 0.0002 + 1) + ") translateY(" + (lastScrolled * 0.0005 + 1) + "px)";
+        edifCenter.style.transform = "scale(" + (scrolled * 0.0001 + 1) + ") translateY(" + (lastScrolled * 0.0005 + 1) + "px)";
         edif2.style.width = (388-(scrolled*0.0002*1280/2))+"px";
         edif1.style.width = (388-(scrolled*0.0002*1280/2))+"px";
     }else{
