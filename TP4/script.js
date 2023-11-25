@@ -41,8 +41,6 @@ document.addEventListener("DOMContentLoaded", function() {
     var scrolled = window.scrollY;
     var totalHeight = document.documentElement.scrollHeight - window.innerHeight; // Altura total del contenido
     var scrolledPercentage = (scrolled / totalHeight) * 100; // Calcula el porcentaje
-    console.log("scrollHeight: "+ document.documentElement.scrollHeight + ", height: "+ window.innerHeight)
-    console.log(scrolledPercentage+"%");
     // Edificios
     if(scrolled > 200){
     //   edif.style.transform = "scale(" + ((scrolled-200)* 0.0005 + 1) + ") translateY(" + (-(lastScrolled * 1.00 + 1)) + "px)";
@@ -114,7 +112,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
     if(scrolledPercentage > 39 ){
-        console.log(scrolledPercentage+"%")
         bp.classList.add("active");
     }else{
         bp.classList.remove("active");
@@ -191,23 +188,6 @@ document.addEventListener("DOMContentLoaded", function() {
       backGroungPeter.classList.add("hidden");
       backGroungGwen.classList.remove("hidden");
   });
-
-
-  function removeClicked() {
-      gwen2.classList.remove("clicked");
-      miles2.classList.remove("clicked");
-      peter2.classList.remove("clicked");
-
-      gwen2.classList.remove("blur");
-      miles2.classList.remove("blur");
-      peter2.classList.remove("blur");
-
-      backGroungGwen.classList.add("hidden");
-      backGroungMiles.classList.add("hidden");
-      backGroungPeter.classList.add("hidden");
-
-      backGroundWhite.classList.remove("over");
-  }
 });
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -218,3 +198,44 @@ document.addEventListener("DOMContentLoaded", function() {
       document.querySelector('.bkg-content').classList.remove('hidden');
   }, 100);
 });
+
+// SPRITE SHEETS
+let isVenom = false;
+let inAttack = false;
+var eddie = document.getElementById('eddie');
+var miles = document.getElementById('miles');
+
+eddie.addEventListener('click', function(){
+    if(!isVenom){
+        eddie.classList.add('transform');
+    }
+    setTimeout(function(){
+        eddie.classList.add('venom');
+        eddie.style.backgroundPosition = '-1772px -254px';
+        eddie.style.width = '65px';
+        },600);
+    setTimeout(function(){
+        isVenom = true;},1000);
+})
+
+eddie.addEventListener('click', function() {
+    if(!inAttack && isVenom){
+        attack(eddie, miles);
+    }
+});
+miles.addEventListener('click', function() {
+    if(!inAttack && isVenom){
+        attack(miles, eddie);
+    }
+});
+
+function attack(elemento1, elemento2) {
+    elemento1.classList.add('attack');
+    elemento2.classList.add('hitted');
+    inAttack = true;
+    setTimeout(function() {
+        elemento1.classList.remove('attack');
+        elemento2.classList.remove('hitted');
+        inAttack = false
+    }, 700);
+}
