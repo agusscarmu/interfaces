@@ -44,13 +44,15 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("scrollHeight: "+ document.documentElement.scrollHeight + ", height: "+ window.innerHeight)
     console.log(scrolledPercentage+"%");
     // Edificios
-    if(scrolledPercentage > 2.4){
-      edif.style.transform = "scale(" + ((scrolledPercentage-2.4) * 0.01 + 1) + ") translateY(" + (-(scrolledPercentage)) + "%)";
-      edifCenter.style.transform = "scale(" + ((scrolledPercentage-2.4) * 0.01 + 1) + ") translateY(" + (lastScrolled * 0.0005 + 1) + "px)";
+    if(scrolled > 200){
+    //   edif.style.transform = "scale(" + ((scrolled-200)* 0.0005 + 1) + ") translateY(" + (-(lastScrolled * 1.00 + 1)) + "px)";
+        edifCenter.style.transform = "scale(" + (scrolled * 0.0002 + 1) + ") translateY(" + (lastScrolled * 0.0005 + 1) + "px)";
+        edif2.style.width = (388-(scrolled*0.0002*1280/2))+"px";
+        edif1.style.width = (388-(scrolled*0.0002*1280/2))+"px";
     }else{
-      edif.style.transform = "translateY(" + (-(scrolledPercentage)) + "%)";
-      edifCenter.style.transform = "scale(" + (scrolled * 0.0002 + 1) + ") translateY(" + (scrolled * 0.0005 + 1) + "px)";
-      lastScrolled = scrolled;
+        edif.style.transform = "translateY(" + (-(scrolled * 1.00 + 1)) + "px)";
+        edifCenter.style.width = "scale(" + (scrolled * 0.0002 + 1) + ") translateY(" + (scrolled * 0.0005 + 1) + "px)";
+        lastScrolled = scrolled;
     }
     // Logo
     if(scrolled/velocityLogo < 150)

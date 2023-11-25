@@ -562,6 +562,7 @@ section.third-section{
 
 .company-section .h2 {
     position: absolute;
+    overflow: hidden;
     max-width: 660px;
     left: 0px;
     top: 0px;
@@ -1188,7 +1189,7 @@ section.third-section{
     gap: 100px;
     align-items: flex-start;
     width: 100vw;
-    height: 600px;
+    height: 700px;
     margin: 0;
     padding-top: 30px;
     position: relative;
@@ -1218,7 +1219,7 @@ section.third-section{
 }
 
 .bkground .first-section .sky{
-    top: -100px;
+    top: calc(350px - 35vw);
     position: absolute;
     width: 100vw;
     object-fit: cover;
@@ -1284,27 +1285,43 @@ section.third-section{
     width: 100vw;
     height: 566px;
     position: absolute;
-    top: -210px;
+    display: flex;
+    justify-content: center;
+    top: -150px;
+    z-index: 3;
+}
+.bkground .fourth-section .gwen-section .pink{
+    border-left: 100vw solid #C92B94;
+    border-bottom: 7vw solid black;
+    border-top: 4.2vw solid white;
+    height: calc(485px - 5vw);
+    position: absolute;
+    top: calc(33px - 2.5vw);
+    z-index: 0;
 }
 .bkground .fourth-section .gwen-section-bkg {
+    position: absolute;
     background-color: black;
-    width: 100vw;
-    height: 820px;
-    top: -210px;
+    border-right: 100vw solid black;
+    border-bottom: 10vw solid white;
+    height: 920px;
+    top: calc(310px - 4vw);
+    z-index: 2;
 }
 .bkground .fourth-section .gwen-section img{
-    width: 100vw;
+    width: 1280px;
+    z-index: 1;
 }
 
 /* SIXTH SECTION */
 
 .bkground .fourth-section .sixth-section {
     position: absolute;
-    top: 3167px;
+    top: calc(3340px - 10vw);
     z-index: 0;
-    border-bottom: 175px solid white;
+    border-bottom: 10vw solid white;
     border-left: 100vw solid black;
-    border-top: 125px solid white;
+    border-top: 10vw solid white;
     width: 0;
     height: 340px;
 }
