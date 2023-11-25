@@ -6,7 +6,11 @@
 document.addEventListener("DOMContentLoaded", function() {
   var sky = document.querySelector(".first-section .sky");
   var edif = document.querySelector(".edificios");
-  var edifCenter = document.querySelector(".edificio-centro");
+  var edif1 = document.querySelector(".edificio1");
+  var edif2 = document.querySelector(".edificio2");
+
+
+  var edifCenter = document.querySelector(".edificio3");
 
   var logo = document.querySelector(".first-section .main-logo");
   const velocityLogo = 2.2;
@@ -31,6 +35,8 @@ document.addEventListener("DOMContentLoaded", function() {
   let bp = document.querySelector(".company-section .postal-company .bpanter");
   let ms = document.querySelector(".company-section .postal-company .elastic");
   let hulk = document.querySelector(".company-section .postal-company .hulk");
+  let trees = document.querySelector(".company-section .postal-company .trees");
+  let grass = document.querySelector(".company-section .postal-company .grass");
   document.addEventListener("scroll", function() {
     var scrolled = window.scrollY;
     var totalHeight = document.documentElement.scrollHeight - window.innerHeight; // Altura total del contenido
@@ -86,9 +92,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }else{
         textDuendeP.classList.remove("active-text");
     }
-    if(scrolledPercentage > 7 && scrolledPercentage < 7){
+    if(scrolledPercentage > 7 && scrolledPercentage < 20){
         duendeVerde.classList.add("active");
-        duendeVerde.style.transform = "translateY(" + (scrolledPercentage-7)*2 + "%)";
+        duendeVerde.style.transform = "translateY(" + (scrolledPercentage) + "%)";
     }else if(scrolled < 550){
         duendeVerde.classList.remove("active");
     }
@@ -207,5 +213,6 @@ document.addEventListener("DOMContentLoaded", function() {
   setTimeout(function() {
       document.querySelector('.loader-container').style.display = 'none';
       document.querySelector('.content').classList.remove('hidden');
-  }, 0);
+      document.querySelector('.bkg-content').classList.remove('hidden');
+  }, 100);
 });
