@@ -3,6 +3,8 @@
 }
 body {
     display: flex;
+    width: 100vw;
+    overflow-x: hidden;
     background-color: transparent;
     justify-content: center;
     position: relative;
@@ -109,8 +111,32 @@ section.first-section{
     padding: 0;
     z-index: 1;
     top: 80px;
+    overflow-x: hidden;
 }
-
+.first-section .edificios .edificio2 {
+    position: relative;
+    width: 388px;
+    height: 744px;
+    overflow: hidden;
+}
+.first-section .edificios .edificio2 img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left center;
+}
+.first-section .edificios .edificio1 {
+    position: relative;
+    width: 361px;
+    height: 569px;
+    overflow: hidden;
+}
+.first-section .edificios .edificio1 img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: right center;
+}
 .first-section .edificio-centro{
     position: absolute;
     width: 1280px;
@@ -133,6 +159,7 @@ section.first-section{
     width: 100%; /* Para que las imágenes ocupen el ancho completo del contenedor */
     max-width: 426.6px; /* Ajusta según sea necesario para tu diseño */
     margin: 0; /* Agrega un margen entre las imágenes */
+    object-fit: cover;
 }
 
 .first-section .main-logo{
@@ -178,8 +205,8 @@ section.first-section{
 
 .first-section .spiders .peter{
     position: absolute;
-    top: 320px;
-    left: 310px;
+    top: 300px;
+    left: 280px;
     width: 465px;
     height: 465px;
     transform: scale(0);
@@ -210,8 +237,8 @@ section.first-section{
 
 .web-peter{
     position: absolute;
-    top: 310px;
-    left: -70px;
+    top: 290px;
+    left: -100px;
     width: 550px;
     height: 627px;
     z-index: 1;
@@ -250,14 +277,21 @@ section.first-section{
     top: 680px;
     z-index: 1;
 }
+.second-section.back{
+    width: 1280px;
+}
 
 .second-section.front{
-    left: 2000px;
-    transition: left 0.5s;
+    width: 0px;
+    left: -100px;
+    transition: width 0.5s;
+
 }
 
 .second-section.front.active{
-    left: 0;
+    width: 1280px;
+    transition: width 0.5s;
+
 }
 
 .text-zone{
@@ -304,22 +338,26 @@ section.first-section{
     position: absolute;
     top: 800px;
     height: 921px;
-    width: 553px;
-    right: -100%;
+    width: 0px;
+    right: -9.2%;
     z-index: 2;
+    overflow: hidden;
     transition: right 0.5s; 
+    transition: width 0.5s;
 }
 
 .duende-verde.active{
     right: -5%;
+    width: 553px;
     transition: right 0.5s;
+    transition: width 0.5s;
 }
 
 .duende-verde img{
     width: 100%;
     height: 100%;
     object-fit: cover;
-
+    object-position: left center;
 }
 
 .gameplay{
@@ -610,7 +648,7 @@ section.third-section{
     position: absolute;
     top: 415px;
     right: 50px;
-    transform: translateX(350px);
+    transform: translateY(350px);
     transition: transform .5s;
     z-index: 10;
 }
