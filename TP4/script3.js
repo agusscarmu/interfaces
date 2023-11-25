@@ -39,18 +39,17 @@ document.addEventListener("DOMContentLoaded", function() {
   let grass = document.querySelector(".company-section .postal-company .grass");
   document.addEventListener("scroll", function() {
     var scrolled = window.scrollY;
-    var  maxsize = (-(scrolled-3850)* 0.0005 + 1);
-    console.log(scrolled)
-    console.log(lastScrolled + "last")
+    var totalHeight = document.documentElement.scrollHeight - window.innerHeight; // Altura total del contenido
+    var scrolledPercentage = (scrolled / totalHeight) * 100; // Calcula el porcentaje
+    console.log("scrollHeight: "+ document.documentElement.scrollHeight + ", height: "+ window.innerHeight)
+    console.log(scrolledPercentage+"%");
     // Edificios
-    if(scrolled > 200){
-    //   edif.style.transform = "scale(" + ((scrolled-200)* 0.0005 + 1) + ") translateY(" + (-(lastScrolled * 1.00 + 1)) + "px)";
-      edifCenter.style.transform = "scale(" + (scrolled * 0.0002 + 1) + ") translateY(" + (lastScrolled * 0.0005 + 1) + "px)";
-      edif2.style.width = (388-(scrolled*0.0002*1280/2))+"px";
-      edif1.style.width = (388-(scrolled*0.0002*1280/2))+"px";
+    if(scrolledPercentage > 2.4){
+      edif.style.transform = "scale(" + ((scrolledPercentage-2.4) * 0.01 + 1) + ") translateY(" + (-(scrolledPercentage)) + "%)";
+      edifCenter.style.transform = "scale(" + ((scrolledPercentage-2.4) * 0.01 + 1) + ") translateY(" + (lastScrolled * 0.0005 + 1) + "px)";
     }else{
-      edif.style.transform = "translateY(" + (-(scrolled * 1.00 + 1)) + "px)";
-      edifCenter.style.width = "scale(" + (scrolled * 0.0002 + 1) + ") translateY(" + (scrolled * 0.0005 + 1) + "px)";
+      edif.style.transform = "translateY(" + (-(scrolledPercentage)) + "%)";
+      edifCenter.style.transform = "scale(" + (scrolled * 0.0002 + 1) + ") translateY(" + (scrolled * 0.0005 + 1) + "px)";
       lastScrolled = scrolled;
     }
     // Logo
@@ -58,70 +57,73 @@ document.addEventListener("DOMContentLoaded", function() {
       logo.style.transform = "scale(" + (scrolled/velocityLogo * 0.02 + 1) + ") translateY(" + (scrolled/velocityLogo * 1.00 + 1) + "px)";
 
     // Spideys
-    if(scrolled > 300){
+    if(scrolledPercentage > 4){
+       
         peter.classList.add("show");
         webPeter.classList.add("show");
-    }else if(scrolled < 300){
+    }else{
+
         peter.classList.remove("show");
         webPeter.classList.remove("show");
     }
-    if(scrolled > 350){
+    if(scrolledPercentage > 4.3){
         miles.classList.add("show");
         webMiles.classList.add("show");
 
         gwen.classList.add("show");
-    }else if(scrolled < 350){
+    }else{
         miles.classList.remove("show");
         webMiles.classList.remove("show");
 
         gwen.classList.remove("show");
     }
-    if(scrolled > 400){
+    if(scrolledPercentage > 5){
         secondSectionFront.classList.add("active");
     }else{
         secondSectionFront.classList.remove("active");
     }
-    if(scrolled > 750){
+    if(scrolledPercentage > 9.25){
         textDuende.classList.add("active");
     }else{
         textDuende.classList.remove("active");
     }
-    if(scrolled > 950){
+    if(scrolledPercentage > 11.8){
         textDuendeP.classList.add("active-text");
     }else{
         textDuendeP.classList.remove("active-text");
     }
-    if(scrolled > 550 && scrolled < 1450){
+    if(scrolledPercentage > 7 && scrolledPercentage < 20){
         duendeVerde.classList.add("active");
-        duendeVerde.style.transform = "translateY(" + ((scrolled-1300) * 0.2 + 1) + "px)";
+        duendeVerde.style.transform = "translateY(" + (scrolledPercentage) + "%)";
     }else if(scrolled < 550){
         duendeVerde.classList.remove("active");
     }
-
-    if(scrolled > 1450 && scrolled < 3000){
+    
+    if(scrolledPercentage > 18.33){
         cards.classList.add("active");
     }else{
         cards.classList.remove("active");
     }
 
-    if(scrolled > 3150 ){
+    if(scrolledPercentage > 37){
         titleCompanion.classList.add("active");
-        setTimeout(function(){
-        bp.classList.add("active");
-        }, 500);
     }else{
         titleCompanion.classList.remove("active");
-        setTimeout(function(){
-            bp.classList.remove("active");
-            }, 500);
     }
-    if(scrolled>3250){
+    
+    if(scrolledPercentage > 39 ){
+        console.log(scrolledPercentage+"%")
+        bp.classList.add("active");
+    }else{
+        bp.classList.remove("active");
+    }
+    if(scrolledPercentage>40){
         ms.classList.add("active");
     }else{
         ms.classList.remove("active");
     }
 
-    if(scrolled>3100){
+    if(scrolledPercentage>35){
         hulk.classList.add("active");
     }else{
         hulk.classList.remove("active");

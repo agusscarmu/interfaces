@@ -303,10 +303,10 @@ section.first-section{
     position: absolute;
     width: 50%;
     top: 890px;
-    left: -50%;
+    left: -100%;
     text-align: initial;
     z-index: 2;
-    transition: left 0.5s;
+    transition: left 0.9s;
 }
 .text-zone p{
     font-size: 20px;
@@ -336,7 +336,7 @@ section.first-section{
 
 .duende-verde{
     position: absolute;
-    top: 800px;
+    top: 600px;
     height: 921px;
     width: 0px;
     right: -9.2%;

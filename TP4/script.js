@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }else{
         textDuendeP.classList.remove("active-text");
     }
-    if(scrolledPercentage > 7 && scrolledPercentage < 10.8){
+    if(scrolledPercentage > 7 && scrolledPercentage < 7){
         duendeVerde.classList.add("active");
         duendeVerde.style.transform = "translateY(" + (scrolledPercentage-7)*2 + "%)";
     }else if(scrolled < 550){
