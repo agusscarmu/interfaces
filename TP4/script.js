@@ -8,11 +8,12 @@ document.addEventListener("DOMContentLoaded", function() {
   var edif = document.querySelector(".edificios");
   var edif1 = document.querySelector(".edificio1");
   var edif2 = document.querySelector(".edificio2");
-
+    const sensibility = 10;
 
   var edifCenter = document.querySelector(".edificio3");
 
   var logo = document.querySelector(".first-section .main-logo");
+  var logoNav = document.querySelector(".nav-bar .logo");
   const velocityLogo = 2.2;
 
   var gwen = document.getElementById("g");
@@ -30,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
   let duendeVerde = document.querySelector(".duende-verde");
 
   let cards = document.querySelector(".third-section .cards");
+  let navbar = document.querySelector(".nav-bar");
 
   let titleCompanion = document.querySelector(".company-section .h2");
   let bp = document.querySelector(".company-section .postal-company .bpanter");
@@ -41,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var scrolled = window.scrollY;
     var totalHeight = document.documentElement.scrollHeight - window.innerHeight; // Altura total del contenido
     var scrolledPercentage = (scrolled / totalHeight) * 100; // Calcula el porcentaje
+    console.log(scrolledPercentage);
     // Edificios
     if(scrolled > 200){
     //   edif.style.transform = "scale(" + ((scrolled-200)* 0.0005 + 1) + ") translateY(" + (-(lastScrolled * 1.00 + 1)) + "px)";
@@ -50,12 +53,22 @@ document.addEventListener("DOMContentLoaded", function() {
     }else{
         edif.style.transform = "translateY(" + (-(scrolled * 1.00 + 1)) + "px)";
         edifCenter.style.width = "scale(" + (scrolled * 0.0002 + 1) + ") translateY(" + (scrolled * 0.0005 + 1) + "px)";
-        lastScrolled = scrolled;
-    }
-    // Logo
-    if(scrolled/velocityLogo < 150)
-      logo.style.transform = "scale(" + (scrolled/velocityLogo * 0.02 + 1) + ") translateY(" + (scrolled/velocityLogo * 1.00 + 1) + "px)";
 
+    }
+    if(scrolled<lastScrolled){
+        navbar.classList.remove("nav-hidden");
+    }else{
+        navbar.classList.add("nav-hidden");
+    }
+    
+    // Logo
+    if(scrolledPercentage > 6.5){
+        logoNav.classList.add("in-nav");
+        navbar.classList.add("nav-secondary");
+    }else{
+        logoNav.classList.remove("in-nav");
+        navbar.classList.remove("nav-secondary");
+    }
     // Spideys
     if(scrolledPercentage > 4){
        
@@ -128,6 +141,7 @@ document.addEventListener("DOMContentLoaded", function() {
         hulk.classList.remove("active");
     }
 
+    lastScrolled = scrolled;
 
 
   });
