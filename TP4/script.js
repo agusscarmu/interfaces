@@ -39,6 +39,19 @@ document.addEventListener("DOMContentLoaded", function() {
   let hulk = document.querySelector(".company-section .postal-company .hulk");
   let trees = document.querySelector(".company-section .postal-company .trees");
   let grass = document.querySelector(".company-section .postal-company .grass");
+  let fifthSection = document.querySelector(".fifth-section");
+
+  let image1 = document.getElementById("image1");
+  let image2 = document.getElementById("image2");
+  let image3 = document.getElementById("image3");
+  let image4 = document.getElementById("image4");
+  let content1 = document.getElementById("content1");
+  let content2 = document.getElementById("content2");
+  let content3 = document.getElementById("content3");
+  let content4 = document.getElementById("content4");
+
+  let fifthText = document.querySelector(".fifth-section h2");
+
   document.addEventListener("scroll", function() {
     var scrolled = window.scrollY;
     var totalHeight = document.documentElement.scrollHeight - window.innerHeight; // Altura total del contenido
@@ -55,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
         edifCenter.style.width = "scale(" + (scrolled * 0.0002 + 1) + ") translateY(" + (scrolled * 0.0005 + 1) + "px)";
 
     }
-    if(scrolled<lastScrolled){
+    if(scrolled<lastScrolled && scrolled<0){
         navbar.classList.remove("nav-hidden");
     }else{
         navbar.classList.add("nav-hidden");
@@ -139,6 +152,51 @@ document.addEventListener("DOMContentLoaded", function() {
         hulk.classList.add("active");
     }else{
         hulk.classList.remove("active");
+    }
+    if(scrolledPercentage>46){
+        fifthText.classList.add("active");
+    }else{
+        fifthText.classList.remove("active");
+    }
+    if(scrolledPercentage>50 && scrolledPercentage<65){
+        fifthSection.style.transform = "translateY(" + ((scrolledPercentage-50)*12+120) + "%)";
+    }
+    if(scrolledPercentage<53.75){
+        image1.classList.add("active");
+        content1.classList.add("active");
+        image4.classList.remove("active");
+        content4.classList.remove("active");
+        image2.classList.remove("active");
+        content2.classList.remove("active");
+        image3.classList.remove("active");
+        content3.classList.remove("active");
+    }else if(scrolledPercentage>=53.75 && scrolledPercentage<57.5){
+        image2.classList.add("active");
+        content2.classList.add("active");
+        image1.classList.remove("active");
+        content1.classList.remove("active");
+        image3.classList.remove("active");
+        content3.classList.remove("active");
+        image4.classList.remove("active");
+        content4.classList.remove("active");
+    }else if(scrolledPercentage>=57.5 && scrolledPercentage<61.25){
+        image3.classList.add("active");
+        content3.classList.add("active");
+        image2.classList.remove("active");
+        content2.classList.remove("active");
+        image1.classList.remove("active");
+        content1.classList.remove("active");
+        image4.classList.remove("active");
+        content4.classList.remove("active");
+    }else{
+        image4.classList.add("active");
+        content4.classList.add("active");
+        image3.classList.remove("active");
+        content3.classList.remove("active");
+        image2.classList.remove("active");
+        content2.classList.remove("active");
+        image1.classList.remove("active");
+        content1.classList.remove("active");
     }
 
     lastScrolled = scrolled;
