@@ -435,7 +435,7 @@ section.third-section{
     flex-direction: column;
     align-items: center;
     position: relative;
-    top: 800px;
+    top: 600px;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -731,14 +731,11 @@ section.third-section{
     width: 1080px;
     justify-content: center;
     flex-direction: column;
-    transform: translateY(55%);
+    transform: translateY(150%);
     z-index: 100000;
     pointer-events:none;
-    /* transition: transform 0.1s; */
-}
-
-.fifth-section.hidden{
-    opacity: 0;
+    position: absolute;
+    transition: all 0.5s;
 }
 
 .fifth-section .fifth-section-content{
@@ -746,8 +743,15 @@ section.third-section{
     justify-content: space-between;
     align-items: flex-start;
     flex-direction: column;
+    transform: translateX(-200%);
     width: 100%;
     height: 100%;
+    transition: transform 0.5s;
+}
+
+.fifth-section .fifth-section-content.active{
+    transform: translateX(0);
+    transition: transform 0.5s;
 }
 
 .fifth-section h2{

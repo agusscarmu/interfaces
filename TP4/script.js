@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
   let hulk = document.querySelector(".company-section .postal-company .hulk");
   let trees = document.querySelector(".company-section .postal-company .trees");
   let grass = document.querySelector(".company-section .postal-company .grass");
-  let fifthSection = document.querySelector(".fifth-section");
+  let fifthSection = document.querySelector(".fifth-section .fifth-section-content");
 
   let image1 = document.getElementById("image1");
   let image2 = document.getElementById("image2");
@@ -159,9 +159,9 @@ document.addEventListener("DOMContentLoaded", function() {
         fifthText.classList.remove("active");
     }
     if(scrolledPercentage>50 && scrolledPercentage<65){
-        fifthSection.classList.remove("hidden");
+        fifthSection.classList.add("active");
     }else{
-        fifthSection.classList.add("hidden");
+        fifthSection.classList.remove("active");
     }
     if(scrolledPercentage<53.75){
         image1.classList.add("active");
