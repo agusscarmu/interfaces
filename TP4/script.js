@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
         edifCenter.style.width = "scale(" + (scrolled * 0.0002 + 1) + ") translateY(" + (scrolled * 0.0005 + 1) + "px)";
 
     }
-    if(scrolled<lastScrolled && scrolled<0){
+    if(scrolled<lastScrolled){
         navbar.classList.remove("nav-hidden");
     }else{
         navbar.classList.add("nav-hidden");
@@ -159,7 +159,9 @@ document.addEventListener("DOMContentLoaded", function() {
         fifthText.classList.remove("active");
     }
     if(scrolledPercentage>50 && scrolledPercentage<65){
-        fifthSection.style.transform = "translateY(" + ((scrolledPercentage-50)*12+120) + "%)";
+        fifthSection.classList.remove("hidden");
+    }else{
+        fifthSection.classList.add("hidden");
     }
     if(scrolledPercentage<53.75){
         image1.classList.add("active");
