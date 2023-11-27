@@ -1,7 +1,7 @@
 
 "use strict";
 
-
+let menu = document.querySelector(".menu");
 
 document.addEventListener("DOMContentLoaded", function() {
   var sky = document.querySelector(".first-section .sky");
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
   let lastScrolled = 0;
 
   
-
+  
   let secondSectionFront = document.querySelector(".second-section.front");
   let textDuende = document.querySelector(".text-zone");
   let textDuendeP = document.querySelector(".text-zone p");
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
         edifCenter.style.width = "scale(" + (scrolled * 0.0002 + 1) + ") translateY(" + (scrolled * 0.0005 + 1) + "px)";
 
     }
-    if(scrolled<lastScrolled){
+    if(scrolled<lastScrolled || scrolledPercentage<6 || menu.classList.contains('active')){
         navbar.classList.remove("nav-hidden");
     }else{
         navbar.classList.add("nav-hidden");
@@ -215,6 +215,25 @@ document.addEventListener("DOMContentLoaded", function() {
   var backGroungPeter = document.getElementById("bpeter");
   var backGroundWhite = document.getElementById("bwhite");
 
+  var botones = document.querySelectorAll(".button");
+  var reflex = document.querySelectorAll(".reflex");
+
+  botones.forEach(function(boton) {
+    // Añade el event listener para el evento "mouseenter" (cuando el mouse entra)
+    boton.addEventListener("mouseenter", function() {
+        var indice = Array.from(botones).indexOf(boton);
+        var reflex = document.querySelectorAll(".reflex")[indice];  
+        reflex.classList.add("activate");  
+    });
+  
+    // Añade el event listener para el evento "mouseleave" (cuando el mouse sale)
+    boton.addEventListener("mouseleave", function() {
+        var indice = Array.from(botones).indexOf(boton);
+        var reflex = document.querySelectorAll(".reflex")[indice];
+        reflex.classList.remove("activate");
+    });
+  });
+
   // Agrega un listener para el evento de clic
   peter2.addEventListener("mouseenter", function() {
       backGroundWhite.classList.add("over");
@@ -262,11 +281,24 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
+
+function activateMenu(){
+    let item1 = document.getElementById("item1");
+    let item2 = document.getElementById("item2");
+    let item3 = document.getElementById("item3");
+    let item4 = document.getElementById("item4");
+    menu.classList.toggle('active');
+    item1.classList.toggle('active');
+    item2.classList.toggle('active');
+    item3.classList.toggle('active');
+    item4.classList.toggle('active');
+}
 // Hamburguer Menu
 function toggleMenu() {
     var menuToggle = document.querySelector('.menu-toggle');
     console.log(menuToggle);
     menuToggle.classList.toggle('active');
+    activateMenu();
 }
 
 

@@ -13,6 +13,29 @@ body {
     position: absolute;
 }
 
+.button{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.reflex{
+    position: absolute;
+    width: 500px;
+    height: 20px;
+    background: #FFF;
+    opacity: 0.5;
+    z-index: 1;
+    transform: rotate(135deg) translateX(100px) translateY(-150px);
+}
+
+.reflex.activate{
+    transform: rotate(135deg) translateY(150px);
+    transition: transform 1s;
+}
+
 :root{
     --white: #f3f3f3;
 }
@@ -60,14 +83,13 @@ body {
     margin: 0;
     position: sticky;
     top: 0;
-    z-index: 10000;
-    transition: all 0.5s;
+    z-index: 100000;
+    transition: background 0.5s;
     pointer-events:all;
 }
 
 .nav-bar.nav-secondary{
     background: var(--white);
-    height: 80px;
     transition: all 0.5s;
 }
 
@@ -76,12 +98,116 @@ body {
     transition: transform 0.5s;
 }
 
+.menu-section {
+    position: absolute;
+    width: 1280px;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    top: 0;
+    z-index: 1000;
+    pointer-events:none;
+}
+
+
+.menu{
+    position: sticky;
+    width: 20%;
+    height: 100vh;
+    padding-top: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: rgba(41, 130, 255, 0.5);
+    border-right: #02187E 5px solid;
+    transform: translateY(-150%);
+    top: 0;
+    z-index: 10000;
+    transition: all 0.5s;
+    pointer-events: all;
+}
+
+.menu.active{
+    transform: translateY(5%);
+    transition: all 0.5s;
+}
+
+.menu ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    gap: 30px;
+    padding: 0;
+    list-style-type: none; /* Quita los marcadores de lista */
+}
+
+
+
+.menu-section .menu ul li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    background-color: #FFE901;
+    height: 60px;
+    border: 8px solid var(--2982-ff, #2982FF);
+    box-shadow: 4px 5px 0px 0px #02187E;
+    text-decoration: none;
+    list-style: none;
+    margin: 0;
+    border-radius: 10px;
+    transform: skew(-20deg) translateX(-500%);
+    padding: 0;
+    color: #02187E;
+    font-family: var(--font);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 94.5%; /* 18.9px */
+    letter-spacing: 2.2px;
+}
+
+#item1.active{
+    transform: skew(-20deg) translateX(0);
+    transition: transform .6s, background-color .5s;
+}
+#item2.active{
+    transform: skew(-20deg) translateX(0);
+    transition: transform .8s, background-color .5s;
+}
+#item3.active{
+    transform: skew(-20deg) translateX(0);
+    transition: transform 1s, background-color .5s;
+}
+#item4.active{
+    transform: skew(-20deg) translateX(0);
+    transition: transform 1.2s, background-color .5s;
+}
+.menu ul li a {
+    text-decoration: none; /* Quita el subrayado de los enlaces dentro de los <li> */
+    color: inherit; /* Utiliza el color del texto heredado (puede ajustarse según sea necesario) */
+}
+
+
+.menu ul li:hover{
+    background-color: rgb(255, 49, 49);
+    color: white;
+    transition: background-color 0.4s ease, color 0.4s ease; /* Agrega transiciones suaves */
+    cursor: pointer;
+}
+
 .nav-bar-content{
     display: flex;
     width: 1080px;
+    max-width: 1080px;
     justify-content: space-between;
     align-items: center;
     top: 0;
+    z-index: 100;
     height: 100%;
 }
 
@@ -137,12 +263,15 @@ body {
     transition: transform 0.3s ease, width 0.3s ease-in-out, height 0.3s ease-in-out, stroke-width 0.2s ease-in-out;
 }
 
+.menu-toggle:hover{
+    cursor: pointer;
+}
+
 .nav-bar .comprar-button{
     display: flex;
     text-align: center;
     justify-content: center;
     align-items: center;
-    width: 10%;
     height: 20px;
     flex-shrink: 0;
     border-radius: 111px;
@@ -778,7 +907,7 @@ section.third-section{
     justify-content: center;
     align-items: flex-start;
     top: 46.8%;
-    z-index: 1000;
+    z-index: 100;
     pointer-events:none;
 }
 
@@ -960,9 +1089,6 @@ section.third-section{
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.fourth-section .sixth-section .comprar-button .button-text{
     color: #02187E;
     font-family: 'Lato', sans-serif;
     font-size: 20px;
@@ -972,12 +1098,12 @@ section.third-section{
     letter-spacing: 2.2px;
 }
 .nav-bar .comprar-button:hover,
-.fourth-section .sixth-section .comprar-button:hover {
-    background-color: #2982FF;
-    /* Cambia el color de fondo al pasar el mouse sobre el botón */
-    text-shadow: 2px 2px 4px yellow; /* Sombra de texto amarilla */
-    box-shadow: 0 0 10px yellow; /* Sombra al botón */
-    transition: background-color 0.6s ease, color 0.6s ease, box-shadow 0.8s ease; /* Agrega transiciones suaves */
+.fourth-section .sixth-section .comprar-button:hover,
+.content-end .mail .button-suscribe:hover, 
+.menu-section .menu ul li:hover{
+    background-color: rgb(255, 49, 49);
+    color: white;
+    transition: background-color 0.4s ease, color 0.4s ease; /* Agrega transiciones suaves */
     cursor: pointer;
 }
 
@@ -1189,14 +1315,6 @@ section.third-section{
     line-height: 94.5%;
     letter-spacing: 2.2px;
     transition: background-color 0.3s ease, color 0.6s ease; /* Agrega transiciones suaves */
-}
-
-.content-end .mail .button-suscribe:hover {
-    background-color: #2982FF;
-    /* Cambia el color de fondo al pasar el mouse sobre el botón */
-    color: yellow; /* Cambia el color de texto al pasar el mouse sobre el botón */
-    text-shadow: 2px 2px 4px yellow; /* Sombra de texto amarilla */
-    cursor: pointer;
 }
 
 
