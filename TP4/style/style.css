@@ -13,6 +13,81 @@ body {
     position: absolute;
 }
 
+.scroll-down{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000001;
+    pointer-events:none;
+    opacity: .7;
+    transition: opacity 0.5s;
+}
+
+.scroll-down h2{
+    color: #FFF;
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+    padding: 0;
+
+}
+
+.scroll-down .icon{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    gap: 55px;
+    z-index: 1000001;
+    pointer-events:none;
+    animation: jump 1s infinite;
+}
+
+@keyframes jump {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.scroll-down .icon .left{
+    width: 5%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 1000001;
+    pointer-events:none;
+    background-color: #dddddd;
+    transform: rotate(135deg);
+    border-radius: 100px;
+}
+.scroll-down .icon .right{
+    width: 5%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 1000001;
+    pointer-events:none;
+    background-color: #dddddd;
+    transform: rotate(45deg);
+    border-radius: 100px;
+}
+
+
 .button{
     display: flex;
     position: relative;

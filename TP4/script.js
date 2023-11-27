@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
   var peter = document.getElementById("p");
   var webPeter = document.querySelector(".web-peter");
   let lastScrolled = 0;
-
+    let scrollDown = document.querySelector(".scroll-down");
   
   
   let secondSectionFront = document.querySelector(".second-section.front");
@@ -114,7 +114,11 @@ document.addEventListener("DOMContentLoaded", function() {
     }else{
         navbar.classList.add("nav-hidden");
     }
-    
+    if(scrolledPercentage>1){
+        scrollDown.classList.add("hidden");
+    }else{
+        scrollDown.classList.remove("hidden");
+    }
     // Logo
     if(scrolledPercentage > 6.5){
         logoNav.classList.add("in-nav");
