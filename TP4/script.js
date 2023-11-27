@@ -264,13 +264,21 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
+// Hamburguer Menu
+function toggleMenu() {
+    var menuToggle = document.querySelector('.menu-toggle');
+    console.log(menuToggle);
+    menuToggle.classList.toggle('active');
+}
+
+
 document.addEventListener("DOMContentLoaded", function() {
   // Simula una carga de 5 segundos antes de mostrar el contenido
   setTimeout(function() {
       document.querySelector('.loader-container').style.display = 'none';
       document.querySelector('.content').classList.remove('hidden');
       document.querySelector('.bkg-content').classList.remove('hidden');
-  }, 5000);
+  }, 500);
 });
 
 // SPRITE SHEETS
