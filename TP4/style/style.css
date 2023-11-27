@@ -981,13 +981,14 @@ section.third-section{
 .fifth-section-absolute{
     position: absolute;
     width: 1280px;
-    height: 1360px;
+    height: 13.89%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    top: 46.8%;
+    top: 4590px;
     z-index: 100;
     pointer-events:none;
+    transition: all 0.5s;
 }
 
 .fifth-section-sticky{
@@ -997,7 +998,7 @@ section.third-section{
     transform: translateY(300%);
     width: 100%;
     flex-direction: column;
-    height: 100px;
+    height: 60px;
     margin: 0;
     position: sticky;
     top: 0;

@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
   let content2 = document.getElementById("content2");
   let content3 = document.getElementById("content3");
   let content4 = document.getElementById("content4");
-
+    let fifthSectionAbs = document.querySelector(".fifth-section-absolute");
   let fifthText = document.querySelector(".fifth-section-text h2");
   let cardsGwen = document.querySelector(".fourth-section .gwen-section .cards-gwen");
   
@@ -204,6 +204,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }else{
         fifthText.classList.remove("active");
     }
+
     if(scrolledPercentage<67){
         fifthSection.classList.add("active");
     }
