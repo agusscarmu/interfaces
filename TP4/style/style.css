@@ -1318,6 +1318,47 @@ section.third-section{
     width: 100%;
 }
 
+#bubble{
+    scale: 2;
+    width: 100px;
+    height: 50px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background-position: -1484px -90px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: var(--bubble-left);
+    top: var(--bubble-top);
+    animation: vibration 0.1s infinite linear alternate;
+
+}
+
+@keyframes vibration {
+    0% {
+        transform: translate(-50%, -50%) rotate(-1deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(1deg);
+    }
+}
+
+#bubble p{
+    position: absolute;
+    font-family: var(--font);
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 25px;
+    transform: rotate(-5deg);
+}
+
+#bubble img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
 .content-end{
     position: absolute;
     width: 100%;
@@ -1451,6 +1492,8 @@ section.third-section{
     top: 320px;
     right: 200px;
 }
+
+
 
 /* FOOTER */
 
@@ -1822,6 +1865,9 @@ section.third-section{
   
     --miles-left: 900px;
     --miles-top: 380px;
+
+    --bubble-left:550px;
+    --bubble-top: -320px;
   }
   
   /* SPIDERMAN */
