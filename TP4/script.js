@@ -278,7 +278,8 @@ document.addEventListener("DOMContentLoaded", function() {
       document.querySelector('.loader-container').style.display = 'none';
       document.querySelector('.content').classList.remove('hidden');
       document.querySelector('.bkg-content').classList.remove('hidden');
-  }, 500);
+      document.querySelector('.nav-bar-container').classList.remove('hidden');
+  }, 2000);
 });
 
 // SPRITE SHEETS

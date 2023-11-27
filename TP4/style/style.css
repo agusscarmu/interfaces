@@ -138,7 +138,10 @@ body {
 }
 
 .nav-bar .comprar-button{
+    display: flex;
     text-align: center;
+    justify-content: center;
+    align-items: center;
     width: 10%;
     height: 20px;
     flex-shrink: 0;
@@ -149,11 +152,11 @@ body {
     box-shadow: 4px 5px 0px 0px #02187E;
     font-family: 'Lato', sans-serif;
     color: #02187E;
-    font-size: 20px;
+    font-size: 19px;
     font-style: normal;
     font-weight: 900;
     line-height: 94.5%; /* 18.9px */
-    letter-spacing: 2.2px;
+    letter-spacing: 2px;
 }
 section.first-section{
     display: flex;
@@ -931,8 +934,13 @@ section.third-section{
 .fourth-section .sixth-section .comprar-button:hover {
     background-color: #2982FF;
     /* Cambia el color de fondo al pasar el mouse sobre el botón */
+    text-shadow: 2px 2px 4px yellow; /* Sombra de texto amarilla */
+    box-shadow: 0 0 10px yellow; /* Sombra al botón */
+    transition: background-color 0.6s ease, color 0.6s ease, box-shadow 0.8s ease; /* Agrega transiciones suaves */
     cursor: pointer;
 }
+
+
 /* SEVENTH SECTION */
 
 .seventh-section{
