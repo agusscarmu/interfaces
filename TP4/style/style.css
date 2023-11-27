@@ -21,8 +21,8 @@ body {
     justify-content: flex-end;
     flex-direction: column;
     align-items: center;
-    z-index: 1000001;
-    pointer-events:none;
+    z-index: 100000;
+    pointer-events: none;
     opacity: .7;
     transition: opacity 0.5s;
 }
@@ -293,6 +293,7 @@ body {
     justify-content: center;
     transform: translateY(300%) scale(4);
     transition: transform .5s;
+    pointer-events: none;
 }
 
 .nav-bar .logo.in-nav{
