@@ -97,7 +97,6 @@ document.addEventListener("DOMContentLoaded", function() {
     var scrolled = window.scrollY;
     var totalHeight = document.documentElement.scrollHeight - window.innerHeight; // Altura total del contenido
     var scrolledPercentage = (scrolled / totalHeight) * 100; // Calcula el porcentaje
-    console.log(scrolledPercentage);
     // Edificios
     if(scrolled > 200){
     //   edif.style.transform = "scale(" + ((scrolled-200)* 0.0005 + 1) + ") translateY(" + (-(lastScrolled * 1.00 + 1)) + "px)";
@@ -339,7 +338,6 @@ function activateMenu(){
 // Hamburguer Menu
 function toggleMenu() {
     var menuToggle = document.querySelector('.menu-toggle');
-    console.log(menuToggle);
     menuToggle.classList.toggle('active');
     activateMenu();
 }
@@ -361,7 +359,7 @@ let inAttack = false;
 var eddie = document.getElementById('eddie');
 var miles = document.getElementById('miles');
 
-eddie.addEventListener('click', function(){
+eddie.addEventListener('mouseover', function(){
     if(!isVenom){
         eddie.classList.add('transform');
     }
@@ -374,12 +372,12 @@ eddie.addEventListener('click', function(){
         isVenom = true;},1000);
 })
 
-eddie.addEventListener('click', function() {
+eddie.addEventListener('mouseover', function() {
     if(!inAttack && isVenom){
         attack(eddie, miles);
     }
 });
-miles.addEventListener('click', function() {
+miles.addEventListener('mouseover', function() {
     if(!inAttack && isVenom){
         attack(miles, eddie);
     }
