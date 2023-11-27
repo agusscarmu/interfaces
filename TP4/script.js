@@ -51,7 +51,48 @@ document.addEventListener("DOMContentLoaded", function() {
   let content4 = document.getElementById("content4");
 
   let fifthText = document.querySelector(".fifth-section-text h2");
-
+  let cardsGwen = document.querySelector(".fourth-section .gwen-section .cards-gwen");
+  
+  // Company effects
+  const postalCompany = document.querySelector('.postal-company');
+  const heroes = postalCompany.querySelectorAll('.hero');
+  const sens = 4; // Ajusta la sensibilidad según sea necesario
+  const rangeThreshold = 400; // Ajusta el umbral de rango según sea necesario
+  
+  function moveImages(image, sensibility, clientX, clientY) {
+    const { left, top, width, height } = image.getBoundingClientRect();
+    const centerX = left + width / 2;
+    const centerY = top + height / 2;
+  
+    const deltaX = clientX - centerX;
+    const deltaY = clientY - centerY;
+  
+    const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+  
+    if (distance < rangeThreshold) {
+      const translateX = (deltaX / sensibility) * -1;
+      const translateY = (deltaY / sensibility) * -1;
+      image.style.transform = `translate(${translateX}px, ${translateY}px)`;
+    } else {
+      image.style.transform = 'translate(0, 0)';
+    }
+  }
+  
+  postalCompany.addEventListener('mousemove', (e) => {
+    const { clientX, clientY } = e;
+    heroes.forEach((hero) => {
+      moveImages(hero, sens, clientX, clientY);
+    });
+  });
+  
+  postalCompany.addEventListener('mouseleave', () => {
+    heroes.forEach((image) => {
+      image.style.transform = 'translate(0, 0)';
+    });
+  });
+  
+  
+  
   document.addEventListener("scroll", function() {
     var scrolled = window.scrollY;
     var totalHeight = document.documentElement.scrollHeight - window.innerHeight; // Altura total del contenido
@@ -125,12 +166,14 @@ document.addEventListener("DOMContentLoaded", function() {
         duendeVerde.classList.remove("active");
     }
     
-    if(scrolledPercentage > 18.33){
+    if(scrolledPercentage > 18.33 && scrolledPercentage < 35){
         cards.classList.add("active");
     }else{
         cards.classList.remove("active");
     }
-
+    if(scrolledPercentage > 28 && scrolledPercentage < 35){
+        cardsGwen.style.transform = "translateY(" + (scrolledPercentage*2-60) + "%)";
+    }
     if(scrolledPercentage > 37){
         titleCompanion.classList.add("active");
     }else{
