@@ -158,12 +158,12 @@ document.addEventListener("DOMContentLoaded", function() {
     }else{
         fifthText.classList.remove("active");
     }
-    if(scrolledPercentage>50 && scrolledPercentage<65){
+    if(scrolledPercentage>52 && scrolledPercentage<67){
         fifthSection.classList.add("active");
     }else{
         fifthSection.classList.remove("active");
     }
-    if(scrolledPercentage<53.75){
+    if(scrolledPercentage<55.75){
         image1.classList.add("active");
         content1.classList.add("active");
         image4.classList.remove("active");
@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function() {
         content2.classList.remove("active");
         image3.classList.remove("active");
         content3.classList.remove("active");
-    }else if(scrolledPercentage>=53.75 && scrolledPercentage<57.5){
+    }else if(scrolledPercentage>=55.75 && scrolledPercentage<59.5){
         image2.classList.add("active");
         content2.classList.add("active");
         image1.classList.remove("active");
@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function() {
         content3.classList.remove("active");
         image4.classList.remove("active");
         content4.classList.remove("active");
-    }else if(scrolledPercentage>=57.5 && scrolledPercentage<61.25){
+    }else if(scrolledPercentage>=59.5 && scrolledPercentage<63.25){
         image3.classList.add("active");
         content3.classList.add("active");
         image2.classList.remove("active");
