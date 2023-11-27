@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
   let content3 = document.getElementById("content3");
   let content4 = document.getElementById("content4");
 
-  let fifthText = document.querySelector(".fifth-section h2");
+  let fifthText = document.querySelector(".fifth-section-text h2");
 
   document.addEventListener("scroll", function() {
     var scrolled = window.scrollY;
@@ -158,10 +158,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }else{
         fifthText.classList.remove("active");
     }
-    if(scrolledPercentage>52 && scrolledPercentage<67){
+    if(scrolledPercentage<67){
         fifthSection.classList.add("active");
-    }else{
-        fifthSection.classList.remove("active");
     }
     if(scrolledPercentage<55.75){
         image1.classList.add("active");

@@ -770,12 +770,52 @@ section.third-section{
     transition: transform 0.5s;
 }
 
+.fifth-section-absolute{
+    position: absolute;
+    width: 1280px;
+    height: 1360px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    top: 46.8%;
+    z-index: 1000;
+    pointer-events:none;
+}
+
+.fifth-section-sticky{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    transform: translateY(300%);
+    width: 100%;
+    flex-direction: column;
+    height: 100px;
+    margin: 0;
+    position: sticky;
+    top: 0;
+    z-index: 10000;
+    transition: all 0.5s;
+    pointer-events:all;
+}
+
 .fifth-section .fifth-section-content.active{
     transform: translateX(0);
     transition: transform 0.5s;
 }
 
-.fifth-section h2{
+.fifth-section-text{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 50px;
+    flex-direction: column;
+    transform: translateY(360%);
+    height: 50%;
+    width: 100%;
+    position: absolute;
+}
+
+.fifth-section-text h2{
     transform: translateX(-200%);
     color: #000;
     font-family: var(--font);
@@ -786,7 +826,7 @@ section.third-section{
     transition: transform 0.5s;
 }
 
-.fifth-section h2.active{
+.fifth-section-text h2.active{
     transform: translateX(0);
     transition: transform 0.5s;
 }
@@ -819,12 +859,11 @@ section.third-section{
     flex-direction: column;
     width: 100%;
     height: 100%;
-    position: relative;
+    gap: 100px;
 }
 
 .content-articles .text-container{
     width: 460px;
-    position: absolute;
 }
 
 
@@ -872,11 +911,13 @@ section.third-section{
 
 #content1, #content2, #content3, #content4{
     opacity: 0;
-    transition: opacity 0.5s;
+    transition: transform 0.5s, opacity 0.9s;
 }
 
 #content1.active, #content2.active, #content3.active, #content4.active{
     opacity: 1;
+    transform: rotate(0deg) translateY(0px) translateX(0px);
+    transition: transform 0.5s, opacity 0.9s;
 }
 
 /* SIXTH SECTION */
