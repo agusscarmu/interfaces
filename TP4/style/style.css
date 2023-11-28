@@ -4,9 +4,8 @@
 body {
     display: flex;
     width: 100vw;
-    top: -10px;
-    right: 10px;
     overflow-x: hidden;
+    margin: 0;
     background-color: transparent;
     justify-content: center;
     z-index: 0;
@@ -87,6 +86,10 @@ body {
     border-radius: 100px;
 }
 
+.scroll-down.oculto{
+    opacity: 0;
+    transition: opacity 0.5s;
+}
 
 .button{
     display: flex;
@@ -287,7 +290,7 @@ body {
 }
 
 .nav-bar .logo{
-    width: 100%;
+    width: 0%;
     height: 80%;
     display: flex;
     justify-content: center;
@@ -620,7 +623,6 @@ section.first-section{
     width: 0px;
     right: -9.2%;
     z-index: 2;
-    overflow: hidden;
     transition: right 0.5s; 
     transition: width 0.5s;
 }
@@ -641,7 +643,7 @@ section.first-section{
 
 .gameplay{
     position: absolute;
-    top: 1220px;
+    top: 1250px;
     width: 60%;
     left: 8%;
     z-index: 1;
@@ -1787,6 +1789,11 @@ section.third-section{
     height: 1299px;
     top: -748px;
     background: linear-gradient(180deg, #8FBEFC 19.81%, #F7E3D8 76.14%);
+}
+
+.seventh-section.hidden{
+    opacity: 0;
+    transition: all 0s;
 }
 
 /* FOOTER */

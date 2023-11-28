@@ -97,6 +97,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var scrolled = window.scrollY;
     var totalHeight = document.documentElement.scrollHeight - window.innerHeight; // Altura total del contenido
     var scrolledPercentage = (scrolled / totalHeight) * 100; // Calcula el porcentaje
+    console.log(scrolledPercentage+"%");
     // Edificios
     if(scrolled > 200){
     //   edif.style.transform = "scale(" + ((scrolled-200)* 0.0005 + 1) + ") translateY(" + (-(lastScrolled * 1.00 + 1)) + "px)";
@@ -114,9 +115,9 @@ document.addEventListener("DOMContentLoaded", function() {
         navbar.classList.add("nav-hidden");
     }
     if(scrolledPercentage>1){
-        scrollDown.classList.add("hidden");
+        scrollDown.classList.add("oculto");
     }else{
-        scrollDown.classList.remove("hidden");
+        scrollDown.classList.remove("oculto");
     }
     // Logo
     if(scrolledPercentage > 6.5){
@@ -147,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         gwen.classList.remove("show");
     }
-    if(scrolledPercentage > 5){
+    if(scrolledPercentage > 6){
         secondSectionFront.classList.add("active");
     }else{
         secondSectionFront.classList.remove("active");
@@ -162,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }else{
         textDuendeP.classList.remove("active-text");
     }
-    if(scrolledPercentage > 7 && scrolledPercentage < 20){
+    if(scrolledPercentage > 6 && scrolledPercentage < 20){
         duendeVerde.classList.add("active");
         duendeVerde.style.transform = "translateY(" + (scrolledPercentage) + "%)";
     }else if(scrolled < 550){
@@ -281,9 +282,22 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
+  function resetHover(){
+    backGroundWhite.classList.add("hidden");
+    peter2.classList.remove("clicked");
+    gwen2.classList.remove("clicked");
+    miles2.classList.remove("clicked");
+    peter2.classList.remove("blur");
+    gwen2.classList.remove("blur");
+    miles2.classList.remove("blur");
+    backGroungGwen.classList.add("hidden");
+    backGroungMiles.classList.add("hidden");
+    backGroungPeter.classList.add("hidden");
+  }
+
   // Agrega un listener para el evento de clic
   peter2.addEventListener("mouseenter", function() {
-      backGroundWhite.classList.add("over");
+      backGroundWhite.classList.remove("hidden");
       peter2.classList.remove("blur");
       peter2.classList.add("clicked");
       gwen2.classList.remove("clicked");
@@ -297,8 +311,12 @@ document.addEventListener("DOMContentLoaded", function() {
       backGroungPeter.classList.remove("hidden");
   });
 
+  peter2.addEventListener("mouseleave", function() {
+        resetHover();
+    });
+
   miles2.addEventListener("mouseenter", function() {
-      backGroundWhite.classList.add("over");
+      backGroundWhite.classList.remove("hidden");
       miles2.classList.remove("blur");
       miles2.classList.add("clicked");
       gwen2.classList.remove("clicked");
@@ -312,8 +330,12 @@ document.addEventListener("DOMContentLoaded", function() {
       backGroungMiles.classList.remove("hidden");
   });
 
+    miles2.addEventListener("mouseleave", function() {
+        resetHover();
+    });
+
   gwen2.addEventListener("mouseenter", function() {
-      backGroundWhite.classList.add("over");
+      backGroundWhite.classList.remove("hidden");
       gwen2.classList.remove("blur");
       gwen2.classList.add("clicked");
       peter2.classList.remove("clicked");
@@ -326,6 +348,10 @@ document.addEventListener("DOMContentLoaded", function() {
       backGroungPeter.classList.add("hidden");
       backGroungGwen.classList.remove("hidden");
   });
+
+    gwen2.addEventListener("mouseleave", function() {
+        resetHover();
+    });
 });
 
 
@@ -355,7 +381,8 @@ document.addEventListener("DOMContentLoaded", function() {
       document.querySelector('.content').classList.remove('hidden');
       document.querySelector('.bkg-content').classList.remove('hidden');
       document.querySelector('.nav-bar-container').classList.remove('hidden');
-  }, 2000);
+      document.querySelector('.scroll-down').classList.remove('hidden');
+  }, 5000);
 });
 
 // SPRITE SHEETS
