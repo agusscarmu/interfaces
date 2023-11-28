@@ -175,7 +175,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }else{
         cards.classList.remove("active");
     }
-    if(scrolledPercentage > 28 && scrolledPercentage < 35){
+    if(scrolledPercentage > 28 && scrolledPercentage < 32){
         cardsGwen.style.transform = "translateY(" + (scrolledPercentage*2-60) + "%)";
     }
     if(scrolledPercentage > 37){
